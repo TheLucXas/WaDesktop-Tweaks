@@ -104,6 +104,7 @@
     // 1) the left rail (hide Channels / Communities / Status / Meta AI)
     const nav = [...document.querySelectorAll('[data-navbar-item]')];
     out.push('## rail: ' + nav.length + ' [data-navbar-item] element(s)');
+    nav.forEach((b, i) => out.push('  item ' + i + ': index=' + (b.getAttribute('data-navbar-item-index') === null ? '(none)' : b.getAttribute('data-navbar-item-index')) + ' icons=[' + [...b.querySelectorAll('[data-icon]')].map(x => x.getAttribute('data-icon')).join(',') + '] aria-label=[' + (b.getAttribute('aria-label') || '').length + ' chars] hiddenByTweaks=' + !!(b.parentElement && b.parentElement.dataset && b.parentElement.dataset.watHid)));
     if (nav.length) {
       let root = nav[0].parentElement;
       for (let i = 0; i < 5 && root && !nav.every(n => root.contains(n)); i++) root = root.parentElement;
@@ -127,27 +128,11 @@
     e.preventDefault(); e.stopPropagation();
     try {
       const rep = layoutReport();
-      rememberLayout(rep);
       const ok = await copyText(rep);
       WAT.toast(ok ? t('ui.done') : t('ui.error'), t('sys.copyLayout'), ok ? '' : 'err');
     } catch (err) { WAT.toast(t('ui.error'), String(err && err.message || err), 'err'); }
   }, true);
 
-  // Keeps the latest layout report next to the settings (structure only) so a misalignment can be inspected
-  // without any clipboard step. Also leaves a small probe so it is clear whether this ran and why it did not.
-  const store = o => { try { localStorage.setItem('wat.lastLayout', JSON.stringify(Object.assign({ at: new Date().toISOString() }, o))); } catch {} };
-  const rememberLayout = rep => store({ painted: document.querySelectorAll('[data-wat-del]').length, report: rep });
-  let lastSnap = 0, probed = false;
-  setInterval(() => {
-    const n = document.querySelectorAll('[data-wat-del]').length;
-    if (!n) {
-      if (!probed && WAT.nowReady() && document.querySelector('[data-id]')) { probed = true; store({ painted: 0, note: 'a chat is open but no recovered message is painted' }); }
-      return;
-    }
-    if (Date.now() - lastSnap < 120000) return;
-    lastSnap = Date.now();
-    try { rememberLayout(layoutReport()); } catch (e) { store({ painted: n, error: String(e && e.stack || e).slice(0, 2000) }); }
-  }, 3000);
 
   async function runDiagnostics() {
     const rows = checks();
@@ -163,7 +148,7 @@
       el('div', {}, rows.map(r => el('div', { class: 'wat-row', style: 'padding:6px 0' }, el('div', { class: 'txt' }, r[0]), el('div', { style: 'font-weight:700;color:' + (r[1] ? '#00a884' : '#e5484d') }, r[1] ? '✔' : '✖')))),
       el('div', { style: 'display:flex;gap:8px;margin-top:12px;flex-wrap:wrap' },
         el('button', { class: 'wat-btn', onclick: async () => { const ok = await copyText(text); WAT.toast(ok ? t('ui.done') : t('ui.error'), '', ok ? '' : 'err'); } }, t('sys.copyReport')),
-        el('button', { class: 'wat-btn', onclick: async () => { const rep = layoutReport(); rememberLayout(rep); const ok = await copyText(rep); WAT.toast(ok ? t('ui.done') : t('ui.error'), '', ok ? '' : 'err'); } }, t('sys.copyLayout'))),
+        el('button', { class: 'wat-btn', onclick: async () => { const ok = await copyText(layoutReport()); WAT.toast(ok ? t('ui.done') : t('ui.error'), '', ok ? '' : 'err'); } }, t('sys.copyLayout'))),
       el('div', { class: 'wat-hint' }, t('sys.layoutHint'))));
     document.body.appendChild(ov); ov.addEventListener('mousedown', e => { if (e.target === ov) close(); });
   }

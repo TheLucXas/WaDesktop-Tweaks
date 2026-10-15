@@ -33,8 +33,18 @@
   }
   WAT.onEvent('change', apply);
 
-  // Side-bar items are identified by their position (data-navbar-item-index), not by their translated label.
-  const RAIL = { hideStatusTab: '2', hideChannels: '3', hideCommunities: '4' };
+  // Side-bar items are found by the icon inside their button (language independent). WhatsApp's own
+  // data-navbar-item-index is not reliable (an item such as Calls can lack it, shifting every other index), so
+  // the position of the item in the bar is only the fallback when no icon matches.
+  const RAIL = { hideStatusTab: [/status/i, 2], hideChannels: [/newsletter|channel/i, 3], hideCommunities: [/communit/i, 4] };
+  const iconOf = b => { const i = b.querySelector('[data-icon]'); return i ? i.getAttribute('data-icon') || '' : ''; };
+  // a button is hidden through its cell; only cells hidden by us are touched when showing again
+  const setCell = (m, hide) => {
+    const cell = m.tagName === 'BUTTON' ? m.parentElement : m;
+    if (!cell || cell === document.body) return;
+    if (hide) { if (cell.style.display !== 'none') cell.style.display = 'none'; cell.dataset.watHid = '1'; }
+    else if (cell.dataset.watHid) { cell.style.display = ''; delete cell.dataset.watHid; }
+  };
   setInterval(() => {
     apply();
     const app = document.getElementById('app');
@@ -43,14 +53,16 @@
       const want = z === 1 ? '' : String(z);
       if (String(app.style.zoom || '') !== want) app.style.zoom = want;
     }
-    // every match is handled (WhatsApp can render the item more than once); a button is hidden through its cell
-    const setCell = (m, hide) => { const cell = m.tagName === 'BUTTON' ? m.parentElement : m; if (cell && cell !== document.body) cell.style.display = hide ? 'none' : ''; };
-    for (const [id, idx] of Object.entries(RAIL)) {
+    const items = [...document.querySelectorAll('[data-navbar-item]')];
+    if (!items.length) return;
+    for (const [id, [rx, pos]] of Object.entries(RAIL)) {
+      const byIcon = items.filter(b => rx.test(iconOf(b)));
+      const targets = byIcon.length ? byIcon : (items[pos] ? [items[pos]] : []);
       const hide = WAT.on(id);
-      document.querySelectorAll('[data-navbar-item][data-navbar-item-index="' + idx + '"]').forEach(m => setCell(m, hide));
+      targets.forEach(m => setCell(m, hide));
     }
     const hideAI = WAT.on('hideMetaAI');
-    document.querySelectorAll('[data-navbar-item][aria-label="Meta AI"]').forEach(m => setCell(m, hideAI));
+    items.filter(m => m.getAttribute('aria-label') === 'Meta AI').forEach(m => setCell(m, hideAI));
   }, 400);
 
   WAT.addShortcut('compactShortcut', () => WAT.set('compact', !WAT.on('compact')));

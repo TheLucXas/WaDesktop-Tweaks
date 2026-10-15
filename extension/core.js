@@ -153,44 +153,4 @@
     document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 10000);
   };
   WAT.nowReady = () => !!(document.body && document.documentElement);
-
-  /* WhatsApp reserves room for the time next to the text it rendered. When we change that content (a recovered
-   * text, a time with seconds) a line of text can end up under the timestamp. If a line of `box` really overlaps
-   * the row's time element, add right padding equal to the overlap so the bubble widens and the time stays beside
-   * the text, as WhatsApp lays it out. Only when that does not fit is the time moved to its own line. */
-  WAT.avoidMeta = (row, box) => {
-    try {
-      const meta = row.querySelector('[data-testid="msg-meta"]');
-      if (!meta || !box || !box.isConnected) return;
-      // the *visible* time: union of its text and tick icons (the meta container itself can be much wider)
-      let L = Infinity, R = -Infinity, T = Infinity, B = -Infinity;
-      const add = q => { if (q.width > 0 && q.height > 0) { L = Math.min(L, q.left); R = Math.max(R, q.right); T = Math.min(T, q.top); B = Math.max(B, q.bottom); } };
-      const tw = document.createTreeWalker(meta, NodeFilter.SHOW_TEXT);
-      for (let n = tw.nextNode(); n; n = tw.nextNode()) {
-        if (!n.nodeValue.trim()) continue;
-        const tr = document.createRange(); tr.selectNodeContents(n); [...tr.getClientRects()].forEach(add);
-      }
-      meta.querySelectorAll('svg,img').forEach(e => add(e.getBoundingClientRect()));
-      if (!(R > L)) return;
-      const m = { left: L, right: R, top: T, bottom: B, width: R - L, height: B - T };
-      const rg = document.createRange(); rg.selectNodeContents(box);
-      let need = 0;
-      for (const r of rg.getClientRects()) {
-        if (r.width > 1 && r.right > m.left + 1 && r.left < m.right - 1 && r.top < m.bottom - 2 && r.bottom > m.top + 2) need = Math.max(need, r.right - m.left + 6);
-      }
-      if (!need || box.dataset.watPadB) return;
-      if (!box.dataset.watPadR && need <= 1.5 * m.width) {
-        // normal case: make room next to the text once, exactly the overlap
-        box.dataset.watPadR = String(Math.ceil(need));
-        box.style.paddingRight = box.dataset.watPadR + 'px';
-        return;
-      }
-      // it does not fit beside the text, or the time did not follow the wider bubble: undo the side room (no
-      // unexplained gap) and give the time its own line instead
-      box.style.paddingRight = ''; delete box.dataset.watPadR;
-      box.dataset.watPadB = String(Math.ceil(m.height));
-      if (getComputedStyle(box).display === 'inline') box.style.display = 'inline-block';
-      box.style.paddingBottom = box.dataset.watPadB + 'px';
-    } catch {}
-  };
 })();

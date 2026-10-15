@@ -49,6 +49,7 @@
   }, true);
 
   /* ---------- per-row DOM adjustments (language independent: uses models + data-testid) ---------- */
+  const TIME_ONLY = /^\s*\d{1,2}[:.]\d{2}([:.]\d{2})?\s*([ap]\.?\s?m\.?)?\s*$/i;
   const rowScan = () => {
     const doTime = WAT.on('timeSeconds'), doFwd = WAT.on('hideForwarded');
     const words = String(WAT.get('highlightWords') || '').split('\n').map(s => s.trim().toLowerCase()).filter(Boolean);
@@ -64,8 +65,11 @@
         if (meta) for (const sp of meta.querySelectorAll('span')) {
           if (sp.children.length === 0 && /\d{1,2}:\d{2}/.test(sp.textContent) && !sp.closest('.wat-edit') && sp.textContent !== txt) { sp.textContent = txt; break; }
         }
-        // the longer time can end up over the last line of the text: make room for it when it really overlaps
-        WAT.avoidMeta(row, row.querySelector('.selectable-text'));
+        // WhatsApp keeps an invisible copy of the time inside the text so the text wraps before it. Keep that copy
+        // as wide as the visible time, or the longer time (with seconds) sits on top of the end of the text.
+        for (const sp of row.querySelectorAll('[aria-hidden="true"] span, span[aria-hidden="true"]')) {
+          if (sp.children.length === 0 && !(meta && meta.contains(sp)) && TIME_ONLY.test(sp.textContent) && sp.textContent !== txt) sp.textContent = txt;
+        }
       }
       if (doFwd && msg.isForwarded) {
         const ic = row.querySelector('[data-icon*="forward"]');
