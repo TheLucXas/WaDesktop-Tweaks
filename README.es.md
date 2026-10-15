@@ -32,7 +32,7 @@ Recuperar mensajes eliminados · historial de ediciones · proveedor de GIFs · 
 | 🎧 | **No marcar notas de voz como reproducidas** | Sin micrófono azul ⚠️ |
 | 👀 | **Ver estados sin avisar** | El autor no se entera ⚠️ |
 | 🗑️ | **Recuperar mensajes eliminados** | Copia local del texto recibido; se muestra en el propio chat ⚠️ |
-| ✏️ | **Historial de ediciones** | Mira qué decía un mensaje antes de editarse |
+| ✏️ | **Historial de ediciones** | Haz clic en el ✏️ junto a un mensaje editado para leer sus versiones anteriores (tuyos y de otros) |
 | 📦 | **Archivo de estados** | Opcional, por contacto y con límite de tamaño ⚠️ |
 | 🎞️ | **Búsqueda de GIFs en KLIPY** | Se envían como GIFs *reales* con el flujo de WhatsApp |
 | ⏰ | **Mensajes programados** | Se envían mientras WhatsApp está abierto ⛔ |

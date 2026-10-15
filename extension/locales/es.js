@@ -34,7 +34,7 @@ window.WAT && window.WAT.addLocale('es', {
   'f.showDeletedInline.name': 'Mostrar en el chat el texto eliminado', 'f.showDeletedInline.desc': 'Reemplaza «Se eliminó este mensaje» por el texto recuperado.',
   'f.showDeletedInline.tip': 'En la conversación, la burbuja de mensaje eliminado muestra el texto guardado (conservando el icono de eliminado de WhatsApp). Pasa el cursor para ver «Mensaje eliminado». Es solo visual en tu pantalla.',
   'f.trackEdits.name': 'Guardar historial de ediciones', 'f.trackEdits.desc': 'Muestra ✏️ en mensajes editados con las versiones anteriores.',
-  'f.trackEdits.tip': 'Cuando alguien edita un mensaje, WhatsApp reemplaza el texto. Con esta opción se conservan las versiones anteriores: aparece ✏️ junto a la hora; pasa el cursor para leerlas.',
+  'f.trackEdits.tip': 'Cuando alguien edita un mensaje, WhatsApp reemplaza el texto. Con esta opción se conservan las versiones anteriores: aparece ✏️ junto a la hora; pasa el cursor para leerlas. También incluye tus propias ediciones (tus mensajes solo se guardan en memoria hasta que editas uno).',
   'f.openDeleted.name': 'Registro de mensajes eliminados y editados', 'f.openDeleted.desc': 'Consulta y busca los mensajes recuperados.', 'f.openDeleted.tip': 'Abre la lista de mensajes eliminados y editados, con búsqueda y exportación.', 'a.openDeleted': 'Abrir registro',
   'f.clearTracker.name': 'Borrar todas las copias guardadas', 'f.clearTracker.desc': 'Elimina de esta PC todo lo guardado por esta función.', 'f.clearTracker.tip': 'Vacía por completo el registro local de mensajes.',
   'f.clearTracker.confirm': 'Se eliminarán todas las copias guardadas y el registro de eliminados/editados de esta PC. No se puede deshacer.', 'a.clearTracker': 'Borrar',

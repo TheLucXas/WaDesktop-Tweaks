@@ -20,7 +20,7 @@ window.WAT && window.WAT.addLocale('zh', {
   'f.trackHours.name': '副本保留时长(小时)', 'f.trackHours.desc': '较旧的副本会自动删除(默认 72 小时)。', 'f.trackHours.tip': 'WhatsApp 允许约两天内"为所有人删除"，72 小时足以覆盖。',
   'f.trackToast.name': '消息被删除时提醒', 'f.trackToast.desc': '弹出提示并显示恢复的文本。', 'f.trackToast.tip': '提示会显示是谁删除了消息以及内容。',
   'f.showDeletedInline.name': '在聊天中显示已删除的文本', 'f.showDeletedInline.desc': '用恢复的文本替换"此消息已删除"。', 'f.showDeletedInline.tip': '在气泡中显示已保存的文本。仅在你的屏幕上显示。',
-  'f.trackEdits.name': '保留编辑历史', 'f.trackEdits.desc': '在已编辑消息上显示 ✏️ 及之前的版本。', 'f.trackEdits.tip': '保留已编辑消息的早期版本;将鼠标移到 ✏️ 上即可阅读。',
+  'f.trackEdits.name': '保留编辑历史', 'f.trackEdits.desc': '在已编辑消息上显示 ✏️ 及之前的版本。', 'f.trackEdits.tip': '保留已编辑消息的早期版本;将鼠标移到 ✏️ 上即可阅读。 也包括你自己的编辑（你的消息在你编辑之前只保存在内存中）。',
   'f.openDeleted.name': '已删除与已编辑消息记录', 'f.openDeleted.desc': '浏览并搜索已恢复的消息。', 'f.openDeleted.tip': '打开带搜索和导出功能的列表。', 'a.openDeleted': '打开记录',
   'f.clearTracker.name': '清除所有已保存副本', 'f.clearTracker.desc': '删除此功能保存的全部内容。', 'f.clearTracker.tip': '清空本地记录。', 'f.clearTracker.confirm': '这将删除本机上的所有副本和记录,且无法撤销。', 'a.clearTracker': '清除',
   'msg.deletedBy': '🗑 {who} 删除了一条消息', 'msg.deletedTip': '已删除的消息:发送者已为所有人删除。文本从你的本地记录中恢复。', 'msg.editedTip': '已编辑的消息。之前的版本:',

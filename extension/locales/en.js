@@ -35,7 +35,7 @@ window.WAT && window.WAT.addLocale('en', {
   'f.showDeletedInline.name': 'Show deleted text inside the chat', 'f.showDeletedInline.desc': 'Replaces "This message was deleted" with the recovered text.',
   'f.showDeletedInline.tip': 'In the conversation the deleted-message bubble shows the saved text (keeping WhatsApp\'s own deleted icon). Hover it to see "Deleted message". Purely visual on your screen.',
   'f.trackEdits.name': 'Keep edit history', 'f.trackEdits.desc': 'Shows ✏️ on edited messages with the previous versions.',
-  'f.trackEdits.tip': 'When someone edits a message, WhatsApp replaces the text. With this on the earlier versions are kept: a ✏️ mark appears next to the time; hover it to read them.',
+  'f.trackEdits.tip': 'When someone edits a message, WhatsApp replaces the text. With this on the earlier versions are kept: a ✏️ mark appears next to the time; hover it to read them. Your own edits are included (your messages are only kept in memory until you edit one).',
   'f.openDeleted.name': 'Deleted & edited messages log', 'f.openDeleted.desc': 'Browse and search recovered messages.', 'f.openDeleted.tip': 'Opens the list of deleted and edited messages, with search and export.', 'a.openDeleted': 'Open log',
   'f.clearTracker.name': 'Erase all saved copies', 'f.clearTracker.desc': 'Removes everything saved by this feature from this PC.', 'f.clearTracker.tip': 'Empties the local message log completely.',
   'f.clearTracker.confirm': 'This deletes every saved message copy and the deleted/edited log from this PC. This cannot be undone.', 'a.clearTracker': 'Erase',

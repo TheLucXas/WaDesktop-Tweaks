@@ -32,7 +32,7 @@ Deleted-message recovery · edit history · custom GIF provider · screen blur &
 | 🎧 | **Don't mark voice notes as played** | No blue microphone ⚠️ |
 | 👀 | **View statuses without notifying** | The author is not told ⚠️ |
 | 🗑️ | **Recover deleted messages** | Local copy of incoming text; shown right in the chat ⚠️ |
-| ✏️ | **Edit history** | See what a message said before it was edited |
+| ✏️ | **Edit history** | Click the ✏️ next to an edited message to read its earlier versions (yours and other people's) |
 | 📦 | **Statuses archive** | Optional, per-contact, with a size cap ⚠️ |
 | 🎞️ | **KLIPY GIF search** | Sent as *real* GIFs through WhatsApp's own flow |
 | ⏰ | **Scheduled messages** | Sent while WhatsApp is open ⛔ |

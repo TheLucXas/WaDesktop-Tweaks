@@ -37,14 +37,15 @@
     return { chatName, sender };
   }
   function toRecord(m) {
-    if (!m || !m.id || m.id.fromMe || m.isViewOnce) return null;            // view-once content is never stored
+    if (!m || !m.id || m.isViewOnce) return null;                           // view-once content is never stored
+    const own = !!m.id.fromMe;                                               // own messages: kept in memory, saved only once edited
     const ty = m.type; if (!ty || IGNORED_TYPES.includes(ty)) return null;
     const remote = String(m.id.remote || ''); if (remote.includes('status@') || remote.includes('@newsletter')) return null;
     const text = typeof m.body === 'string' && (ty === 'chat' || ty === 'conversation') ? m.body : (m.caption || '');
     const thumb = ty !== 'chat' && typeof m.body === 'string' && m.body.length > 80 && m.body.length < 60000 ? m.body : '';
     if (!text && !thumb && ty === 'chat') return null;
     const n = names(m);
-    return { id: keyOf(m), chat: n.chatName, sender: n.sender, type: ty, text, thumb, mime: m.mimetype || '', ts: (m.t || 0) * 1000, savedAt: Date.now(), deleted: false, edits: [] };
+    return { id: keyOf(m), chat: n.chatName, sender: own ? t('ui.me') : n.sender, own, type: ty, text, thumb, mime: m.mimetype || '', ts: (m.t || 0) * 1000, savedAt: Date.now(), deleted: false, edits: [] };
   }
 
   function remember(m) {
@@ -63,7 +64,7 @@
       }
       cache.set(rec.id, rec);
       if (cache.size > 4000) cache.delete(cache.keys().next().value);
-      WAT.db.put('msgs', rec).catch(() => {});
+      if (!rec.own) WAT.db.put('msgs', rec).catch(() => {});
     } catch (e) { WAT.log('remember: ' + e); }
   }
 
@@ -75,7 +76,7 @@
       if (!tag || checked.has(tag)) return;
       const rec = (orig && (cache.get(orig) || await WAT.db.get('msgs', orig))) || cache.get(own) || await WAT.db.get('msgs', own);
       checked.add(tag);
-      if (!rec || rec.deleted) return;
+      if (!rec || rec.deleted || rec.own) return;
       rec.deleted = true; rec.deletedAt = Number(m.revokeTimestamp) ? Number(m.revokeTimestamp) * 1000 : Date.now();
       cache.set(rec.id, rec); delIndex.set(rec.id, rec); await WAT.db.put('msgs', rec);
       if (WAT.on('trackToast') && Date.now() - rec.deletedAt < 120000) WAT.toast(t('msg.deletedBy', { who: rec.sender || rec.chat }), rec.text || '[' + rec.type + ']', 'warn');
@@ -91,6 +92,9 @@
     M.on('add', m => { if (m && m.type === 'revoked') onRevoked(m); else remember(m); });
     M.on('change:type', m => { if (m && m.type === 'revoked') onRevoked(m); else remember(m); });
     M.on('change:body', m => { if (m && m.type !== 'revoked') remember(m); });
+    M.on('change', m => {
+      try { const k = Object.keys(m.changed || {}).filter(x => /edit|body|latest/i.test(x)); if (k.length) WAT.log('msg change: ' + k.join(',') + ' type=' + m.type + ' own=' + !!(m.id && m.id.fromMe)); } catch {}
+    });
     setTimeout(() => WAT.msgs().forEach(m => { const r = toRecord(m); if (r && r.ts > Date.now() - 72 * 3600e3 && WAT.on('trackDeleted')) remember(m); }), 3000);
     return true;
   }
@@ -111,6 +115,24 @@
 
   /* ---------- paint recovered text / edit marks on the chat ---------- */
   const metaSel = '[data-testid="msg-meta"]';
+  const TIME_ONLY = /^\s*\d{1,2}[:.]\d{2}([:.]\d{2})?\s*([ap]\.?\s?m\.?)?\s*$/i;
+
+  // Click on ✏️: the previous versions of one message, oldest first, then the current text.
+  function showEdits(rec) {
+    const ov = el('div', { class: 'wat-ov' });
+    const close = () => ov.remove();
+    const when = ms => { try { return new Date(ms).toLocaleString(); } catch { return ''; } };
+    const list = el('div', { class: 'wat-list' });
+    (rec.edits || []).forEach((e, i) => list.append(el('div', { class: 'it' },
+      el('div', { class: 'h' }, (i + 1) + (e.at ? ' · ' + when(e.at) : '')), el('div', { class: 'b' }, e.text))));
+    list.append(el('div', { class: 'it' }, el('div', { class: 'h' }, t('msg.current')), el('div', { class: 'b' }, rec.text || '')));
+    ov.append(el('div', { class: 'wat-panel', style: 'display:block;width:min(520px,94vw);height:auto;max-height:80vh;overflow:auto;padding:16px 18px' },
+      el('div', { style: 'display:flex;justify-content:space-between;align-items:center' },
+        el('h2', { style: 'margin:0;font-size:17px' }, '✏️ ' + t('msg.editedTip')), el('button', { class: 'wat-x', onclick: close }, '✕')),
+      list));
+    ov.addEventListener('mousedown', e => { if (e.target === ov) close(); });
+    document.body.appendChild(ov);
+  }
   function paintRow(row, idx) {
     const msg = idx.get(row.getAttribute('data-id')); if (!msg) return;
     if (msg.type === 'revoked' && WAT.on('showDeletedInline')) {
@@ -131,9 +153,18 @@
       const rec = cache.get(keyOf(msg));
       if (rec && rec.edits && rec.edits.length) {
         const meta = row.querySelector(metaSel); if (!meta) return;
-        let mark = meta.querySelector('.wat-edit');
+        let mark = row.querySelector('.wat-edit');
         const tip = t('msg.editedTip') + '\n\n' + rec.edits.map((e, i) => (i + 1) + '. ' + e.text).join('\n');
-        if (!mark) { mark = el('span', { class: 'wat-edit', style: 'margin-right:4px;cursor:help' }, '✏️'); meta.prepend(mark); }
+        if (!mark) {
+          mark = el('span', { class: 'wat-edit', style: 'margin:0 3px;cursor:pointer;font-size:12px' }, '✏️');
+          const key = keyOf(msg);
+          mark.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); const r = cache.get(key); if (r) showEdits(r); });
+          // Placed right after the text, in front of WhatsApp's invisible copy of the time: it takes part in the text
+          // line like any word, so nothing is covered. Inside the time block it would sit on top of the message.
+          const copy = [...row.querySelectorAll('span[aria-hidden="true"]')].find(s => TIME_ONLY.test(s.textContent));
+          const holder = copy && copy.parentElement;
+          if (holder && holder.parentElement) holder.parentElement.insertBefore(mark, holder); else meta.prepend(mark);
+        }
         mark.title = tip;
       }
     }

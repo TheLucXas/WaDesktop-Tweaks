@@ -20,7 +20,7 @@ window.WAT && window.WAT.addLocale('ko', {
   'f.trackHours.name': '사본 보관 시간', 'f.trackHours.desc': '오래된 사본은 자동 삭제됩니다(기본 72시간).', 'f.trackHours.tip': 'WhatsApp은 약 이틀간 "모두에게 삭제"를 허용하므로 72시간이면 충분합니다.',
   'f.trackToast.name': '메시지 삭제 시 알림', 'f.trackToast.desc': '복구된 텍스트와 함께 알림을 표시합니다.', 'f.trackToast.tip': '누가 무엇을 삭제했는지 알림으로 표시됩니다.',
   'f.showDeletedInline.name': '삭제된 텍스트를 채팅에 표시', 'f.showDeletedInline.desc': '"삭제된 메시지입니다"를 복구한 텍스트로 바꿉니다.', 'f.showDeletedInline.tip': '저장된 텍스트를 말풍선에 표시합니다. 내 화면에서만 바뀌는 시각적 변경입니다.',
-  'f.trackEdits.name': '수정 기록 보관', 'f.trackEdits.desc': '수정된 메시지에 ✏️와 이전 버전을 표시합니다.', 'f.trackEdits.tip': '수정 전 버전을 보관합니다. ✏️에 마우스를 올리면 읽을 수 있습니다.',
+  'f.trackEdits.name': '수정 기록 보관', 'f.trackEdits.desc': '수정된 메시지에 ✏️와 이전 버전을 표시합니다.', 'f.trackEdits.tip': '수정 전 버전을 보관합니다. ✏️에 마우스를 올리면 읽을 수 있습니다. 내가 한 수정도 포함됩니다(내 메시지는 수정하기 전까지 메모리에만 보관됩니다).',
   'f.openDeleted.name': '삭제·수정 메시지 기록', 'f.openDeleted.desc': '복구된 메시지를 보고 검색합니다.', 'f.openDeleted.tip': '검색과 내보내기가 있는 목록을 엽니다.', 'a.openDeleted': '기록 열기',
   'f.clearTracker.name': '저장된 사본 모두 삭제', 'f.clearTracker.desc': '이 기능이 저장한 모든 것을 지웁니다.', 'f.clearTracker.tip': '로컬 기록을 비웁니다.', 'f.clearTracker.confirm': '이 PC의 모든 사본과 기록을 삭제합니다. 되돌릴 수 없습니다.', 'a.clearTracker': '삭제',
   'msg.deletedBy': '🗑 {who}님이 메시지를 삭제했습니다', 'msg.deletedTip': '삭제된 메시지: 보낸 사람이 모두에게서 삭제했습니다. 로컬 기록에서 복구한 텍스트입니다.', 'msg.editedTip': '수정된 메시지. 이전 버전:',

@@ -20,7 +20,7 @@ window.WAT && window.WAT.addLocale('ja', {
   'f.trackHours.name': 'コピーの保存時間', 'f.trackHours.desc': '古いコピーは自動削除されます(既定 72 時間)。', 'f.trackHours.tip': 'WhatsApp の「全員が削除」は約 2 日間可能です。72 時間で十分です。',
   'f.trackToast.name': 'メッセージ削除時に通知', 'f.trackToast.desc': '復元したテキストを通知で表示します。', 'f.trackToast.tip': '誰が何を削除したかを表示します。',
   'f.showDeletedInline.name': '削除済みテキストをチャットに表示', 'f.showDeletedInline.desc': '「このメッセージは削除されました」を復元テキストに置き換えます。', 'f.showDeletedInline.tip': '保存済みテキストを吹き出しに表示します。画面上の見た目のみの変更です。',
-  'f.trackEdits.name': '編集履歴を保存', 'f.trackEdits.desc': '編集済みメッセージに ✏️ と以前の版を表示します。', 'f.trackEdits.tip': '編集前の版を保存します。✏️ にカーソルを合わせると読めます。',
+  'f.trackEdits.name': '編集履歴を保存', 'f.trackEdits.desc': '編集済みメッセージに ✏️ と以前の版を表示します。', 'f.trackEdits.tip': '編集前の版を保存します。✏️ にカーソルを合わせると読めます。 自分の編集も含まれます（自分のメッセージは、編集するまでメモリ上にのみ保持されます）。',
   'f.openDeleted.name': '削除・編集メッセージの記録', 'f.openDeleted.desc': '復元したメッセージを閲覧・検索します。', 'f.openDeleted.tip': '検索と書き出し付きの一覧を開きます。', 'a.openDeleted': '記録を開く',
   'f.clearTracker.name': '保存したコピーをすべて消去', 'f.clearTracker.desc': 'この機能が保存したものをすべて削除します。', 'f.clearTracker.tip': 'ローカルの記録を空にします。', 'f.clearTracker.confirm': 'この PC のコピーと記録をすべて削除します。元に戻せません。', 'a.clearTracker': '消去',
   'msg.deletedBy': '🗑 {who} がメッセージを削除しました', 'msg.deletedTip': '削除されたメッセージ: 送信者が全員向けに削除しました。ローカル記録から復元したテキストです。', 'msg.editedTip': '編集されたメッセージ。以前の版:',
