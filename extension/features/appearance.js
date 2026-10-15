@@ -68,22 +68,29 @@
     }
     return null;
   };
+  // The animation tracks the distance still to travel (`rem`), not an absolute target: when WhatsApp prepends
+  // older messages it shifts scrollTop, and an absolute target would keep dragging the list to the (new) top.
   function glide(node, dy) {
     let s = glides.get(node);
-    if (!s) glides.set(node, (s = { target: 0, raf: 0, last: 0 }));
-    const max = node.scrollHeight - node.clientHeight;
-    if (!s.raf || Math.sign(dy) !== Math.sign(s.target - node.scrollTop)) s.target = node.scrollTop;   // idle or reversed
-    s.target = Math.max(0, Math.min(max, s.target + dy));
+    if (!s) glides.set(node, (s = { rem: 0, raf: 0, last: 0 }));
+    if (Math.sign(dy) !== Math.sign(s.rem)) s.rem = 0;                    // direction reversed: drop the inertia
+    const lim = Math.max(800, node.clientHeight * 2);
+    s.rem = Math.max(-lim, Math.min(lim, s.rem + dy));
     if (s.raf) return;
     s.last = performance.now();
     const step = now => {
       const dt = Math.min(64, now - s.last); s.last = now;
       const tau = Math.max(80, Number(WAT.get('smoothTime')) || 280) / 4;
-      const cur = node.scrollTop, diff = s.target - cur;
-      if (Math.abs(diff) <= 1) { node.scrollTop = s.target; s.raf = 0; return; }
-      let mv = diff * (1 - Math.exp(-dt / tau));
-      if (Math.abs(mv) < 1) mv = Math.sign(diff);      // never stall below one pixel per frame
-      node.scrollTop = cur + mv;
+      let mv = s.rem * (1 - Math.exp(-dt / tau));
+      if (Math.abs(mv) < 1) mv = Math.sign(s.rem) * Math.min(1, Math.abs(s.rem));   // never stall below 1px/frame
+      const before = node.scrollTop;
+      node.scrollTop = before + mv;
+      const moved = node.scrollTop - before;
+      s.rem -= mv;
+      // arrived, or the list reached an edge: forget the rest, like a native scroll that stops at the edge,
+      // so nothing keeps pushing while WhatsApp loads older messages
+      const atEdge = (s.rem < 0 && node.scrollTop <= 0) || (s.rem > 0 && node.scrollTop >= node.scrollHeight - node.clientHeight - 0.5);
+      if (Math.abs(s.rem) < 1 || Math.abs(moved) < 0.5 || atEdge) { s.rem = 0; s.raf = 0; return; }
       s.raf = requestAnimationFrame(step);
     };
     s.raf = requestAnimationFrame(step);
