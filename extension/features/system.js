@@ -108,7 +108,7 @@
     if (nav.length) {
       let root = nav[0].parentElement;
       for (let i = 0; i < 5 && root && !nav.every(n => root.contains(n)); i++) root = root.parentElement;
-      walk(root && root.parentElement ? root.parentElement : root, 0, 7);
+      walk(root && root.parentElement ? root.parentElement : root, 0, 12);
     }
     // 2) message rows: the last recovered deleted message, and a normal text message to compare against
     const painted = [...document.querySelectorAll('[data-wat-del]')].map(p => p.closest('[data-id]')).filter(Boolean);

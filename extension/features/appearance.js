@@ -33,18 +33,17 @@
   }
   WAT.onEvent('change', apply);
 
-  // Side-bar items are found by the icon inside their button (language independent). WhatsApp's own
-  // data-navbar-item-index is not reliable (an item such as Calls can lack it, shifting every other index), so
-  // the position of the item in the bar is only the fallback when no icon matches.
-  const RAIL = { hideStatusTab: [/status/i, 2], hideChannels: [/newsletter|channel/i, 3], hideCommunities: [/communit/i, 4] };
-  const iconOf = b => { const i = b.querySelector('[data-icon]'); return i ? i.getAttribute('data-icon') || '' : ''; };
-  // a button is hidden through its cell; only cells hidden by us are touched when showing again
-  const setCell = (m, hide) => {
-    const cell = m.tagName === 'BUTTON' ? m.parentElement : m;
-    if (!cell || cell === document.body) return;
-    if (hide) { if (cell.style.display !== 'none') cell.style.display = 'none'; cell.dataset.watHid = '1'; }
-    else if (cell.dataset.watHid) { cell.style.display = ''; delete cell.dataset.watHid; }
+  // Side-bar items. WhatsApp's data-navbar-item-index is not reliable (an item such as Calls can lack it, which
+  // shifts every other index) and the buttons carry no icon name, so an item is recognised by the label WhatsApp
+  // gives it in each interface language. Only when no label of any of the three is recognised (a language not
+  // listed here) the position in the bar is used: Chats, Calls, Status, Channels, Communities.
+  const LABELS = {
+    hideStatusTab: /^(status|statuts?|actus|updates?|novedades|estados?|atualiza|stati|статус|durum|ステータス|상태|状态|动态|statusy)/i,
+    hideChannels: /^(channels?|canales|canais|cha[iî]nes|kan[aä]le|canali|каналы|kanallar|チャンネル|채널|频道|saluran|kana[łl]y)/i,
+    hideCommunities: /^(communit|comunidad|communaut|comunit|сообществ|topluluk|コミュニティ|커뮤니티|社区|komunitas|spo[łl]eczno)/i,
   };
+  const POS = { hideStatusTab: 2, hideChannels: 3, hideCommunities: 4 };
+  const cellOf = m => (m.tagName === 'BUTTON' ? m.parentElement : m);
   setInterval(() => {
     apply();
     const app = document.getElementById('app');
@@ -55,14 +54,18 @@
     }
     const items = [...document.querySelectorAll('[data-navbar-item]')];
     if (!items.length) return;
-    for (const [id, [rx, pos]] of Object.entries(RAIL)) {
-      const byIcon = items.filter(b => rx.test(iconOf(b)));
-      const targets = byIcon.length ? byIcon : (items[pos] ? [items[pos]] : []);
-      const hide = WAT.on(id);
-      targets.forEach(m => setCell(m, hide));
+    const label = b => (b.getAttribute('aria-label') || '').trim();
+    const known = Object.values(LABELS).some(rx => items.some(b => rx.test(label(b))));
+    const hide = new Set();   // cells that must be hidden right now
+    for (const id of Object.keys(LABELS)) {
+      if (!WAT.on(id)) continue;
+      const hit = items.filter(b => LABELS[id].test(label(b)));
+      (hit.length ? hit : (!known && items[POS[id]] ? [items[POS[id]]] : [])).forEach(m => hide.add(cellOf(m)));
     }
-    const hideAI = WAT.on('hideMetaAI');
-    items.filter(m => m.getAttribute('aria-label') === 'Meta AI').forEach(m => setCell(m, hideAI));
+    if (WAT.on('hideMetaAI')) items.filter(m => label(m) === 'Meta AI').forEach(m => hide.add(cellOf(m)));
+    // show again anything we hid earlier that is not wanted hidden any more (also after the bar re-orders)
+    document.querySelectorAll('[data-wat-hid]').forEach(c => { if (!hide.has(c)) { c.style.display = ''; delete c.dataset.watHid; } });
+    hide.forEach(c => { if (c && c !== document.body) { if (c.style.display !== 'none') c.style.display = 'none'; c.dataset.watHid = '1'; } });
   }, 400);
 
   WAT.addShortcut('compactShortcut', () => WAT.set('compact', !WAT.on('compact')));
