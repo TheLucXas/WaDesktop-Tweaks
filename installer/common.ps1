@@ -3,7 +3,6 @@ $ErrorActionPreference = 'Stop'
 
 $script:AppName    = 'WaDesktop-Tweaks'
 $script:ExeName    = 'WhatsApp.Root.exe'
-$script:ProtoName  = 'wadesktop-tweaks'  # legacy: only used to clean up old pre-release builds
 $script:PolicyPath = 'Software\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments'
 # Deliberately NOT %LOCALAPPDATA%: WhatsApp is an MSIX app, and inside its package AppData\Local is virtualized,
 # so the WebView2 process cannot see a folder another program created there and --load-extension silently
@@ -21,11 +20,6 @@ function Get-UserProfilePath([string]$Sid) {
 function Set-InstallDirForUser([string]$Sid) {
     $script:InstallDir = Join-Path (Get-UserProfilePath $Sid) $script:AppName
 }
-# Where pre-release builds installed to (invisible to WhatsApp's WebView2, see above); only used for cleanup.
-function Get-LegacyInstallDir([string]$Sid) {
-    return Join-Path (Get-UserProfilePath $Sid) ('AppData\Local\' + $script:AppName)
-}
-
 function Test-IsAdmin {
     $p = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
     return $p.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -50,7 +44,6 @@ function Split-Args([string]$s) {
     return [regex]::Matches($s, '(?:[^\s"]+|"[^"]*")+') | ForEach-Object { $_.Value }
 }
 function Remove-OwnTokens($tokens) {
-    # patterns are deliberately loose: they also catch a malformed value where two tokens got glued together
     return @($tokens | Where-Object { $_ -notmatch '--load-extension=' -and $_ -notmatch '^--disable-features=DisableLoadExtensionCommandLineSwitch' })
 }
 

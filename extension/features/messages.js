@@ -82,23 +82,6 @@
     } catch (e) { WAT.log('onRevoked: ' + e); }
   }
 
-  // One-time import of records saved by early prototypes (IndexedDB "waenh-tracker").
-  (async function migrateLegacy() {
-    try {
-      if (localStorage.getItem('wat.migratedMsgs') || !indexedDB.databases) return;
-      const dbs = await indexedDB.databases();
-      if (dbs.some(d => d.name === 'waenh-tracker')) {
-        const rows = await new Promise(res => {
-          const r = indexedDB.open('waenh-tracker');
-          r.onsuccess = () => { try { const q = r.result.transaction('msgs').objectStore('msgs').getAll(); q.onsuccess = () => { r.result.close(); res(q.result); }; q.onerror = () => res([]); } catch { res([]); } };
-          r.onerror = () => res([]);
-        });
-        for (const rec of rows) { if (rec && rec.id && !(await WAT.db.get('msgs', rec.id))) { rec.edits = rec.edits || []; await WAT.db.put('msgs', rec); } }
-      }
-      localStorage.setItem('wat.migratedMsgs', '1');
-    } catch {}
-  })();
-
   let wired = false;
   function wire() {
     if (wired) return true;

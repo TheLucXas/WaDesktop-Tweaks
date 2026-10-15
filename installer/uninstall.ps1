@@ -1,5 +1,5 @@
 #requires -Version 5.1
-<# WaDesktop-Tweaks uninstaller: removes the WebView2 arguments it added, the link handler and the installed files.
+<# WaDesktop-Tweaks uninstaller: removes the WebView2 arguments it added, the Start Menu shortcuts and the installed files.
    Your WhatsApp chats/account are not touched. Settings stored inside WhatsApp's browser profile remain until cleared. #>
 param([string]$UserSid = '', [switch]$Silent)
 . (Join-Path $PSScriptRoot 'common.ps1')
@@ -32,16 +32,12 @@ try {
         if ($shell) { $menuDir = Join-Path ([Environment]::ExpandEnvironmentVariables($shell)) 'WaDesktop-Tweaks' }
     } catch { }
     if (Test-Path $menuDir) { Remove-Item -Recurse -Force $menuDir -ErrorAction SilentlyContinue }
-    # leftovers from pre-release builds that registered a link handler
-    $cls = Join-Path (Get-HiveRoot $UserSid) "Software\Classes\$($script:ProtoName)"
-    if (Test-Path $cls) { Remove-Item -Recurse -Force $cls -ErrorAction SilentlyContinue }
 
     Write-Step 'Deleting installed files'
     # this script may be running from inside the install dir: copy-free approach, delete via a detached cmd
-    foreach ($dir in @($script:InstallDir, (Get-LegacyInstallDir $UserSid))) {
-        if (Test-Path $dir) {
-            Start-Process -WindowStyle Hidden -FilePath 'cmd.exe' -ArgumentList "/c timeout /t 3 /nobreak >nul & rmdir /s /q `"$dir`""
-        }
+    $dir = $script:InstallDir
+    if (Test-Path $dir) {
+        Start-Process -WindowStyle Hidden -FilePath 'cmd.exe' -ArgumentList "/c timeout /t 3 /nobreak >nul & rmdir /s /q `"$dir`""
     }
     Write-Host ''
     Write-Ok 'WaDesktop-Tweaks was removed. Reopen WhatsApp Desktop.'

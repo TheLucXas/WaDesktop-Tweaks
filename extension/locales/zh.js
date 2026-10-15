@@ -88,11 +88,11 @@ window.WAT && window.WAT.addLocale('zh', {
   'sys.diagHint': '✖ 表示 WhatsApp 内部发生了变化。提交问题时请复制报告。', 'sys.copyReport': '复制报告',
   'f.updateCheck.name': '检查更新', 'f.updateCheck.desc': '每天在 GitHub 上检查一次新版本。', 'f.updateCheck.tip': '仅连接 api.github.com。未经你确认不会安装任何内容。',
   'f.updateNow.name': '立即检查', 'f.updateNow.desc': '立刻查找新版本。', 'f.updateNow.tip': '查询 GitHub 上的最新发布。', 'a.updateNow': '立即检查',
-  'upd.latest': '已是最新版本', 'upd.available': '有可用更新:{v}', 'upd.how': '点击更新。', 'upd.confirm': '更新程序会下载发布包、校验其校验和并替换文件。之后请重启 WhatsApp。', 'upd.apply': '更新', 'upd.failed': '无法检查更新',
+  'upd.latest': '已是最新版本', 'upd.available': '有可用更新:{v}', 'upd.how': '点击更新。', 'upd.failed': '无法检查更新',
   'f.uninstall.name': '卸载 WaDesktop-Tweaks', 'f.uninstall.desc': '从本机移除这些调整。', 'f.uninstall.tip': '启动卸载程序。Windows 会请求管理员权限。', 'a.uninstall': '卸载…',
   'un.title': '卸载 WaDesktop-Tweaks?', 'un.body': '所有调整都将从本机移除。你的聊天和账号不受影响。', 'un.go': '继续',
   'un.title2': '确定吗?', 'un.body2': '卸载程序会请求管理员权限,然后删除文件和启动设置。', 'un.go2': '卸载',
-  'un.started': '卸载程序已启动', 'un.startedBody': '如果 Windows 请求授权,请允许。然后关闭并重新打开 WhatsApp。',
+
   'f.aboutInfo.desc': 'WaDesktop-Tweaks 是非官方的社区项目,由 AI 生成。与 WhatsApp/Meta 无关。请自行承担使用风险。许可证:The Unlicense。',
   'un.stepsTitle': '完成卸载', 'un.steps': '网页无法运行程序,因此最后一步需要你来完成:\n1. 打开开始菜单并运行“WaDesktop-Tweaks Uninstall”(或按 Win+R,粘贴已复制的命令后回车)。\n2. 接受 Windows 的权限提示。\n3. 重新打开 WhatsApp。', 'un.copyCmd': '复制命令', 'un.copied': '命令已复制', 'upd.steps': '更新方法:打开开始菜单并运行“WaDesktop-Tweaks Update”(或按 Win+R 并粘贴已复制的命令)。然后重启 WhatsApp。',
 });

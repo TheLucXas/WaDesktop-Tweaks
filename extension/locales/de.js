@@ -88,11 +88,11 @@ window.WAT && window.WAT.addLocale('de', {
   'sys.diagHint': 'Ein ✖ bedeutet, dass WhatsApp sich intern geändert hat. Bericht bei einem Issue kopieren.', 'sys.copyReport': 'Bericht kopieren',
   'f.updateCheck.name': 'Nach Updates suchen', 'f.updateCheck.desc': 'Prüft einmal täglich auf GitHub.', 'f.updateCheck.tip': 'Kontaktiert nur api.github.com. Ohne deine Bestätigung wird nichts installiert.',
   'f.updateNow.name': 'Jetzt prüfen', 'f.updateNow.desc': 'Sofort nach neuer Version suchen.', 'f.updateNow.tip': 'Fragt die neueste GitHub-Version ab.', 'a.updateNow': 'Jetzt prüfen',
-  'upd.latest': 'Du hast die neueste Version', 'upd.available': 'Update verfügbar: {v}', 'upd.how': 'Zum Aktualisieren klicken.', 'upd.confirm': 'Der Updater lädt die Version, prüft die Prüfsumme und ersetzt die Dateien. Danach WhatsApp neu starten.', 'upd.apply': 'Aktualisieren', 'upd.failed': 'Update-Prüfung fehlgeschlagen',
+  'upd.latest': 'Du hast die neueste Version', 'upd.available': 'Update verfügbar: {v}', 'upd.how': 'Zum Aktualisieren klicken.', 'upd.failed': 'Update-Prüfung fehlgeschlagen',
   'f.uninstall.name': 'WaDesktop-Tweaks deinstallieren', 'f.uninstall.desc': 'Entfernt die Tweaks von diesem PC.', 'f.uninstall.tip': 'Startet die Deinstallation. Windows fragt nach Administratorrechten.', 'a.uninstall': 'Deinstallieren…',
   'un.title': 'WaDesktop-Tweaks deinstallieren?', 'un.body': 'Alle Tweaks werden von diesem PC entfernt. Deine Chats und dein Konto bleiben unberührt.', 'un.go': 'Weiter',
   'un.title2': 'Bist du sicher?', 'un.body2': 'Die Deinstallation fragt nach Administratorrechten und entfernt Dateien und Starteinstellung.', 'un.go2': 'Deinstallieren',
-  'un.started': 'Deinstallation gestartet', 'un.startedBody': 'Falls Windows um Erlaubnis bittet, bestätige. Danach WhatsApp neu starten.',
+
   'f.aboutInfo.desc': 'WaDesktop-Tweaks ist ein inoffizielles Community-Projekt, KI-generiert. Nicht mit WhatsApp/Meta verbunden. Nutzung auf eigene Gefahr. Lizenz: The Unlicense.',
   'un.stepsTitle': 'Deinstallation abschließen', 'un.steps': 'Eine Webseite kann keine Programme starten, der letzte Schritt liegt also bei dir:\n1. Startmenü öffnen und „WaDesktop-Tweaks Uninstall“ ausführen (oder Win+R, kopierten Befehl einfügen, Enter).\n2. Windows-Berechtigungsabfrage bestätigen.\n3. WhatsApp neu öffnen.', 'un.copyCmd': 'Befehl kopieren', 'un.copied': 'Befehl kopiert', 'upd.steps': 'Zum Aktualisieren: Startmenü öffnen und „WaDesktop-Tweaks Update“ ausführen (oder Win+R und kopierten Befehl einfügen). Danach WhatsApp neu starten.',
 });

@@ -21,27 +21,6 @@
   cfg.global = cfg.global || {};
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(cfg)); } catch {} };
 
-  // One-time import of settings saved by early prototypes of this project (keys "waenh.*").
-  (function migrateLegacy() {
-    try {
-      if (localStorage.getItem(KEY) || localStorage.getItem('wat.migrated')) return;
-      const p = {};
-      const bool = new Set(['deferRead', 'hideTyping', 'hideRecording', 'hideOnline', 'hidePlayed', 'hideStatusView', 'trackDeleted', 'trackToast', 'showDeletedInline', 'trackEdits',
-        'confirmSticker', 'dblReact', 'timeSeconds', 'saveMedia', 'hideForwarded', 'compact', 'hideChannels', 'hideCommunities', 'hideMetaAI', 'hideStatusTab', 'blurList', 'blurMsgs', 'blurUnfocus', 'pinEnabled']);
-      const num = new Set(['trackHours', 'compactZoom', 'lockMinutes']);
-      const str = new Set(['dblEmoji', 'colorIn', 'colorOut', 'customCss']);
-      let any = false;
-      for (let i = 0; i < localStorage.length; i++) {
-        const k = localStorage.key(i); if (!k.startsWith('waenh.')) continue;
-        const id = k.slice(6), v = localStorage.getItem(k); any = true;
-        if (bool.has(id)) p[id] = v === '1'; else if (num.has(id)) p[id] = Number(v); else if (str.has(id)) p[id] = v;
-        else if (id === 'pinHash' || id === 'pinSalt') localStorage.setItem('wat.' + id, v);
-      }
-      if (any) { cfg.profiles.default = Object.assign(cfg.profiles.default || {}, p); save(); }
-      localStorage.setItem('wat.migrated', '1');
-    } catch {}
-  })();
-
   WAT.items = () => WAT.sections.flatMap(s => s.items);
   WAT.item = id => WAT.items().find(i => i.id === id);
   WAT.profile = () => (cfg.profiles[cfg.active] ||= {});

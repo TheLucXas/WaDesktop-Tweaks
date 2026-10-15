@@ -88,11 +88,11 @@ window.WAT && window.WAT.addLocale('ko', {
   'sys.diagHint': '✖는 WhatsApp이 내부적으로 변경되었음을 뜻합니다. 이슈를 열 때 보고서를 복사하세요.', 'sys.copyReport': '보고서 복사',
   'f.updateCheck.name': '업데이트 확인', 'f.updateCheck.desc': '하루에 한 번 GitHub에서 새 버전을 확인합니다.', 'f.updateCheck.tip': 'api.github.com에만 연결합니다. 확인 없이는 아무것도 설치되지 않습니다.',
   'f.updateNow.name': '지금 확인', 'f.updateNow.desc': '새 버전을 즉시 확인합니다.', 'f.updateNow.tip': 'GitHub의 최신 릴리스를 확인합니다.', 'a.updateNow': '지금 확인',
-  'upd.latest': '최신 버전입니다', 'upd.available': '업데이트 가능: {v}', 'upd.how': '클릭하여 업데이트.', 'upd.confirm': '업데이터가 릴리스를 다운로드하고 체크섬을 확인한 뒤 파일을 교체합니다. 이후 WhatsApp을 다시 시작하세요.', 'upd.apply': '업데이트', 'upd.failed': '업데이트를 확인할 수 없습니다',
+  'upd.latest': '최신 버전입니다', 'upd.available': '업데이트 가능: {v}', 'upd.how': '클릭하여 업데이트.', 'upd.failed': '업데이트를 확인할 수 없습니다',
   'f.uninstall.name': 'WaDesktop-Tweaks 제거', 'f.uninstall.desc': '이 PC에서 기능을 제거합니다.', 'f.uninstall.tip': '제거 프로그램을 시작합니다. Windows가 관리자 권한을 요청합니다.', 'a.uninstall': '제거…',
   'un.title': 'WaDesktop-Tweaks를 제거할까요?', 'un.body': '이 PC에서 모든 기능이 제거됩니다. 채팅과 계정은 영향을 받지 않습니다.', 'un.go': '계속',
   'un.title2': '정말 제거할까요?', 'un.body2': '제거 프로그램이 관리자 권한을 요청한 뒤 파일과 시작 설정을 제거합니다.', 'un.go2': '제거',
-  'un.started': '제거 프로그램이 시작되었습니다', 'un.startedBody': 'Windows가 허용을 요청하면 수락하세요. 이후 WhatsApp을 닫았다가 다시 여세요.',
+
   'f.aboutInfo.desc': 'WaDesktop-Tweaks는 비공식 커뮤니티 프로젝트이며 AI로 생성되었습니다. WhatsApp/Meta와 무관합니다. 본인 책임으로 사용하세요. 라이선스: The Unlicense.',
   'un.stepsTitle': '제거 마무리', 'un.steps': '웹 페이지는 프로그램을 실행할 수 없으므로 마지막 단계는 직접 해야 합니다:\n1. 시작 메뉴를 열고 "WaDesktop-Tweaks Uninstall"을 실행하세요(또는 Win+R 후 복사한 명령을 붙여 넣고 Enter).\n2. Windows 권한 요청을 승인하세요.\n3. WhatsApp을 다시 여세요.', 'un.copyCmd': '명령 복사', 'un.copied': '명령을 복사했습니다', 'upd.steps': '업데이트하려면: 시작 메뉴에서 "WaDesktop-Tweaks Update"를 실행하세요(또는 Win+R 후 복사한 명령 붙여넣기). 그런 다음 WhatsApp을 다시 시작하세요.',
 });

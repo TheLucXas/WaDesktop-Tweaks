@@ -8,7 +8,7 @@
  - Creates Start Menu shortcuts for Update and Uninstall
  It does NOT modify WhatsApp's own files and needs no open debugging port.
 #>
-param([string]$UserSid = '', [switch]$Elevated)
+param([string]$UserSid = '')
 . (Join-Path $PSScriptRoot 'common.ps1')
 
 if (-not (Test-IsAdmin)) {
@@ -35,9 +35,6 @@ try {
 
     Write-Step 'Closing WhatsApp (if open)'
     Stop-WhatsApp
-
-    $legacy = Get-LegacyInstallDir $UserSid
-    if (Test-Path $legacy) { Remove-Item -Recurse -Force $legacy -ErrorAction SilentlyContinue }
 
     Write-Step "Copying files to $($script:InstallDir)"
     $dstExt = Join-Path $script:InstallDir 'extension'

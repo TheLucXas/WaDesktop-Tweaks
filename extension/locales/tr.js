@@ -88,11 +88,11 @@ window.WAT && window.WAT.addLocale('tr', {
   'sys.diagHint': '✖ WhatsApp\'ın içsel olarak değiştiği anlamına gelir. Sorun bildirirken raporu kopyalayın.', 'sys.copyReport': 'Raporu kopyala',
   'f.updateCheck.name': 'Güncellemeleri denetle', 'f.updateCheck.desc': 'GitHub\'da günde bir kez yeni sürüm arar.', 'f.updateCheck.tip': 'Yalnızca api.github.com ile iletişim kurar. Onayınız olmadan hiçbir şey kurulmaz.',
   'f.updateNow.name': 'Şimdi denetle', 'f.updateNow.desc': 'Hemen yeni sürüm arar.', 'f.updateNow.tip': 'GitHub\'daki son sürümü sorgular.', 'a.updateNow': 'Şimdi denetle',
-  'upd.latest': 'En son sürümdesiniz', 'upd.available': 'Güncelleme var: {v}', 'upd.how': 'Güncellemek için tıklayın.', 'upd.confirm': 'Güncelleyici sürümü indirir, sağlama toplamını doğrular ve dosyaları değiştirir. Sonra WhatsApp\'ı yeniden başlatın.', 'upd.apply': 'Güncelle', 'upd.failed': 'Güncellemeler denetlenemedi',
+  'upd.latest': 'En son sürümdesiniz', 'upd.available': 'Güncelleme var: {v}', 'upd.how': 'Güncellemek için tıklayın.', 'upd.failed': 'Güncellemeler denetlenemedi',
   'f.uninstall.name': 'WaDesktop-Tweaks\'i kaldır', 'f.uninstall.desc': 'Değişiklikleri bu PC\'den kaldırır.', 'f.uninstall.tip': 'Kaldırıcıyı başlatır. Windows yönetici izni isteyecektir.', 'a.uninstall': 'Kaldır…',
   'un.title': 'WaDesktop-Tweaks kaldırılsın mı?', 'un.body': 'Tüm değişiklikler bu PC\'den kaldırılır. Sohbetleriniz ve hesabınız etkilenmez.', 'un.go': 'Devam',
   'un.title2': 'Emin misiniz?', 'un.body2': 'Kaldırıcı yönetici izni isteyecek, ardından dosyaları ve başlangıç ayarını kaldıracaktır.', 'un.go2': 'Kaldır',
-  'un.started': 'Kaldırıcı başlatıldı', 'un.startedBody': 'Windows izin isterse kabul edin. Sonra WhatsApp\'ı kapatıp yeniden açın.',
+
   'f.aboutInfo.desc': 'WaDesktop-Tweaks resmî olmayan, topluluk tarafından yapılan, yapay zekâ ile üretilmiş bir projedir. WhatsApp/Meta ile bağlantılı değildir. Kendi sorumluluğunuzda kullanın. Lisans: The Unlicense.',
   'un.stepsTitle': 'Kaldırmayı tamamlayın', 'un.steps': 'Bir web sayfası program çalıştıramaz, bu yüzden son adım sizde:\n1. Başlat menüsünü açın ve "WaDesktop-Tweaks Uninstall"u çalıştırın (veya Win+R, kopyalanan komutu yapıştırın, Enter).\n2. Windows izin isteğini kabul edin.\n3. WhatsApp\'ı yeniden açın.', 'un.copyCmd': 'Komutu kopyala', 'un.copied': 'Komut kopyalandı', 'upd.steps': 'Güncellemek için: Başlat menüsünü açıp "WaDesktop-Tweaks Update"i çalıştırın (veya Win+R ve kopyalanan komutu yapıştırın). Sonra WhatsApp\'ı yeniden başlatın.',
 });

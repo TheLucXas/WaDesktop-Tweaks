@@ -122,11 +122,11 @@ window.WAT && window.WAT.addLocale('en', {
   'sys.diagHint': 'A ✖ means WhatsApp changed internally and that feature may not work. Copy the report when opening an issue.', 'sys.copyReport': 'Copy report',
   'f.updateCheck.name': 'Check for updates', 'f.updateCheck.desc': 'Looks for new releases on GitHub once a day.', 'f.updateCheck.tip': 'Only contacts api.github.com to read the latest release version. Nothing is installed without your confirmation.',
   'f.updateNow.name': 'Check now', 'f.updateNow.desc': 'Look for a new version immediately.', 'f.updateNow.tip': 'Checks the latest GitHub release.', 'a.updateNow': 'Check now',
-  'upd.latest': 'You have the latest version', 'upd.available': 'Update available: {v}', 'upd.how': 'Click to update.', 'upd.confirm': 'The updater downloads the release, verifies its checksum and replaces the extension files. Restart WhatsApp afterwards.', 'upd.apply': 'Update', 'upd.failed': 'Could not check for updates',
+  'upd.latest': 'You have the latest version', 'upd.available': 'Update available: {v}', 'upd.how': 'Click to update.', 'upd.failed': 'Could not check for updates',
   'f.uninstall.name': 'Uninstall WaDesktop-Tweaks', 'f.uninstall.desc': 'Removes the tweaks from this PC.', 'f.uninstall.tip': 'Starts the uninstaller. Windows will ask for administrator permission to remove the startup policy.', 'a.uninstall': 'Uninstall…',
   'un.title': 'Uninstall WaDesktop-Tweaks?', 'un.body': 'All tweaks will be removed from this PC. Your WhatsApp chats and account are not affected.', 'un.go': 'Continue',
   'un.title2': 'Are you sure?', 'un.body2': 'The uninstaller will ask for administrator permission and then remove the files and the startup setting. Settings and saved copies in this app are kept unless you erase them first.', 'un.go2': 'Uninstall',
-  'un.started': 'Uninstaller launched', 'un.startedBody': 'If Windows asks to allow it, accept. Then close and reopen WhatsApp.',
+
   'f.aboutInfo.desc': 'WaDesktop-Tweaks is an unofficial, community, AI-generated project. It is not affiliated with or endorsed by WhatsApp/Meta. Using modified behaviour can put your account at risk: use it at your own risk. License: The Unlicense.',
   'un.stepsTitle': 'Finish uninstalling', 'un.steps': 'A web page cannot run programs, so the last step is yours:\n1. Open the Start menu and run "WaDesktop-Tweaks Uninstall" (or press Win+R, paste the copied command and press Enter).\n2. Accept the Windows permission prompt.\n3. Reopen WhatsApp.', 'un.copyCmd': 'Copy command', 'un.copied': 'Command copied', 'upd.steps': 'To update: open the Start menu and run "WaDesktop-Tweaks Update" (or press Win+R and paste the copied command). Then restart WhatsApp.',
 });

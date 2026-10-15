@@ -88,11 +88,11 @@ window.WAT && window.WAT.addLocale('pl', {
   'sys.diagHint': '✖ oznacza, że WhatsApp zmienił się wewnętrznie. Skopiuj raport, zgłaszając problem.', 'sys.copyReport': 'Kopiuj raport',
   'f.updateCheck.name': 'Sprawdzaj aktualizacje', 'f.updateCheck.desc': 'Raz dziennie szuka nowych wydań na GitHubie.', 'f.updateCheck.tip': 'Łączy się tylko z api.github.com. Nic nie jest instalowane bez Twojej zgody.',
   'f.updateNow.name': 'Sprawdź teraz', 'f.updateNow.desc': 'Od razu szuka nowej wersji.', 'f.updateNow.tip': 'Sprawdza najnowsze wydanie na GitHubie.', 'a.updateNow': 'Sprawdź teraz',
-  'upd.latest': 'Masz najnowszą wersję', 'upd.available': 'Dostępna aktualizacja: {v}', 'upd.how': 'Kliknij, aby zaktualizować.', 'upd.confirm': 'Aktualizator pobierze wydanie, zweryfikuje sumę kontrolną i podmieni pliki. Potem uruchom ponownie WhatsApp.', 'upd.apply': 'Aktualizuj', 'upd.failed': 'Nie udało się sprawdzić aktualizacji',
+  'upd.latest': 'Masz najnowszą wersję', 'upd.available': 'Dostępna aktualizacja: {v}', 'upd.how': 'Kliknij, aby zaktualizować.', 'upd.failed': 'Nie udało się sprawdzić aktualizacji',
   'f.uninstall.name': 'Odinstaluj WaDesktop-Tweaks', 'f.uninstall.desc': 'Usuwa modyfikacje z tego komputera.', 'f.uninstall.tip': 'Uruchamia dezinstalator. Windows poprosi o uprawnienia administratora.', 'a.uninstall': 'Odinstaluj…',
   'un.title': 'Odinstalować WaDesktop-Tweaks?', 'un.body': 'Wszystkie modyfikacje zostaną usunięte z tego komputera. Twoje czaty i konto nie są dotknięte.', 'un.go': 'Dalej',
   'un.title2': 'Na pewno?', 'un.body2': 'Dezinstalator poprosi o uprawnienia administratora, a następnie usunie pliki i ustawienie uruchamiania.', 'un.go2': 'Odinstaluj',
-  'un.started': 'Uruchomiono dezinstalator', 'un.startedBody': 'Jeśli Windows poprosi o zgodę, zaakceptuj. Potem zamknij i ponownie otwórz WhatsApp.',
+
   'f.aboutInfo.desc': 'WaDesktop-Tweaks to nieoficjalny projekt społeczności wygenerowany przez AI. Nie jest powiązany z WhatsApp/Meta. Używasz na własną odpowiedzialność. Licencja: The Unlicense.',
   'un.stepsTitle': 'Dokończ odinstalowanie', 'un.steps': 'Strona internetowa nie może uruchamiać programów, więc ostatni krok należy do Ciebie:\n1. Otwórz menu Start i uruchom „WaDesktop-Tweaks Uninstall” (lub Win+R, wklej skopiowane polecenie i Enter).\n2. Zaakceptuj monit o uprawnienia Windows.\n3. Otwórz WhatsApp ponownie.', 'un.copyCmd': 'Kopiuj polecenie', 'un.copied': 'Skopiowano polecenie', 'upd.steps': 'Aby zaktualizować: otwórz menu Start i uruchom „WaDesktop-Tweaks Update” (lub Win+R i wklej skopiowane polecenie). Następnie uruchom ponownie WhatsApp.',
 });

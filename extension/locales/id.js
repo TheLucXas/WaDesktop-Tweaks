@@ -88,11 +88,11 @@ window.WAT && window.WAT.addLocale('id', {
   'sys.diagHint': 'Tanda ✖ berarti WhatsApp berubah secara internal. Salin laporan saat membuka issue.', 'sys.copyReport': 'Salin laporan',
   'f.updateCheck.name': 'Periksa pembaruan', 'f.updateCheck.desc': 'Mencari rilis baru di GitHub sekali sehari.', 'f.updateCheck.tip': 'Hanya menghubungi api.github.com. Tidak ada yang diinstal tanpa persetujuan Anda.',
   'f.updateNow.name': 'Periksa sekarang', 'f.updateNow.desc': 'Mencari versi baru sekarang.', 'f.updateNow.tip': 'Memeriksa rilis terbaru di GitHub.', 'a.updateNow': 'Periksa sekarang',
-  'upd.latest': 'Anda memakai versi terbaru', 'upd.available': 'Pembaruan tersedia: {v}', 'upd.how': 'Klik untuk memperbarui.', 'upd.confirm': 'Pembaru mengunduh rilis, memverifikasi checksum, dan mengganti file. Mulai ulang WhatsApp setelahnya.', 'upd.apply': 'Perbarui', 'upd.failed': 'Tidak dapat memeriksa pembaruan',
+  'upd.latest': 'Anda memakai versi terbaru', 'upd.available': 'Pembaruan tersedia: {v}', 'upd.how': 'Klik untuk memperbarui.', 'upd.failed': 'Tidak dapat memeriksa pembaruan',
   'f.uninstall.name': 'Copot WaDesktop-Tweaks', 'f.uninstall.desc': 'Menghapus tweak dari PC ini.', 'f.uninstall.tip': 'Memulai pencopot. Windows akan meminta izin administrator.', 'a.uninstall': 'Copot…',
   'un.title': 'Copot WaDesktop-Tweaks?', 'un.body': 'Semua tweak akan dihapus dari PC ini. Obrolan dan akun Anda tidak terpengaruh.', 'un.go': 'Lanjutkan',
   'un.title2': 'Yakin?', 'un.body2': 'Pencopot akan meminta izin administrator lalu menghapus file dan pengaturan startup.', 'un.go2': 'Copot',
-  'un.started': 'Pencopot dijalankan', 'un.startedBody': 'Jika Windows meminta izin, setujui. Lalu tutup dan buka kembali WhatsApp.',
+
   'f.aboutInfo.desc': 'WaDesktop-Tweaks adalah proyek komunitas tidak resmi yang dibuat oleh AI. Tidak berafiliasi dengan WhatsApp/Meta. Gunakan dengan risiko sendiri. Lisensi: The Unlicense.',
   'un.stepsTitle': 'Selesaikan pencopotan', 'un.steps': 'Halaman web tidak bisa menjalankan program, jadi langkah terakhir ada di Anda:\n1. Buka menu Start dan jalankan "WaDesktop-Tweaks Uninstall" (atau Win+R, tempel perintah yang disalin, lalu Enter).\n2. Setujui permintaan izin Windows.\n3. Buka kembali WhatsApp.', 'un.copyCmd': 'Salin perintah', 'un.copied': 'Perintah disalin', 'upd.steps': 'Untuk memperbarui: buka menu Start dan jalankan "WaDesktop-Tweaks Update" (atau Win+R lalu tempel perintah yang disalin). Setelah itu mulai ulang WhatsApp.',
 });

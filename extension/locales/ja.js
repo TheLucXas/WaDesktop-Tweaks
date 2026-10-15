@@ -88,11 +88,11 @@ window.WAT && window.WAT.addLocale('ja', {
   'sys.diagHint': '✖ は WhatsApp の内部が変わったことを示します。問題報告時にレポートをコピーしてください。', 'sys.copyReport': 'レポートをコピー',
   'f.updateCheck.name': 'アップデートを確認', 'f.updateCheck.desc': '1 日 1 回 GitHub で新しい版を確認します。', 'f.updateCheck.tip': 'api.github.com にのみ接続します。確認なしに何もインストールされません。',
   'f.updateNow.name': '今すぐ確認', 'f.updateNow.desc': '新しい版をすぐ確認します。', 'f.updateNow.tip': 'GitHub の最新リリースを確認します。', 'a.updateNow': '今すぐ確認',
-  'upd.latest': '最新版です', 'upd.available': 'アップデートがあります: {v}', 'upd.how': 'クリックして更新。', 'upd.confirm': 'アップデータがリリースをダウンロードし、チェックサムを検証してファイルを置き換えます。その後 WhatsApp を再起動してください。', 'upd.apply': '更新', 'upd.failed': '更新を確認できませんでした',
+  'upd.latest': '最新版です', 'upd.available': 'アップデートがあります: {v}', 'upd.how': 'クリックして更新。', 'upd.failed': '更新を確認できませんでした',
   'f.uninstall.name': 'WaDesktop-Tweaks をアンインストール', 'f.uninstall.desc': 'この PC から本機能を削除します。', 'f.uninstall.tip': 'アンインストーラを起動します。Windows が管理者権限を求めます。', 'a.uninstall': 'アンインストール…',
   'un.title': 'WaDesktop-Tweaks をアンインストールしますか?', 'un.body': 'この PC からすべての機能が削除されます。チャットやアカウントには影響しません。', 'un.go': '続行',
   'un.title2': '本当によろしいですか?', 'un.body2': 'アンインストーラが管理者権限を求め、ファイルと起動設定を削除します。', 'un.go2': 'アンインストール',
-  'un.started': 'アンインストーラを起動しました', 'un.startedBody': 'Windows が許可を求めたら承認してください。その後 WhatsApp を閉じて開き直してください。',
+
   'f.aboutInfo.desc': 'WaDesktop-Tweaks は非公式のコミュニティ製・AI 生成プロジェクトです。WhatsApp/Meta とは無関係です。自己責任でご利用ください。ライセンス: The Unlicense。',
   'un.stepsTitle': 'アンインストールを完了する', 'un.steps': 'Web ページはプログラムを実行できないため、最後の手順はあなたが行います:\n1. スタートメニューを開き「WaDesktop-Tweaks Uninstall」を実行します(または Win+R を押し、コピーしたコマンドを貼り付けて Enter)。\n2. Windows の許可確認を承認します。\n3. WhatsApp を開き直します。', 'un.copyCmd': 'コマンドをコピー', 'un.copied': 'コマンドをコピーしました', 'upd.steps': '更新するには: スタートメニューから「WaDesktop-Tweaks Update」を実行します(または Win+R でコピーしたコマンドを貼り付け)。その後 WhatsApp を再起動してください。',
 });
