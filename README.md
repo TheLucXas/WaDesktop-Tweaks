@@ -73,6 +73,10 @@ Every option has a plain-language name, a short description and a detailed toolt
 
 That's it — no background program, no open ports, nothing to start.
 
+> [!NOTE]
+> **Windows may warn you** ("Windows protected your PC" or "Open File – Security Warning") because the scripts are not code-signed, which is normal for a small open-source project. Click *More info → Run anyway*, or right-click the downloaded zip → *Properties → Unblock* before extracting.
+> To check the download, `certutil -hashfile WaDesktop-Tweaks-vX.Y.Z.zip SHA256` must print the same hash as `checksums.txt` on the release page.
+
 ### What the installer does
 
 1. Copies the `extension/` folder to `%USERPROFILE%\WaDesktop-Tweaks\`.

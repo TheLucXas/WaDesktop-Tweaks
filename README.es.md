@@ -61,6 +61,10 @@ Cada opción tiene un nombre claro, una descripción corta y un tooltip detallad
 
 Eso es todo: sin programa en segundo plano, sin puertos abiertos, nada que iniciar.
 
+> [!NOTE]
+> **Windows puede avisarte** ("Windows protegió tu PC" o "Abrir archivo – Advertencia de seguridad") porque los scripts no están firmados digitalmente, algo normal en un proyecto pequeño de código abierto. Pulsa *Más información → Ejecutar de todas formas*, o haz clic derecho en el zip descargado → *Propiedades → Desbloquear* antes de extraerlo.
+> Para comprobar la descarga, `certutil -hashfile WaDesktop-Tweaks-vX.Y.Z.zip SHA256` debe mostrar el mismo hash que `checksums.txt` en la página de la release.
+
 ### Qué hace el instalador
 
 1. Copia la carpeta `extension/` a `%USERPROFILE%\WaDesktop-Tweaks\`.
