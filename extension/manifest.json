@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "WaDesktop-Tweaks",
+  "short_name": "WA Tweaks",
+  "version": "0.1.0",
+  "description": "Unofficial tweaks for WhatsApp Desktop: privacy options, deleted-message recovery, GIF provider, profiles and more.",
+  "minimum_chrome_version": "120",
+  "background": { "service_worker": "background.js" },
+  "host_permissions": [
+    "https://api.klipy.com/*",
+    "https://static.klipy.com/*",
+    "https://static1.klipy.com/*",
+    "https://static2.klipy.com/*",
+    "https://api.github.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["bridge.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "world": "MAIN",
+      "run_at": "document_start",
+      "js": [
+        "core.js",
+        "locales/en.js", "locales/es.js", "locales/pt.js", "locales/fr.js", "locales/de.js", "locales/it.js",
+        "locales/ru.js", "locales/tr.js", "locales/ja.js", "locales/ko.js", "locales/zh.js", "locales/id.js", "locales/pl.js",
+        "features/privacy.js",
+        "features/messages.js",
+        "features/statuses.js",
+        "features/gif.js",
+        "features/comfort.js",
+        "features/appearance.js",
+        "features/security.js",
+        "features/scheduler.js",
+        "features/system.js",
+        "ui.js"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+# secrets / local settings — never commit these
+config.json
+*.key
+.env
+*.pem
+
+# build output
+dist/
+*.zip
+
+# OS / editor
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log
+*.tmp
