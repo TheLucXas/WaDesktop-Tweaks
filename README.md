@@ -115,7 +115,7 @@ WhatsApp Desktop is a thin shell around WhatsApp Web (WebView2). Chromium lets a
 
 ## 🩺 Troubleshooting
 
-- **A feature stopped working after a WhatsApp update** → *Settings & updates → Self-diagnosis*. A ✖ shows what changed; open an issue with the copied report.
+- **A feature stopped working after a WhatsApp update** → *Settings & updates → Self-diagnosis*. A ✖ shows what changed; open an issue with the copied report. For something that looks misaligned, press **Ctrl+Alt+Shift+L** (or use *Copy layout report* in the same dialog) and attach the result: it only contains page structure, no message text.
 - **No ⚙ button** → restart WhatsApp completely (also from the system tray). Check the install with `reg query HKCU\Software\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments`: it must show `--load-extension="…\WaDesktop-Tweaks\extension"` pointing at a folder that exists. The extension lives in your user folder (not in `%LOCALAPPDATA%`, which WhatsApp's MSIX package cannot see).
 - **Antivirus warning** → the installer is a plain PowerShell script that writes a registry value; read it in `installer/`.
 

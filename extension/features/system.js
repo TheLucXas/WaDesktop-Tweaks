@@ -98,14 +98,24 @@
       for (let i = 0; i < 5 && root && !nav.every(n => root.contains(n)); i++) root = root.parentElement;
       walk(root && root.parentElement ? root.parentElement : root, 0, 7);
     }
-    // 2) a message row: the last one carrying a recovered text, otherwise the last row on screen
-    const painted = [...document.querySelectorAll('[data-wat-del]')].pop();
-    const rows = [...document.querySelectorAll('[data-id]')];
-    const row = (painted && painted.closest('[data-id]')) || rows.pop();
-    out.push('', '## message row (' + (painted ? 'recovered deleted message' : 'last row') + ')');
-    if (row) walk(row, 0, 16); else out.push('(no message row on screen — open a chat first)');
+    // 2) message rows: the last recovered deleted message, and a normal text message to compare against
+    const painted = [...document.querySelectorAll('[data-wat-del]')].map(p => p.closest('[data-id]')).filter(Boolean);
+    const normal = [...document.querySelectorAll('[data-id]')].filter(r => !r.querySelector('[data-wat-del]') && r.querySelector('.selectable-text') && r.querySelector('[data-testid="msg-meta"]'));
+    const dump = (title, row) => { out.push('', '## ' + title); if (row) walk(row, 0, 16); else out.push('(none on screen — open a chat that has one)'); };
+    budget.n = 0; dump('recovered deleted message (long text first if several)', painted.sort((a, b) => b.textContent.length - a.textContent.length)[0]);
+    budget.n = 0; dump('recovered deleted message (shortest)', painted.length > 1 ? painted.sort((a, b) => a.textContent.length - b.textContent.length)[0] : null);
+    budget.n = 0; dump('normal text message', normal.pop());
     return out.join(String.fromCharCode(10));
   }
+
+  WAT.layoutReport = layoutReport;
+
+  // Bug-report helper without opening any dialog: Ctrl+Alt+Shift+L copies the layout report to the clipboard.
+  window.addEventListener('keydown', e => {
+    if (WAT.__locked || !(e.ctrlKey && e.altKey && e.shiftKey) || e.code !== 'KeyL') return;
+    e.preventDefault(); e.stopPropagation();
+    try { navigator.clipboard.writeText(layoutReport()).then(() => WAT.toast(t('ui.done'), t('sys.copyLayout'))); } catch (err) { WAT.toast(t('ui.error'), String(err && err.message || err), 'err'); }
+  }, true);
 
   async function runDiagnostics() {
     const rows = checks();
