@@ -154,23 +154,30 @@
   };
   WAT.nowReady = () => !!(document.body && document.documentElement);
 
-  /* WhatsApp sizes a bubble for the content it rendered. When we change that content (a recovered text, a time
-   * with seconds) a line of text can end up under the timestamp. If a line of `box` really overlaps the row's
-   * time element, give `box` bottom padding of one time-height so the bubble grows and the time sits below. */
+  /* WhatsApp reserves room for the time next to the text it rendered. When we change that content (a recovered
+   * text, a time with seconds) a line of text can end up under the timestamp. If a line of `box` really overlaps
+   * the row's time element, add right padding equal to the overlap so the bubble widens and the time stays beside
+   * the text, as WhatsApp lays it out. Only when that does not fit is the time moved to its own line. */
   WAT.avoidMeta = (row, box) => {
     try {
       const meta = row.querySelector('[data-testid="msg-meta"]');
       if (!meta || !box || !box.isConnected) return;
       const m = meta.getBoundingClientRect(); if (!m.width || !m.height) return;
       const rg = document.createRange(); rg.selectNodeContents(box);
-      const hit = [...rg.getClientRects()].some(r => r.width > 1 && r.left < m.right - 1 && r.right > m.left + 1 && r.top < m.bottom - 2 && r.bottom > m.top + 2);
-      if (!hit) return;
-      const have = Number(box.dataset.watPad || 0);
-      if (have >= 2 * m.height) return;   // safety cap: never keep growing
-      const pad = have + Math.ceil(m.height);
-      box.dataset.watPad = String(pad);
-      if (getComputedStyle(box).display === 'inline') box.style.display = 'inline-block';
-      box.style.paddingBottom = pad + 'px';
+      let need = 0;
+      for (const r of rg.getClientRects()) {
+        if (r.width > 1 && r.right > m.left + 1 && r.left < m.right - 1 && r.top < m.bottom - 2 && r.bottom > m.top + 2) need = Math.max(need, r.right - m.left + 6);
+      }
+      if (!need || box.dataset.watPadB) return;
+      const right = Number(box.dataset.watPadR || 0);
+      if (right + need <= 1.5 * m.width) {
+        box.dataset.watPadR = String(right + Math.ceil(need));
+        box.style.paddingRight = box.dataset.watPadR + 'px';
+      } else {
+        box.dataset.watPadB = String(Math.ceil(m.height));
+        if (getComputedStyle(box).display === 'inline') box.style.display = 'inline-block';
+        box.style.paddingBottom = box.dataset.watPadB + 'px';
+      }
     } catch {}
   };
 })();
