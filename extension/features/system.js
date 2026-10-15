@@ -61,6 +61,17 @@
     ];
     return rows;
   }
+  // Clipboard write that also works when the async Clipboard API is refused (falls back to execCommand).
+  async function copyText(text) {
+    try { await navigator.clipboard.writeText(text); return true; } catch {}
+    try {
+      const ta = el('textarea', { style: 'position:fixed;left:-9999px;top:0;opacity:0' }); ta.value = text;
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      const ok = document.execCommand('copy'); ta.remove(); return !!ok;
+    } catch { return false; }
+  }
+  WAT.copyText = copyText;
+
   /* Structure-only outline of the parts of the page the tweaks touch: tags, classes, key layout styles and sizes.
    * No message text, names, numbers or ids — text is shown as a character count. Attach it to a "looks misaligned"
    * report so a WhatsApp layout change can be fixed without guessing. */
@@ -81,12 +92,12 @@
         else if (at.name === 'style') a.push('style="' + at.value.replace(/url\([^)]*\)/g, 'url()').slice(0, 160) + '"');
         else if (KEEP.test(at.name)) a.push(at.name + '="' + at.value + '"');
         else if (at.name === 'aria-label' || at.name === 'title') a.push(at.name + '=[' + at.value.length + ' chars]');
-        else a.push(at.name + '=[…]');
+        else a.push(at.name + '=[..]');
       }
       const sty = STY.map(k => k + ':' + cs[k]).join(' ');
       out.push(pad + '<' + node.tagName.toLowerCase() + (a.length ? ' ' + a.join(' ') : '') + '> ' + Math.round(r.width) + 'x' + Math.round(r.height) + '@' + Math.round(r.left) + ',' + Math.round(r.top) + ' ' + sty);
       budget.n++;
-      if (depth >= max) { if (node.childNodes.length) out.push(pad + '  …'); return; }
+      if (depth >= max) { if (node.childNodes.length) out.push(pad + '  ...'); return; }
       node.childNodes.forEach(c => walk(c, depth + 1, max));
     };
     out.push('WaDesktop-Tweaks v' + WAT.version + ' layout report', 'viewport ' + innerWidth + 'x' + innerHeight + ' dpr=' + devicePixelRatio, '');
@@ -101,7 +112,7 @@
     // 2) message rows: the last recovered deleted message, and a normal text message to compare against
     const painted = [...document.querySelectorAll('[data-wat-del]')].map(p => p.closest('[data-id]')).filter(Boolean);
     const normal = [...document.querySelectorAll('[data-id]')].filter(r => !r.querySelector('[data-wat-del]') && r.querySelector('.selectable-text') && r.querySelector('[data-testid="msg-meta"]'));
-    const dump = (title, row) => { out.push('', '## ' + title); if (row) walk(row, 0, 16); else out.push('(none on screen — open a chat that has one)'); };
+    const dump = (title, row) => { out.push('', '## ' + title); if (row) walk(row, 0, 16); else out.push('(none on screen - open a chat that has one)'); };
     budget.n = 0; dump('recovered deleted message (long text first if several)', painted.sort((a, b) => b.textContent.length - a.textContent.length)[0]);
     budget.n = 0; dump('recovered deleted message (shortest)', painted.length > 1 ? painted.sort((a, b) => a.textContent.length - b.textContent.length)[0] : null);
     budget.n = 0; dump('normal text message', normal.pop());
@@ -111,11 +122,27 @@
   WAT.layoutReport = layoutReport;
 
   // Bug-report helper without opening any dialog: Ctrl+Alt+Shift+L copies the layout report to the clipboard.
-  window.addEventListener('keydown', e => {
+  window.addEventListener('keydown', async e => {
     if (WAT.__locked || !(e.ctrlKey && e.altKey && e.shiftKey) || e.code !== 'KeyL') return;
     e.preventDefault(); e.stopPropagation();
-    try { navigator.clipboard.writeText(layoutReport()).then(() => WAT.toast(t('ui.done'), t('sys.copyLayout'))); } catch (err) { WAT.toast(t('ui.error'), String(err && err.message || err), 'err'); }
+    try {
+      const rep = layoutReport();
+      rememberLayout(rep);
+      const ok = await copyText(rep);
+      WAT.toast(ok ? t('ui.done') : t('ui.error'), t('sys.copyLayout'), ok ? '' : 'err');
+    } catch (err) { WAT.toast(t('ui.error'), String(err && err.message || err), 'err'); }
   }, true);
+
+  // Keeps the latest layout report next to the settings (structure only) so a misalignment can be inspected
+  // without any clipboard step; refreshed at most every 2 minutes while a recovered message is on screen.
+  const rememberLayout = rep => { try { localStorage.setItem('wat.lastLayout', JSON.stringify({ at: new Date().toISOString(), report: rep })); } catch {} };
+  let lastSnap = 0;
+  setInterval(() => {
+    try {
+      if (Date.now() - lastSnap < 120000 || !document.querySelector('[data-wat-del]')) return;
+      lastSnap = Date.now(); rememberLayout(layoutReport());
+    } catch {}
+  }, 3000);
 
   async function runDiagnostics() {
     const rows = checks();
@@ -130,8 +157,8 @@
       el('div', { class: 'wat-hint' }, t('sys.diagHint')),
       el('div', {}, rows.map(r => el('div', { class: 'wat-row', style: 'padding:6px 0' }, el('div', { class: 'txt' }, r[0]), el('div', { style: 'font-weight:700;color:' + (r[1] ? '#00a884' : '#e5484d') }, r[1] ? '✔' : '✖')))),
       el('div', { style: 'display:flex;gap:8px;margin-top:12px;flex-wrap:wrap' },
-        el('button', { class: 'wat-btn', onclick: () => navigator.clipboard && navigator.clipboard.writeText(text).then(() => WAT.toast(t('ui.done'))) }, t('sys.copyReport')),
-        el('button', { class: 'wat-btn', onclick: () => navigator.clipboard && navigator.clipboard.writeText(layoutReport()).then(() => WAT.toast(t('ui.done'))) }, t('sys.copyLayout'))),
+        el('button', { class: 'wat-btn', onclick: async () => { const ok = await copyText(text); WAT.toast(ok ? t('ui.done') : t('ui.error'), '', ok ? '' : 'err'); } }, t('sys.copyReport')),
+        el('button', { class: 'wat-btn', onclick: async () => { const rep = layoutReport(); rememberLayout(rep); const ok = await copyText(rep); WAT.toast(ok ? t('ui.done') : t('ui.error'), '', ok ? '' : 'err'); } }, t('sys.copyLayout'))),
       el('div', { class: 'wat-hint' }, t('sys.layoutHint'))));
     document.body.appendChild(ov); ov.addEventListener('mousedown', e => { if (e.target === ov) close(); });
   }
@@ -166,7 +193,7 @@
   const CMD_UNINSTALL = 'powershell -NoProfile -ExecutionPolicy Bypass -File "%USERPROFILE%\\WaDesktop-Tweaks\\installer\\uninstall.ps1"';
   const CMD_UPDATE = 'powershell -NoProfile -ExecutionPolicy Bypass -File "%USERPROFILE%\\WaDesktop-Tweaks\\installer\\update.ps1"';
   async function showSteps(title, body, cmd) {
-    try { await navigator.clipboard.writeText(cmd); } catch {}
+    await copyText(cmd);
     const ov = el('div', { class: 'wat-ov' });
     const close = () => ov.remove();
     ov.append(el('div', { class: 'wat-panel', style: 'display:block;width:min(520px,94vw);height:auto;padding:18px 20px' },
@@ -174,7 +201,7 @@
       el('div', { class: 'wat-hint', style: 'white-space:pre-wrap;font-size:13px' }, body),
       el('code', { style: 'display:block;margin:10px 0;padding:8px;border-radius:8px;background:var(--background-default-hover,#2a2f32);word-break:break-all;font-size:12px' }, cmd),
       el('div', { style: 'display:flex;gap:8px;justify-content:flex-end' },
-        el('button', { class: 'wat-btn', onclick: async () => { try { await navigator.clipboard.writeText(cmd); WAT.toast(t('un.copied')); } catch {} } }, t('un.copyCmd')),
+        el('button', { class: 'wat-btn', onclick: async () => { if (await copyText(cmd)) WAT.toast(t('un.copied')); } }, t('un.copyCmd')),
         el('button', { class: 'wat-btn pri', onclick: close }, t('ui.ok')))));
     document.body.appendChild(ov); ov.addEventListener('mousedown', e => { if (e.target === ov) close(); });
   }
