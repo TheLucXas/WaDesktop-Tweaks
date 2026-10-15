@@ -40,7 +40,8 @@ Recuperar mensajes eliminados · historial de ediciones · proveedor de GIFs · 
 | 🎨 | **Apariencia** | Colores de burbujas, modo compacto, desplazamiento suave con la rueda, ocultar Canales/Comunidades/Meta AI/Estados, CSS propio |
 | 🛡️ | **Privacidad en pantalla** | Desenfoque de lista / mensajes / al perder el foco, **bloqueo con PIN**, **botón de pánico** |
 | 👤 | **Perfiles y copia de seguridad** | Cambia entre conjuntos de opciones, exporta/importa ajustes |
-| 🩺 | **Autodiagnóstico** | Te dice qué función se rompió tras una actualización de WhatsApp |
+| 🩺 | **Autodiagnóstico** | Te dice qué función se rompió tras una actualización de WhatsApp; copia un informe de diseño sin datos personales para errores de alineación |
+| 🔎 | **Búsqueda** | Un buscador en el panel de ajustes encuentra cualquier opción en todas las secciones |
 | 🌍 | **13 idiomas** | English, Español, Português, Français, Deutsch, Italiano, Русский, Türkçe, 日本語, 한국어, 简体中文, Bahasa Indonesia, Polski |
 
 Cada opción tiene un nombre claro, una descripción corta y un tooltip detallado. Abre el botón **⚙** junto al menú de la lista de chats.

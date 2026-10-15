@@ -98,4 +98,6 @@ window.WAT && window.WAT.addLocale('id', {
   'f.smoothScroll.name': 'Gulir halus', 'f.smoothScroll.desc': 'Menganimasikan gulir roda mouse.', 'f.smoothScroll.tip': 'Membuat roda mouse meluncur, bukan melompat. Touchpad sudah halus dan tidak diubah.',
   'f.smoothSpeed.name': 'Jarak gulir (%)', 'f.smoothSpeed.desc': 'Seberapa jauh setiap putaran roda menggulir.', 'f.smoothSpeed.tip': '100 adalah jarak normal. Antara 50 dan 300.',
   'f.smoothTime.name': 'Kehalusan (ms)', 'f.smoothTime.desc': 'Berapa lama peluncuran berlangsung.', 'f.smoothTime.tip': 'Lebih tinggi lebih mengambang, lebih rendah lebih gesit. Antara 80 dan 900.',
+  'ui.searchOptions': 'Cari opsi…', 'ui.noResults': 'Tidak ada opsi yang cocok dengan pencarian.',
+  'sys.copyLayout': 'Salin laporan tata letak', 'sys.layoutHint': 'Laporan tata letak hanya berisi struktur halaman (tanpa teks pesan, nama, atau nomor). Lampirkan saat ada yang terlihat tidak sejajar atau salah tempat.',
 });

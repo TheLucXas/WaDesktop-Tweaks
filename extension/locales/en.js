@@ -132,4 +132,6 @@ window.WAT && window.WAT.addLocale('en', {
 
   'f.aboutInfo.desc': 'WaDesktop-Tweaks is an unofficial, community, AI-generated project. It is not affiliated with or endorsed by WhatsApp/Meta. Using modified behaviour can put your account at risk: use it at your own risk. License: The Unlicense.',
   'un.stepsTitle': 'Finish uninstalling', 'un.steps': 'A web page cannot run programs, so the last step is yours:\n1. Open the Start menu and run "WaDesktop-Tweaks Uninstall" (or press Win+R, paste the copied command and press Enter).\n2. Accept the Windows permission prompt.\n3. Reopen WhatsApp.', 'un.copyCmd': 'Copy command', 'un.copied': 'Command copied', 'upd.steps': 'To update: open the Start menu and run "WaDesktop-Tweaks Update" (or press Win+R and paste the copied command). Then restart WhatsApp.',
+  'ui.searchOptions': 'Search options…', 'ui.noResults': 'No options match your search.',
+  'sys.copyLayout': 'Copy layout report', 'sys.layoutHint': 'The layout report contains only the structure of the page (no message text, names or numbers). Attach it when something looks misaligned or misplaced.',
 });

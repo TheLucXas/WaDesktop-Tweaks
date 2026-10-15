@@ -98,4 +98,6 @@ window.WAT && window.WAT.addLocale('de', {
   'f.smoothScroll.name': 'Sanftes Scrollen', 'f.smoothScroll.desc': 'Animiert das Scrollen mit dem Mausrad.', 'f.smoothScroll.tip': 'Lässt das Mausrad gleiten statt zu springen. Touchpads scrollen bereits weich und bleiben unverändert.',
   'f.smoothSpeed.name': 'Scrollweite (%)', 'f.smoothSpeed.desc': 'Wie weit jede Mausrad-Raste scrollt.', 'f.smoothSpeed.tip': '100 ist die normale Weite. Zwischen 50 und 300.',
   'f.smoothTime.name': 'Weichheit (ms)', 'f.smoothTime.desc': 'Wie lange das Gleiten dauert.', 'f.smoothTime.tip': 'Höher ist schwebender, niedriger direkter. Zwischen 80 und 900.',
+  'ui.searchOptions': 'Optionen durchsuchen…', 'ui.noResults': 'Keine Option passt zu deiner Suche.',
+  'sys.copyLayout': 'Layout-Bericht kopieren', 'sys.layoutHint': 'Der Layout-Bericht enthält nur die Seitenstruktur (keine Nachrichtentexte, Namen oder Nummern). Füge ihn bei, wenn etwas verschoben oder falsch platziert aussieht.',
 });

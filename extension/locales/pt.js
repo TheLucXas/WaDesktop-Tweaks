@@ -98,4 +98,6 @@ window.WAT && window.WAT.addLocale('pt', {
   'f.smoothScroll.name': 'Rolagem suave', 'f.smoothScroll.desc': 'Anima a rolagem com a roda do mouse.', 'f.smoothScroll.tip': 'Faz a roda do mouse deslizar em vez de pular. Touchpads já são suaves e não são alterados.',
   'f.smoothSpeed.name': 'Distância de rolagem (%)', 'f.smoothSpeed.desc': 'Quanto cada clique da roda rola.', 'f.smoothSpeed.tip': '100 é a distância normal. Entre 50 e 300.',
   'f.smoothTime.name': 'Suavidade (ms)', 'f.smoothTime.desc': 'Quanto tempo dura o deslize.', 'f.smoothTime.tip': 'Mais alto é mais flutuante, mais baixo é mais ágil. Entre 80 e 900.',
+  'ui.searchOptions': 'Pesquisar opções…', 'ui.noResults': 'Nenhuma opção corresponde à sua busca.',
+  'sys.copyLayout': 'Copiar relatório de layout', 'sys.layoutHint': 'O relatório de layout contém apenas a estrutura da página (sem texto de mensagens, nomes ou números). Anexe-o quando algo parecer desalinhado ou fora do lugar.',
 });

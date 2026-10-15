@@ -98,4 +98,6 @@ window.WAT && window.WAT.addLocale('pl', {
   'f.smoothScroll.name': 'Płynne przewijanie', 'f.smoothScroll.desc': 'Animuje przewijanie kółkiem myszy.', 'f.smoothScroll.tip': 'Kółko myszy przewija płynnie zamiast skokowo. Touchpady już przewijają płynnie i nie są zmieniane.',
   'f.smoothSpeed.name': 'Dystans przewijania (%)', 'f.smoothSpeed.desc': 'O ile przewija każde kliknięcie kółka.', 'f.smoothSpeed.tip': '100 to normalny dystans. Od 50 do 300.',
   'f.smoothTime.name': 'Płynność (ms)', 'f.smoothTime.desc': 'Jak długo trwa przesuwanie.', 'f.smoothTime.tip': 'Wyżej — płynniej, niżej — żwawiej. Od 80 do 900.',
+  'ui.searchOptions': 'Szukaj opcji…', 'ui.noResults': 'Brak opcji pasujących do wyszukiwania.',
+  'sys.copyLayout': 'Kopiuj raport układu', 'sys.layoutHint': 'Raport układu zawiera tylko strukturę strony (bez treści wiadomości, nazw ani numerów). Dołącz go, gdy coś wygląda na przesunięte lub w złym miejscu.',
 });

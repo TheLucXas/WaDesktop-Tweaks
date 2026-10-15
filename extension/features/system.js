@@ -61,6 +61,52 @@
     ];
     return rows;
   }
+  /* Structure-only outline of the parts of the page the tweaks touch: tags, classes, key layout styles and sizes.
+   * No message text, names, numbers or ids — text is shown as a character count. Attach it to a "looks misaligned"
+   * report so a WhatsApp layout change can be fixed without guessing. */
+  function layoutReport() {
+    const out = [];
+    const TIME = /^\s*\d{1,2}[:.]\d{2}([:.]\d{2})?\s*([ap]\.?\s?m\.?)?\s*$/i;
+    const KEEP = /^(data-icon|data-testid|data-navbar-item|data-navbar-item-index|data-wat-del|data-wat-pad|role|dir|aria-hidden|aria-current|type|tabindex)$/;
+    const STY = ['display', 'position', 'flexDirection', 'alignItems', 'whiteSpace', 'visibility', 'paddingBottom'];
+    const budget = { n: 0 };
+    const walk = (node, depth, max) => {
+      if (budget.n > 700) return;
+      const pad = '  '.repeat(depth);
+      if (node.nodeType === 3) { const s = node.nodeValue; if (s.trim()) { out.push(pad + '"' + (TIME.test(s) ? s.trim() : '[' + s.length + ' chars]') + '"'); budget.n++; } return; }
+      if (node.nodeType !== 1) return;
+      const cs = getComputedStyle(node), r = node.getBoundingClientRect(), a = [];
+      for (const at of node.attributes) {
+        if (at.name === 'class') a.push('class="' + at.value + '"');
+        else if (at.name === 'style') a.push('style="' + at.value.replace(/url\([^)]*\)/g, 'url()').slice(0, 160) + '"');
+        else if (KEEP.test(at.name)) a.push(at.name + '="' + at.value + '"');
+        else if (at.name === 'aria-label' || at.name === 'title') a.push(at.name + '=[' + at.value.length + ' chars]');
+        else a.push(at.name + '=[…]');
+      }
+      const sty = STY.map(k => k + ':' + cs[k]).join(' ');
+      out.push(pad + '<' + node.tagName.toLowerCase() + (a.length ? ' ' + a.join(' ') : '') + '> ' + Math.round(r.width) + 'x' + Math.round(r.height) + '@' + Math.round(r.left) + ',' + Math.round(r.top) + ' ' + sty);
+      budget.n++;
+      if (depth >= max) { if (node.childNodes.length) out.push(pad + '  …'); return; }
+      node.childNodes.forEach(c => walk(c, depth + 1, max));
+    };
+    out.push('WaDesktop-Tweaks v' + WAT.version + ' layout report', 'viewport ' + innerWidth + 'x' + innerHeight + ' dpr=' + devicePixelRatio, '');
+    // 1) the left rail (hide Channels / Communities / Status / Meta AI)
+    const nav = [...document.querySelectorAll('[data-navbar-item]')];
+    out.push('## rail: ' + nav.length + ' [data-navbar-item] element(s)');
+    if (nav.length) {
+      let root = nav[0].parentElement;
+      for (let i = 0; i < 5 && root && !nav.every(n => root.contains(n)); i++) root = root.parentElement;
+      walk(root && root.parentElement ? root.parentElement : root, 0, 7);
+    }
+    // 2) a message row: the last one carrying a recovered text, otherwise the last row on screen
+    const painted = [...document.querySelectorAll('[data-wat-del]')].pop();
+    const rows = [...document.querySelectorAll('[data-id]')];
+    const row = (painted && painted.closest('[data-id]')) || rows.pop();
+    out.push('', '## message row (' + (painted ? 'recovered deleted message' : 'last row') + ')');
+    if (row) walk(row, 0, 16); else out.push('(no message row on screen — open a chat first)');
+    return out.join(String.fromCharCode(10));
+  }
+
   async function runDiagnostics() {
     const rows = checks();
     let net = 'ok';
@@ -73,7 +119,10 @@
       el('div', { style: 'display:flex;justify-content:space-between;align-items:center' }, el('h2', { style: 'margin:0;font-size:17px' }, t('f.diagnostics.name')), el('button', { class: 'wat-x', onclick: close }, '✕')),
       el('div', { class: 'wat-hint' }, t('sys.diagHint')),
       el('div', {}, rows.map(r => el('div', { class: 'wat-row', style: 'padding:6px 0' }, el('div', { class: 'txt' }, r[0]), el('div', { style: 'font-weight:700;color:' + (r[1] ? '#00a884' : '#e5484d') }, r[1] ? '✔' : '✖')))),
-      el('div', { style: 'display:flex;gap:8px;margin-top:12px' }, el('button', { class: 'wat-btn', onclick: () => navigator.clipboard && navigator.clipboard.writeText(text).then(() => WAT.toast(t('ui.done'))) }, t('sys.copyReport')))));
+      el('div', { style: 'display:flex;gap:8px;margin-top:12px;flex-wrap:wrap' },
+        el('button', { class: 'wat-btn', onclick: () => navigator.clipboard && navigator.clipboard.writeText(text).then(() => WAT.toast(t('ui.done'))) }, t('sys.copyReport')),
+        el('button', { class: 'wat-btn', onclick: () => navigator.clipboard && navigator.clipboard.writeText(layoutReport()).then(() => WAT.toast(t('ui.done'))) }, t('sys.copyLayout'))),
+      el('div', { class: 'wat-hint' }, t('sys.layoutHint'))));
     document.body.appendChild(ov); ov.addEventListener('mousedown', e => { if (e.target === ov) close(); });
   }
 

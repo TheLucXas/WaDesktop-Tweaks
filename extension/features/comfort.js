@@ -64,6 +64,8 @@
         if (meta) for (const sp of meta.querySelectorAll('span')) {
           if (sp.children.length === 0 && /\d{1,2}:\d{2}/.test(sp.textContent) && !sp.closest('.wat-edit') && sp.textContent !== txt) { sp.textContent = txt; break; }
         }
+        // the longer time can end up over the last line of the text: make room for it when it really overlaps
+        WAT.avoidMeta(row, row.querySelector('.selectable-text'));
       }
       if (doFwd && msg.isForwarded) {
         const ic = row.querySelector('[data-icon*="forward"]');

@@ -98,4 +98,6 @@ window.WAT && window.WAT.addLocale('ja', {
   'f.smoothScroll.name': 'スムーズスクロール', 'f.smoothScroll.desc': 'マウスホイールのスクロールをアニメーションにします。', 'f.smoothScroll.tip': 'マウスホイールでの移動を、ジャンプではなくなめらかに滑らせます。タッチパッドは元々なめらかなので変更しません。',
   'f.smoothSpeed.name': 'スクロール量 (%)', 'f.smoothSpeed.desc': 'ホイール1クリックでの移動量。', 'f.smoothSpeed.tip': '100が標準の量です。50〜300の範囲。',
   'f.smoothTime.name': 'なめらかさ (ms)', 'f.smoothTime.desc': '滑る時間の長さ。', 'f.smoothTime.tip': '大きいほどふんわり、小さいほどキビキビします。80〜900の範囲。',
+  'ui.searchOptions': '設定を検索…', 'ui.noResults': '一致する設定がありません。',
+  'sys.copyLayout': 'レイアウトレポートをコピー', 'sys.layoutHint': 'レイアウトレポートにはページの構造のみが含まれます（メッセージ本文、名前、番号は含まれません）。表示のずれや位置のおかしさを報告するときに添付してください。',
 });

@@ -40,7 +40,8 @@ Deleted-message recovery · edit history · custom GIF provider · screen blur &
 | 🎨 | **Appearance** | Bubble colours, compact mode, smooth mouse-wheel scrolling, hide Channels/Communities/Meta AI/Status, custom CSS |
 | 🛡️ | **Screen privacy** | Blur chat list / messages / when the window loses focus, **PIN lock**, **panic button** |
 | 👤 | **Profiles & backup** | Switch option sets, export / import settings |
-| 🩺 | **Self-diagnosis** | Tells you which feature broke after a WhatsApp update |
+| 🩺 | **Self-diagnosis** | Tells you which feature broke after a WhatsApp update; copies a privacy-safe layout report for misalignment bugs |
+| 🔎 | **Search** | A search box in the settings panel finds any option across all sections |
 | 🌍 | **13 languages** | English, Español, Português, Français, Deutsch, Italiano, Русский, Türkçe, 日本語, 한국어, 简体中文, Bahasa Indonesia, Polski |
 
 Every option has a plain-language name, a short description and a detailed tooltip. Open the **⚙** button next to the chat-list menu.

@@ -43,12 +43,14 @@
       const want = z === 1 ? '' : String(z);
       if (String(app.style.zoom || '') !== want) app.style.zoom = want;
     }
+    // every match is handled (WhatsApp can render the item more than once); a button is hidden through its cell
+    const setCell = (m, hide) => { const cell = m.tagName === 'BUTTON' ? m.parentElement : m; if (cell && cell !== document.body) cell.style.display = hide ? 'none' : ''; };
     for (const [id, idx] of Object.entries(RAIL)) {
-      const b = document.querySelector('button[data-navbar-item][data-navbar-item-index="' + idx + '"]');
-      if (b && b.parentElement) b.parentElement.style.display = WAT.on(id) ? 'none' : '';
+      const hide = WAT.on(id);
+      document.querySelectorAll('[data-navbar-item][data-navbar-item-index="' + idx + '"]').forEach(m => setCell(m, hide));
     }
-    const ai = document.querySelector('button[data-navbar-item][aria-label="Meta AI"]');
-    if (ai && ai.parentElement) ai.parentElement.style.display = WAT.on('hideMetaAI') ? 'none' : '';
+    const hideAI = WAT.on('hideMetaAI');
+    document.querySelectorAll('[data-navbar-item][aria-label="Meta AI"]').forEach(m => setCell(m, hideAI));
   }, 400);
 
   WAT.addShortcut('compactShortcut', () => WAT.set('compact', !WAT.on('compact')));

@@ -14,6 +14,9 @@
   .wat-main{flex:1;display:flex;flex-direction:column;min-width:0}
   .wat-head{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border-default,rgba(134,150,160,.2))}
   .wat-head .t{font-weight:700;font-size:16px;flex:1}
+  .wat-head .wat-q{flex:none;width:210px;max-width:40%}
+  .wat-sechead{margin:16px 0 0;padding-top:4px;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--secondary,#8696a0)}
+  .wat-sechead:first-child{margin-top:8px}
   .wat-body{padding:4px 16px 16px;overflow:auto;flex:1}
   .wat-x{background:transparent;border:0;color:inherit;font-size:20px;cursor:pointer}
   .wat-row{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--border-default,rgba(134,150,160,.18))}
@@ -171,7 +174,17 @@
   }
 
   function closePanel() { if (ovEl) { ovEl.remove(); ovEl = null; } document.removeEventListener('keydown', escHandler, true); }
-  const escHandler = e => { if (e.key === 'Escape' && ovEl) { e.stopPropagation(); closePanel(); } };
+  const escHandler = e => {
+    if (e.key !== 'Escape' || !ovEl) return;
+    e.stopPropagation();
+    const s = ovEl.__search;
+    if (s && s.value) { s.value = ''; s.dispatchEvent(new Event('input')); return; }   // first Esc clears the search
+    closePanel();
+  };
+
+  // lower-case, accent-insensitive text for the option search
+  const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const known = k => { const v = t(k); return v === k ? '' : v; };   // t() echoes the key when a string is missing
 
   WAT.openSettings = section => {
     closePanel();
@@ -180,21 +193,51 @@
     const nav = el('div', { class: 'wat-nav' });
     const body = el('div', { class: 'wat-body' });
     const title = el('div', { class: 't' });
+    const search = el('input', { class: 'wat-in wat-q', type: 'search', spellcheck: 'false', oninput: () => { draw(); body.scrollTop = 0; } });
+    // every typed word must appear in the section name, the option's name/description/tip or its id
+    const matches = (sec, it, words) => {
+      const hay = norm([known('s.' + sec.id), known('f.' + it.id + '.name'), known('f.' + it.id + '.desc'), known('f.' + it.id + '.tip'), known('a.' + it.id), it.id].join(' '));
+      return words.every(w => hay.includes(w));
+    };
     const draw = () => {
+      const words = norm(search.value).split(/\s+/).filter(Boolean);
+      const searching = words.length > 0;
+      search.placeholder = t('ui.searchOptions');
       nav.replaceChildren(el('h2', {}, 'WaDesktop-Tweaks'));
-      for (const s of WAT.sections) nav.append(el('button', { 'aria-current': String(s.id === curSection), onclick: () => { curSection = s.id; draw(); } }, t('s.' + s.id)));
-      const sec = WAT.sections.find(s => s.id === curSection) || WAT.sections[0];
-      title.textContent = t('s.' + sec.id);
+      for (const s of WAT.sections) {
+        nav.append(el('button', {
+          'aria-current': String(!searching && s.id === curSection),
+          onclick: () => { curSection = s.id; search.value = ''; draw(); body.scrollTop = 0; },
+        }, t('s.' + s.id)));
+      }
       body.replaceChildren();
-      if (t('sd.' + sec.id) !== 'sd.' + sec.id) body.append(el('div', { class: 'wat-hint' }, t('sd.' + sec.id)));
-      for (const it of sec.items) { if (it.showIf && !it.showIf()) continue; body.append(renderItem(it, draw)); }
-      body.scrollTop = 0;
+      if (searching) {
+        title.textContent = t('ui.search');
+        let found = 0;
+        for (const s of WAT.sections) {
+          const hits = s.items.filter(it => matches(s, it, words));
+          if (!hits.length) continue;
+          found += hits.length;
+          body.append(el('div', { class: 'wat-sechead' }, t('s.' + s.id)));
+          for (const it of hits) body.append(renderItem(it, draw));
+        }
+        if (!found) body.append(el('div', { class: 'wat-hint' }, t('ui.noResults')));
+      } else {
+        const sec = WAT.sections.find(s => s.id === curSection) || WAT.sections[0];
+        title.textContent = t('s.' + sec.id);
+        if (t('sd.' + sec.id) !== 'sd.' + sec.id) body.append(el('div', { class: 'wat-hint' }, t('sd.' + sec.id)));
+        for (const it of sec.items) { if (it.showIf && !it.showIf()) continue; body.append(renderItem(it, draw)); }
+      }
     };
     draw();
-    ovEl.append(el('div', { class: 'wat-panel' }, nav, el('div', { class: 'wat-main' }, el('div', { class: 'wat-head' }, title, el('button', { class: 'wat-x', title: t('ui.close'), onclick: closePanel }, '✕')), body)));
+    body.scrollTop = 0;
+    ovEl.__search = search;
+    ovEl.append(el('div', { class: 'wat-panel' }, nav, el('div', { class: 'wat-main' },
+      el('div', { class: 'wat-head' }, title, search, el('button', { class: 'wat-x', title: t('ui.close'), onclick: closePanel }, '✕')), body)));
     ovEl.addEventListener('mousedown', e => { if (e.target === ovEl) closePanel(); });
     document.body.appendChild(ovEl); document.addEventListener('keydown', escHandler, true);
     WAT.__redraw = draw;
+    setTimeout(() => search.focus(), 30);
   };
   WAT.onEvent('change', id => { if (ovEl && WAT.__redraw && (id === 'language' || id === '*')) WAT.__redraw(); });
 

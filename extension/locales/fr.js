@@ -98,4 +98,6 @@ window.WAT && window.WAT.addLocale('fr', {
   'f.smoothScroll.name': 'Défilement fluide', 'f.smoothScroll.desc': 'Anime le défilement à la molette.', 'f.smoothScroll.tip': 'Fait glisser la molette de la souris au lieu de sauter. Les pavés tactiles sont déjà fluides et ne sont pas modifiés.',
   'f.smoothSpeed.name': 'Distance de défilement (%)', 'f.smoothSpeed.desc': 'Distance parcourue à chaque cran de molette.', 'f.smoothSpeed.tip': '100 est la distance normale. Entre 50 et 300.',
   'f.smoothTime.name': 'Fluidité (ms)', 'f.smoothTime.desc': 'Durée du glissement.', 'f.smoothTime.tip': 'Plus haut = plus flottant, plus bas = plus réactif. Entre 80 et 900.',
+  'ui.searchOptions': 'Rechercher une option…', 'ui.noResults': 'Aucune option ne correspond à votre recherche.',
+  'sys.copyLayout': 'Copier le rapport de mise en page', 'sys.layoutHint': 'Le rapport de mise en page ne contient que la structure de la page (aucun texte de message, nom ni numéro). Joignez-le lorsque quelque chose semble mal aligné ou mal placé.',
 });

@@ -98,4 +98,6 @@ window.WAT && window.WAT.addLocale('tr', {
   'f.smoothScroll.name': 'Yumuşak kaydırma', 'f.smoothScroll.desc': 'Fare tekerleği kaydırmasını canlandırır.', 'f.smoothScroll.tip': 'Fare tekerleği zıplamak yerine kayar. Dokunmatik yüzeyler zaten yumuşaktır, değiştirilmez.',
   'f.smoothSpeed.name': 'Kaydırma mesafesi (%)', 'f.smoothSpeed.desc': 'Tekerleğin her tıkında ne kadar kayar.', 'f.smoothSpeed.tip': '100 normal mesafedir. 50 ile 300 arası.',
   'f.smoothTime.name': 'Yumuşaklık (ms)', 'f.smoothTime.desc': 'Kaymanın ne kadar sürdüğü.', 'f.smoothTime.tip': 'Yüksek daha akıcı, düşük daha seri. 80 ile 900 arası.',
+  'ui.searchOptions': 'Seçeneklerde ara…', 'ui.noResults': 'Aramanızla eşleşen seçenek yok.',
+  'sys.copyLayout': 'Düzen raporunu kopyala', 'sys.layoutHint': 'Düzen raporu yalnızca sayfa yapısını içerir (mesaj metni, ad veya numara yok). Bir şey kaymış veya yanlış yerde görünüyorsa ekleyin.',
 });

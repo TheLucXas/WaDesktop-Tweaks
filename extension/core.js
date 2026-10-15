@@ -153,4 +153,24 @@
     document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 10000);
   };
   WAT.nowReady = () => !!(document.body && document.documentElement);
+
+  /* WhatsApp sizes a bubble for the content it rendered. When we change that content (a recovered text, a time
+   * with seconds) a line of text can end up under the timestamp. If a line of `box` really overlaps the row's
+   * time element, give `box` bottom padding of one time-height so the bubble grows and the time sits below. */
+  WAT.avoidMeta = (row, box) => {
+    try {
+      const meta = row.querySelector('[data-testid="msg-meta"]');
+      if (!meta || !box || !box.isConnected) return;
+      const m = meta.getBoundingClientRect(); if (!m.width || !m.height) return;
+      const rg = document.createRange(); rg.selectNodeContents(box);
+      const hit = [...rg.getClientRects()].some(r => r.width > 1 && r.left < m.right - 1 && r.right > m.left + 1 && r.top < m.bottom - 2 && r.bottom > m.top + 2);
+      if (!hit) return;
+      const have = Number(box.dataset.watPad || 0);
+      if (have >= 2 * m.height) return;   // safety cap: never keep growing
+      const pad = have + Math.ceil(m.height);
+      box.dataset.watPad = String(pad);
+      if (getComputedStyle(box).display === 'inline') box.style.display = 'inline-block';
+      box.style.paddingBottom = pad + 'px';
+    } catch {}
+  };
 })();

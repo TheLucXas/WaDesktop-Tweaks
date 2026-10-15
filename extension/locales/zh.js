@@ -98,4 +98,6 @@ window.WAT && window.WAT.addLocale('zh', {
   'f.smoothScroll.name': '平滑滚动', 'f.smoothScroll.desc': '为鼠标滚轮滚动添加动画。', 'f.smoothScroll.tip': '让鼠标滚轮平滑滑动而不是跳跃。触控板本身已很平滑，不会被改动。',
   'f.smoothSpeed.name': '滚动距离 (%)', 'f.smoothSpeed.desc': '滚轮每格滚动的距离。', 'f.smoothSpeed.tip': '100 为正常距离。范围 50 到 300。',
   'f.smoothTime.name': '平滑度 (毫秒)', 'f.smoothTime.desc': '滑动持续的时间。', 'f.smoothTime.tip': '越大越飘逸，越小越灵敏。范围 80 到 900。',
+  'ui.searchOptions': '搜索选项…', 'ui.noResults': '没有与搜索匹配的选项。',
+  'sys.copyLayout': '复制布局报告', 'sys.layoutHint': '布局报告只包含页面结构（不含消息文本、姓名或号码）。当某些内容错位或位置不对时，请附上它。',
 });

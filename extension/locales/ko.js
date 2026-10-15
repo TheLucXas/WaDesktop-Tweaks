@@ -98,4 +98,6 @@ window.WAT && window.WAT.addLocale('ko', {
   'f.smoothScroll.name': '부드러운 스크롤', 'f.smoothScroll.desc': '마우스 휠 스크롤에 애니메이션을 적용합니다.', 'f.smoothScroll.tip': '마우스 휠이 튀지 않고 부드럽게 미끄러지듯 스크롤됩니다. 터치패드는 이미 부드러워 그대로 둡니다.',
   'f.smoothSpeed.name': '스크롤 거리 (%)', 'f.smoothSpeed.desc': '휠을 한 칸 돌릴 때 이동하는 거리.', 'f.smoothSpeed.tip': '100이 기본 거리입니다. 50~300 사이.',
   'f.smoothTime.name': '부드러움 (ms)', 'f.smoothTime.desc': '미끄러지는 시간.', 'f.smoothTime.tip': '높을수록 부드럽고, 낮을수록 빠릿합니다. 80~900 사이.',
+  'ui.searchOptions': '옵션 검색…', 'ui.noResults': '검색과 일치하는 옵션이 없습니다.',
+  'sys.copyLayout': '레이아웃 보고서 복사', 'sys.layoutHint': '레이아웃 보고서에는 페이지 구조만 포함됩니다(메시지 내용, 이름, 번호 없음). 정렬이 어긋나거나 위치가 이상할 때 첨부하세요.',
 });

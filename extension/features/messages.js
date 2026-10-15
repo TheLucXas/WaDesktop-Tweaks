@@ -120,9 +120,10 @@
       let n;
       while ((n = w.nextNode())) {
         const p = n.parentElement; if (!p || p.closest(metaSel) || p.closest('svg') || p.tagName === 'TITLE' || !n.nodeValue.trim()) continue;
-        if (p.dataset.watDel) break;
+        if (p.dataset.watDel) { WAT.avoidMeta(row, p); break; }
         n.nodeValue = rec.text || '[' + (rec.type || '') + ']';
-        p.dataset.watDel = '1'; p.title = t('msg.deletedTip'); p.style.whiteSpace = 'pre-wrap'; p.style.color = '#ff9b9b';
+        p.dataset.watDel = '1'; p.title = t('msg.deletedTip'); p.style.whiteSpace = 'pre-wrap'; p.style.overflowWrap = 'anywhere'; p.style.color = '#ff9b9b';
+        WAT.avoidMeta(row, p);
         break;
       }
       return;

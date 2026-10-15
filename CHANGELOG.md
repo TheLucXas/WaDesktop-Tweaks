@@ -13,5 +13,6 @@
 - Appearance: bubble colours, compact mode, smooth mouse-wheel scrolling, hide Channels / Communities / Meta AI / Status, custom CSS.
 - Screen privacy: blur (also covers the tweaks' own buttons, toasts and dialogs), PIN lock, panic button.
 - Scheduled messages (high risk, off by default).
-- Profiles, settings backup/restore, self-diagnosis, update check, uninstaller.
+- Settings panel with a search box over every option; profiles, settings backup/restore, update check, uninstaller.
+- Self-diagnosis with a copyable, privacy-safe layout report.
 - 13 interface languages.

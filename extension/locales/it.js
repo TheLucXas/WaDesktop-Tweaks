@@ -98,4 +98,6 @@ window.WAT && window.WAT.addLocale('it', {
   'f.smoothScroll.name': 'Scorrimento fluido', 'f.smoothScroll.desc': 'Anima lo scorrimento con la rotellina del mouse.', 'f.smoothScroll.tip': 'Fa scorrere la rotellina in modo fluido invece di scattare. I touchpad sono già fluidi e non vengono modificati.',
   'f.smoothSpeed.name': 'Distanza di scorrimento (%)', 'f.smoothSpeed.desc': 'Quanto scorre ogni scatto della rotellina.', 'f.smoothSpeed.tip': '100 è la distanza normale. Tra 50 e 300.',
   'f.smoothTime.name': 'Fluidità (ms)', 'f.smoothTime.desc': 'Quanto dura lo scorrimento.', 'f.smoothTime.tip': 'Più alto è più morbido, più basso più reattivo. Tra 80 e 900.',
+  'ui.searchOptions': 'Cerca opzioni…', 'ui.noResults': 'Nessuna opzione corrisponde alla ricerca.',
+  'sys.copyLayout': 'Copia rapporto del layout', 'sys.layoutHint': 'Il rapporto del layout contiene solo la struttura della pagina (nessun testo dei messaggi, nome o numero). Allegalo quando qualcosa appare disallineato o fuori posto.',
 });
