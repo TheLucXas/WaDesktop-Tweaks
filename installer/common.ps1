@@ -31,7 +31,8 @@ function Split-Args([string]$s) {
     return [regex]::Matches($s, '(?:[^\s"]+|"[^"]*")+') | ForEach-Object { $_.Value }
 }
 function Remove-OwnTokens($tokens) {
-    return @($tokens | Where-Object { $_ -notmatch '^--load-extension=' -and $_ -ne '--disable-features=DisableLoadExtensionCommandLineSwitch' })
+    # patterns are deliberately loose: they also catch a malformed value where two tokens got glued together
+    return @($tokens | Where-Object { $_ -notmatch '--load-extension=' -and $_ -notmatch '^--disable-features=DisableLoadExtensionCommandLineSwitch' })
 }
 
 function Get-PolicyValue([string]$Sid) {

@@ -18,7 +18,7 @@ try {
 
     Write-Step 'Removing the WebView2 startup arguments added by this tool'
     $existing = Get-PolicyValue $UserSid
-    $left = Remove-OwnTokens (Split-Args $existing)
+    $left = @(Remove-OwnTokens (Split-Args $existing))
     Set-PolicyValue $UserSid ($left -join ' ')
     # remove the (now empty) policy key if nothing else lives there
     $k = Join-Path (Get-HiveRoot $UserSid) $script:PolicyPath

@@ -47,10 +47,17 @@ try {
 
     Write-Step 'Setting the WebView2 startup arguments for WhatsApp Desktop'
     $existing = Get-PolicyValue $UserSid
-    $tokens = Remove-OwnTokens (Split-Args $existing)
+    # @() matters: an empty result would otherwise collapse to $null and the two += below would glue
+    # the new tokens together as one string with no space between them.
+    $tokens = @(Remove-OwnTokens (Split-Args $existing))
     $tokens += '--disable-features=DisableLoadExtensionCommandLineSwitch'
     $tokens += ('--load-extension="' + $dstExt + '"')   # quoted: the path may contain spaces
     Set-PolicyValue $UserSid ($tokens -join ' ')
+    $check = @(Split-Args (Get-PolicyValue $UserSid))
+    if (-not ($check -contains '--disable-features=DisableLoadExtensionCommandLineSwitch') -or
+        -not ($check | Where-Object { $_ -like '--load-extension=*' })) {
+        throw "The startup arguments were not stored correctly: $(Get-PolicyValue $UserSid)"
+    }
 
     Write-Step 'Creating Start Menu shortcuts (Update / Uninstall)'
     $menuDir = Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs\WaDesktop-Tweaks'
