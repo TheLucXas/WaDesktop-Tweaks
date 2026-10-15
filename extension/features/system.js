@@ -134,14 +134,19 @@
   }, true);
 
   // Keeps the latest layout report next to the settings (structure only) so a misalignment can be inspected
-  // without any clipboard step; refreshed at most every 2 minutes while a recovered message is on screen.
-  const rememberLayout = rep => { try { localStorage.setItem('wat.lastLayout', JSON.stringify({ at: new Date().toISOString(), report: rep })); } catch {} };
-  let lastSnap = 0;
+  // without any clipboard step. Also leaves a small probe so it is clear whether this ran and why it did not.
+  const store = o => { try { localStorage.setItem('wat.lastLayout', JSON.stringify(Object.assign({ at: new Date().toISOString() }, o))); } catch {} };
+  const rememberLayout = rep => store({ painted: document.querySelectorAll('[data-wat-del]').length, report: rep });
+  let lastSnap = 0, probed = false;
   setInterval(() => {
-    try {
-      if (Date.now() - lastSnap < 120000 || !document.querySelector('[data-wat-del]')) return;
-      lastSnap = Date.now(); rememberLayout(layoutReport());
-    } catch {}
+    const n = document.querySelectorAll('[data-wat-del]').length;
+    if (!n) {
+      if (!probed && WAT.nowReady() && document.querySelector('[data-id]')) { probed = true; store({ painted: 0, note: 'a chat is open but no recovered message is painted' }); }
+      return;
+    }
+    if (Date.now() - lastSnap < 120000) return;
+    lastSnap = Date.now();
+    try { rememberLayout(layoutReport()); } catch (e) { store({ painted: n, error: String(e && e.stack || e).slice(0, 2000) }); }
   }, 3000);
 
   async function runDiagnostics() {
