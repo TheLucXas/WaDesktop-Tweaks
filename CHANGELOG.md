@@ -10,8 +10,8 @@
 - GIFs: KLIPY search sent through WhatsApp's native GIF flow.
 - Comfort: double-click reactions, sticker confirmation, seconds in timestamps, save-media button, hide "Forwarded",
   quick replies, keyword highlight, export chat to .txt / .json.
-- Appearance: bubble colours, compact mode, hide Channels / Communities / Meta AI / Status, custom CSS.
-- Screen privacy: blur, PIN lock, panic button.
+- Appearance: bubble colours, compact mode, smooth mouse-wheel scrolling, hide Channels / Communities / Meta AI / Status, custom CSS.
+- Screen privacy: blur (also covers the tweaks' own buttons, toasts and dialogs), PIN lock, panic button.
 - Scheduled messages (high risk, off by default).
 - Profiles, settings backup/restore, self-diagnosis, update check, uninstaller.
 - 13 interface languages.

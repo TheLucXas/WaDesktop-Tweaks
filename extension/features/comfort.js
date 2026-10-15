@@ -97,7 +97,7 @@
     if (!WAT.nowReady()) return;
     if (!saveBtn) {
       saveBtn = el('button', {
-        class: 'wat-btn', style: 'position:fixed;top:58px;right:24px;z-index:2147483000;display:none', onclick: async () => {
+        class: 'wat-btn wat-save', style: 'position:fixed;top:58px;right:24px;z-index:2147483000;display:none', onclick: async () => {
           const m = bigMedia(); if (!m) return; const src = m.currentSrc || m.src; if (!src) return;
           try {
             const blob = await (await fetch(src)).blob();

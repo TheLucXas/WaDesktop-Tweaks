@@ -37,7 +37,7 @@ Recuperar mensajes eliminados · historial de ediciones · proveedor de GIFs · 
 | 🎞️ | **Búsqueda de GIFs en KLIPY** | Se envían como GIFs *reales* con el flujo de WhatsApp |
 | ⏰ | **Mensajes programados** | Se envían mientras WhatsApp está abierto ⛔ |
 | 😀 | **Comodidad** | Doble clic para reaccionar, confirmar stickers, segundos en la hora, respuestas rápidas, resaltar palabras, exportar chat a .txt/.json, botón de guardar medios |
-| 🎨 | **Apariencia** | Colores de burbujas, modo compacto, ocultar Canales/Comunidades/Meta AI/Estados, CSS propio |
+| 🎨 | **Apariencia** | Colores de burbujas, modo compacto, desplazamiento suave con la rueda, ocultar Canales/Comunidades/Meta AI/Estados, CSS propio |
 | 🛡️ | **Privacidad en pantalla** | Desenfoque de lista / mensajes / al perder el foco, **bloqueo con PIN**, **botón de pánico** |
 | 👤 | **Perfiles y copia de seguridad** | Cambia entre conjuntos de opciones, exporta/importa ajustes |
 | 🩺 | **Autodiagnóstico** | Te dice qué función se rompió tras una actualización de WhatsApp |

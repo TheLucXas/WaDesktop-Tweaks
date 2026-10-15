@@ -95,4 +95,7 @@ window.WAT && window.WAT.addLocale('pt', {
 
   'f.aboutInfo.desc': 'WaDesktop-Tweaks é um projeto comunitário, não oficial e gerado por IA. Não é afiliado nem endossado pelo WhatsApp/Meta. Use por sua conta e risco. Licença: The Unlicense.',
   'un.stepsTitle': 'Conclua a desinstalação', 'un.steps': 'Uma página web não pode executar programas, então o último passo é seu:\n1. Abra o menu Iniciar e execute "WaDesktop-Tweaks Uninstall" (ou pressione Win+R, cole o comando copiado e Enter).\n2. Aceite o aviso de permissão do Windows.\n3. Abra o WhatsApp novamente.', 'un.copyCmd': 'Copiar comando', 'un.copied': 'Comando copiado', 'upd.steps': 'Para atualizar: abra o menu Iniciar e execute "WaDesktop-Tweaks Update" (ou Win+R e cole o comando copiado). Depois reinicie o WhatsApp.',
+  'f.smoothScroll.name': 'Rolagem suave', 'f.smoothScroll.desc': 'Anima a rolagem com a roda do mouse.', 'f.smoothScroll.tip': 'Faz a roda do mouse deslizar em vez de pular. Touchpads já são suaves e não são alterados.',
+  'f.smoothSpeed.name': 'Distância de rolagem (%)', 'f.smoothSpeed.desc': 'Quanto cada clique da roda rola.', 'f.smoothSpeed.tip': '100 é a distância normal. Entre 50 e 300.',
+  'f.smoothTime.name': 'Suavidade (ms)', 'f.smoothTime.desc': 'Quanto tempo dura o deslize.', 'f.smoothTime.tip': 'Mais alto é mais flutuante, mais baixo é mais ágil. Entre 80 e 900.',
 });

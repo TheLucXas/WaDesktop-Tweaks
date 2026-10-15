@@ -95,4 +95,7 @@ window.WAT && window.WAT.addLocale('de', {
 
   'f.aboutInfo.desc': 'WaDesktop-Tweaks ist ein inoffizielles Community-Projekt, KI-generiert. Nicht mit WhatsApp/Meta verbunden. Nutzung auf eigene Gefahr. Lizenz: The Unlicense.',
   'un.stepsTitle': 'Deinstallation abschließen', 'un.steps': 'Eine Webseite kann keine Programme starten, der letzte Schritt liegt also bei dir:\n1. Startmenü öffnen und „WaDesktop-Tweaks Uninstall“ ausführen (oder Win+R, kopierten Befehl einfügen, Enter).\n2. Windows-Berechtigungsabfrage bestätigen.\n3. WhatsApp neu öffnen.', 'un.copyCmd': 'Befehl kopieren', 'un.copied': 'Befehl kopiert', 'upd.steps': 'Zum Aktualisieren: Startmenü öffnen und „WaDesktop-Tweaks Update“ ausführen (oder Win+R und kopierten Befehl einfügen). Danach WhatsApp neu starten.',
+  'f.smoothScroll.name': 'Sanftes Scrollen', 'f.smoothScroll.desc': 'Animiert das Scrollen mit dem Mausrad.', 'f.smoothScroll.tip': 'Lässt das Mausrad gleiten statt zu springen. Touchpads scrollen bereits weich und bleiben unverändert.',
+  'f.smoothSpeed.name': 'Scrollweite (%)', 'f.smoothSpeed.desc': 'Wie weit jede Mausrad-Raste scrollt.', 'f.smoothSpeed.tip': '100 ist die normale Weite. Zwischen 50 und 300.',
+  'f.smoothTime.name': 'Weichheit (ms)', 'f.smoothTime.desc': 'Wie lange das Gleiten dauert.', 'f.smoothTime.tip': 'Höher ist schwebender, niedriger direkter. Zwischen 80 und 900.',
 });

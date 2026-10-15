@@ -214,14 +214,26 @@
     const gear = WAT.__gear, act = WAT.__act; if (!gear || !act) return;
     const rows = document.querySelector('#pane-side [role="row"]');
     const ready = !!rows; if (ready && !lastLoaded) lastLoaded = Date.now();
-    gear.style.display = ready ? 'block' : 'none';
+    let covered = false;
     if (ready) {
       // Gear goes immediately left of the leftmost button in the chat-list header (language independent).
-      let x = 330, y = 56;
-      const rects = [...document.querySelectorAll('header button, header [role="button"]')].map(e => e.getBoundingClientRect()).filter(r => r.width > 0 && r.top < 150 && r.left > 150 && r.left < 700);
-      if (rects.length) { const l = rects.reduce((m, r) => (r.left < m.left ? r : m), rects[0]); x = l.left - 44; y = l.top + (l.height - 36) / 2; }
+      let x = 330, y = 56, anchor = null;
+      const cands = [...document.querySelectorAll('header button, header [role="button"]')].map(e => ({ e, r: e.getBoundingClientRect() }))
+        .filter(c => c.r.width > 0 && c.r.top < 150 && c.r.left > 150 && c.r.left < 700);
+      if (cands.length) {
+        anchor = cands.reduce((m, c) => (c.r.left < m.r.left ? c : m), cands[0]);
+        x = anchor.r.left - 44; y = anchor.r.top + (anchor.r.height - 36) / 2;
+      }
       gear.style.left = x + 'px'; gear.style.top = y + 'px';
+      // If a full-screen layer (status viewer, media viewer, a dialog) covers that header button, hide our buttons too.
+      if (anchor) {
+        gear.style.pointerEvents = 'none'; act.style.pointerEvents = 'none';
+        const hit = document.elementFromPoint(anchor.r.left + anchor.r.width / 2, anchor.r.top + anchor.r.height / 2);
+        gear.style.pointerEvents = ''; act.style.pointerEvents = '';
+        covered = !!hit && !anchor.e.contains(hit) && !hit.contains(anchor.e);
+      }
     }
+    gear.style.display = ready && !covered ? 'block' : 'none';
     // quick actions inside an open chat
     const inChat = !!document.querySelector('footer');
     if (WAT.__actDirty || act.__n !== (WAT.actions || []).length) {
@@ -229,7 +241,7 @@
       act.__n = (WAT.actions || []).length; WAT.__actDirty = false;
     }
     for (const b of act.children) { b.title = t(b.__a.titleKey); b.style.display = b.__a.showIf && !b.__a.showIf() ? 'none' : ''; }
-    act.style.display = ready && inChat && (WAT.actions || []).length ? 'flex' : 'none';
+    act.style.display = ready && !covered && inChat && (WAT.actions || []).length ? 'flex' : 'none';
   }, 250);
 
   /* ---------- global keyboard shortcuts ---------- */

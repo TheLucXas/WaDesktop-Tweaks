@@ -95,4 +95,7 @@ window.WAT && window.WAT.addLocale('id', {
 
   'f.aboutInfo.desc': 'WaDesktop-Tweaks adalah proyek komunitas tidak resmi yang dibuat oleh AI. Tidak berafiliasi dengan WhatsApp/Meta. Gunakan dengan risiko sendiri. Lisensi: The Unlicense.',
   'un.stepsTitle': 'Selesaikan pencopotan', 'un.steps': 'Halaman web tidak bisa menjalankan program, jadi langkah terakhir ada di Anda:\n1. Buka menu Start dan jalankan "WaDesktop-Tweaks Uninstall" (atau Win+R, tempel perintah yang disalin, lalu Enter).\n2. Setujui permintaan izin Windows.\n3. Buka kembali WhatsApp.', 'un.copyCmd': 'Salin perintah', 'un.copied': 'Perintah disalin', 'upd.steps': 'Untuk memperbarui: buka menu Start dan jalankan "WaDesktop-Tweaks Update" (atau Win+R lalu tempel perintah yang disalin). Setelah itu mulai ulang WhatsApp.',
+  'f.smoothScroll.name': 'Gulir halus', 'f.smoothScroll.desc': 'Menganimasikan gulir roda mouse.', 'f.smoothScroll.tip': 'Membuat roda mouse meluncur, bukan melompat. Touchpad sudah halus dan tidak diubah.',
+  'f.smoothSpeed.name': 'Jarak gulir (%)', 'f.smoothSpeed.desc': 'Seberapa jauh setiap putaran roda menggulir.', 'f.smoothSpeed.tip': '100 adalah jarak normal. Antara 50 dan 300.',
+  'f.smoothTime.name': 'Kehalusan (ms)', 'f.smoothTime.desc': 'Berapa lama peluncuran berlangsung.', 'f.smoothTime.tip': 'Lebih tinggi lebih mengambang, lebih rendah lebih gesit. Antara 80 dan 900.',
 });

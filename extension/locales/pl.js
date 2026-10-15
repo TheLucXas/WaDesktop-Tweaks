@@ -95,4 +95,7 @@ window.WAT && window.WAT.addLocale('pl', {
 
   'f.aboutInfo.desc': 'WaDesktop-Tweaks to nieoficjalny projekt społeczności wygenerowany przez AI. Nie jest powiązany z WhatsApp/Meta. Używasz na własną odpowiedzialność. Licencja: The Unlicense.',
   'un.stepsTitle': 'Dokończ odinstalowanie', 'un.steps': 'Strona internetowa nie może uruchamiać programów, więc ostatni krok należy do Ciebie:\n1. Otwórz menu Start i uruchom „WaDesktop-Tweaks Uninstall” (lub Win+R, wklej skopiowane polecenie i Enter).\n2. Zaakceptuj monit o uprawnienia Windows.\n3. Otwórz WhatsApp ponownie.', 'un.copyCmd': 'Kopiuj polecenie', 'un.copied': 'Skopiowano polecenie', 'upd.steps': 'Aby zaktualizować: otwórz menu Start i uruchom „WaDesktop-Tweaks Update” (lub Win+R i wklej skopiowane polecenie). Następnie uruchom ponownie WhatsApp.',
+  'f.smoothScroll.name': 'Płynne przewijanie', 'f.smoothScroll.desc': 'Animuje przewijanie kółkiem myszy.', 'f.smoothScroll.tip': 'Kółko myszy przewija płynnie zamiast skokowo. Touchpady już przewijają płynnie i nie są zmieniane.',
+  'f.smoothSpeed.name': 'Dystans przewijania (%)', 'f.smoothSpeed.desc': 'O ile przewija każde kliknięcie kółka.', 'f.smoothSpeed.tip': '100 to normalny dystans. Od 50 do 300.',
+  'f.smoothTime.name': 'Płynność (ms)', 'f.smoothTime.desc': 'Jak długo trwa przesuwanie.', 'f.smoothTime.tip': 'Wyżej — płynniej, niżej — żwawiej. Od 80 do 900.',
 });

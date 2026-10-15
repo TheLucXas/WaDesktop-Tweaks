@@ -95,4 +95,7 @@ window.WAT && window.WAT.addLocale('fr', {
 
   'f.aboutInfo.desc': 'WaDesktop-Tweaks est un projet communautaire, non officiel et généré par IA. Non affilié à WhatsApp/Meta. À vos risques et périls. Licence : The Unlicense.',
   'un.stepsTitle': 'Terminer la désinstallation', 'un.steps': 'Une page web ne peut pas lancer de programmes, la dernière étape est donc la vôtre :\n1. Ouvrez le menu Démarrer et lancez « WaDesktop-Tweaks Uninstall » (ou Win+R, collez la commande copiée, Entrée).\n2. Acceptez l\'invite d\'autorisation Windows.\n3. Rouvrez WhatsApp.', 'un.copyCmd': 'Copier la commande', 'un.copied': 'Commande copiée', 'upd.steps': 'Pour mettre à jour : ouvrez le menu Démarrer et lancez « WaDesktop-Tweaks Update » (ou Win+R et collez la commande copiée). Puis redémarrez WhatsApp.',
+  'f.smoothScroll.name': 'Défilement fluide', 'f.smoothScroll.desc': 'Anime le défilement à la molette.', 'f.smoothScroll.tip': 'Fait glisser la molette de la souris au lieu de sauter. Les pavés tactiles sont déjà fluides et ne sont pas modifiés.',
+  'f.smoothSpeed.name': 'Distance de défilement (%)', 'f.smoothSpeed.desc': 'Distance parcourue à chaque cran de molette.', 'f.smoothSpeed.tip': '100 est la distance normale. Entre 50 et 300.',
+  'f.smoothTime.name': 'Fluidité (ms)', 'f.smoothTime.desc': 'Durée du glissement.', 'f.smoothTime.tip': 'Plus haut = plus flottant, plus bas = plus réactif. Entre 80 et 900.',
 });

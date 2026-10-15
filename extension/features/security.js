@@ -24,7 +24,7 @@
   html.wat-blur-list #pane-side [role="row"]:hover{filter:none}
   html.wat-blur-msgs [data-id]{filter:blur(7px);transition:filter .12s}
   html.wat-blur-msgs [data-id]:hover{filter:none}
-  html.wat-unfocus #app,html.wat-unfocus .wat-gear,html.wat-unfocus .wat-act{filter:blur(14px)}
+  html.wat-unfocus #app,html.wat-unfocus .wat-gear,html.wat-unfocus .wat-act,html.wat-unfocus .wat-save,html.wat-unfocus .wat-toast,html.wat-unfocus .wat-ov{filter:blur(14px)}
   #wat-lock{position:fixed;inset:0;z-index:2147483647;background:#0b141a;color:#e9edef;display:flex;align-items:center;justify-content:center;font:15px/1.4 system-ui,sans-serif}
   #wat-lock .box{width:min(320px,88vw);text-align:center}
   #wat-lock h2{margin:0 0 6px;font-size:20px}

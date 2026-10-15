@@ -37,7 +37,7 @@ Deleted-message recovery · edit history · custom GIF provider · screen blur &
 | 🎞️ | **KLIPY GIF search** | Sent as *real* GIFs through WhatsApp's own flow |
 | ⏰ | **Scheduled messages** | Sent while WhatsApp is open ⛔ |
 | 😀 | **Comfort** | Double-click reactions, sticker confirmation, seconds in timestamps, quick replies, keyword highlight, export chat to .txt/.json, save-media button |
-| 🎨 | **Appearance** | Bubble colours, compact mode, hide Channels/Communities/Meta AI/Status, custom CSS |
+| 🎨 | **Appearance** | Bubble colours, compact mode, smooth mouse-wheel scrolling, hide Channels/Communities/Meta AI/Status, custom CSS |
 | 🛡️ | **Screen privacy** | Blur chat list / messages / when the window loses focus, **PIN lock**, **panic button** |
 | 👤 | **Profiles & backup** | Switch option sets, export / import settings |
 | 🩺 | **Self-diagnosis** | Tells you which feature broke after a WhatsApp update |

@@ -95,4 +95,7 @@ window.WAT && window.WAT.addLocale('ja', {
 
   'f.aboutInfo.desc': 'WaDesktop-Tweaks は非公式のコミュニティ製・AI 生成プロジェクトです。WhatsApp/Meta とは無関係です。自己責任でご利用ください。ライセンス: The Unlicense。',
   'un.stepsTitle': 'アンインストールを完了する', 'un.steps': 'Web ページはプログラムを実行できないため、最後の手順はあなたが行います:\n1. スタートメニューを開き「WaDesktop-Tweaks Uninstall」を実行します(または Win+R を押し、コピーしたコマンドを貼り付けて Enter)。\n2. Windows の許可確認を承認します。\n3. WhatsApp を開き直します。', 'un.copyCmd': 'コマンドをコピー', 'un.copied': 'コマンドをコピーしました', 'upd.steps': '更新するには: スタートメニューから「WaDesktop-Tweaks Update」を実行します(または Win+R でコピーしたコマンドを貼り付け)。その後 WhatsApp を再起動してください。',
+  'f.smoothScroll.name': 'スムーズスクロール', 'f.smoothScroll.desc': 'マウスホイールのスクロールをアニメーションにします。', 'f.smoothScroll.tip': 'マウスホイールでの移動を、ジャンプではなくなめらかに滑らせます。タッチパッドは元々なめらかなので変更しません。',
+  'f.smoothSpeed.name': 'スクロール量 (%)', 'f.smoothSpeed.desc': 'ホイール1クリックでの移動量。', 'f.smoothSpeed.tip': '100が標準の量です。50〜300の範囲。',
+  'f.smoothTime.name': 'なめらかさ (ms)', 'f.smoothTime.desc': '滑る時間の長さ。', 'f.smoothTime.tip': '大きいほどふんわり、小さいほどキビキビします。80〜900の範囲。',
 });

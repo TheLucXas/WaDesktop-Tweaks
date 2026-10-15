@@ -95,4 +95,7 @@ window.WAT && window.WAT.addLocale('ko', {
 
   'f.aboutInfo.desc': 'WaDesktop-Tweaks는 비공식 커뮤니티 프로젝트이며 AI로 생성되었습니다. WhatsApp/Meta와 무관합니다. 본인 책임으로 사용하세요. 라이선스: The Unlicense.',
   'un.stepsTitle': '제거 마무리', 'un.steps': '웹 페이지는 프로그램을 실행할 수 없으므로 마지막 단계는 직접 해야 합니다:\n1. 시작 메뉴를 열고 "WaDesktop-Tweaks Uninstall"을 실행하세요(또는 Win+R 후 복사한 명령을 붙여 넣고 Enter).\n2. Windows 권한 요청을 승인하세요.\n3. WhatsApp을 다시 여세요.', 'un.copyCmd': '명령 복사', 'un.copied': '명령을 복사했습니다', 'upd.steps': '업데이트하려면: 시작 메뉴에서 "WaDesktop-Tweaks Update"를 실행하세요(또는 Win+R 후 복사한 명령 붙여넣기). 그런 다음 WhatsApp을 다시 시작하세요.',
+  'f.smoothScroll.name': '부드러운 스크롤', 'f.smoothScroll.desc': '마우스 휠 스크롤에 애니메이션을 적용합니다.', 'f.smoothScroll.tip': '마우스 휠이 튀지 않고 부드럽게 미끄러지듯 스크롤됩니다. 터치패드는 이미 부드러워 그대로 둡니다.',
+  'f.smoothSpeed.name': '스크롤 거리 (%)', 'f.smoothSpeed.desc': '휠을 한 칸 돌릴 때 이동하는 거리.', 'f.smoothSpeed.tip': '100이 기본 거리입니다. 50~300 사이.',
+  'f.smoothTime.name': '부드러움 (ms)', 'f.smoothTime.desc': '미끄러지는 시간.', 'f.smoothTime.tip': '높을수록 부드럽고, 낮을수록 빠릿합니다. 80~900 사이.',
 });

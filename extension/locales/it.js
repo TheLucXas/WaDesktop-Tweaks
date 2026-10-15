@@ -95,4 +95,7 @@ window.WAT && window.WAT.addLocale('it', {
 
   'f.aboutInfo.desc': 'WaDesktop-Tweaks è un progetto comunitario non ufficiale generato con IA. Non affiliato a WhatsApp/Meta. Usalo a tuo rischio. Licenza: The Unlicense.',
   'un.stepsTitle': 'Completa la disinstallazione', 'un.steps': 'Una pagina web non può eseguire programmi, quindi l\'ultimo passo è tuo:\n1. Apri il menu Start ed esegui «WaDesktop-Tweaks Uninstall» (oppure Win+R, incolla il comando copiato e Invio).\n2. Accetta la richiesta di autorizzazione di Windows.\n3. Riapri WhatsApp.', 'un.copyCmd': 'Copia comando', 'un.copied': 'Comando copiato', 'upd.steps': 'Per aggiornare: apri il menu Start ed esegui «WaDesktop-Tweaks Update» (oppure Win+R e incolla il comando copiato). Poi riavvia WhatsApp.',
+  'f.smoothScroll.name': 'Scorrimento fluido', 'f.smoothScroll.desc': 'Anima lo scorrimento con la rotellina del mouse.', 'f.smoothScroll.tip': 'Fa scorrere la rotellina in modo fluido invece di scattare. I touchpad sono già fluidi e non vengono modificati.',
+  'f.smoothSpeed.name': 'Distanza di scorrimento (%)', 'f.smoothSpeed.desc': 'Quanto scorre ogni scatto della rotellina.', 'f.smoothSpeed.tip': '100 è la distanza normale. Tra 50 e 300.',
+  'f.smoothTime.name': 'Fluidità (ms)', 'f.smoothTime.desc': 'Quanto dura lo scorrimento.', 'f.smoothTime.tip': 'Più alto è più morbido, più basso più reattivo. Tra 80 e 900.',
 });

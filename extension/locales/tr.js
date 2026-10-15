@@ -95,4 +95,7 @@ window.WAT && window.WAT.addLocale('tr', {
 
   'f.aboutInfo.desc': 'WaDesktop-Tweaks resmî olmayan, topluluk tarafından yapılan, yapay zekâ ile üretilmiş bir projedir. WhatsApp/Meta ile bağlantılı değildir. Kendi sorumluluğunuzda kullanın. Lisans: The Unlicense.',
   'un.stepsTitle': 'Kaldırmayı tamamlayın', 'un.steps': 'Bir web sayfası program çalıştıramaz, bu yüzden son adım sizde:\n1. Başlat menüsünü açın ve "WaDesktop-Tweaks Uninstall"u çalıştırın (veya Win+R, kopyalanan komutu yapıştırın, Enter).\n2. Windows izin isteğini kabul edin.\n3. WhatsApp\'ı yeniden açın.', 'un.copyCmd': 'Komutu kopyala', 'un.copied': 'Komut kopyalandı', 'upd.steps': 'Güncellemek için: Başlat menüsünü açıp "WaDesktop-Tweaks Update"i çalıştırın (veya Win+R ve kopyalanan komutu yapıştırın). Sonra WhatsApp\'ı yeniden başlatın.',
+  'f.smoothScroll.name': 'Yumuşak kaydırma', 'f.smoothScroll.desc': 'Fare tekerleği kaydırmasını canlandırır.', 'f.smoothScroll.tip': 'Fare tekerleği zıplamak yerine kayar. Dokunmatik yüzeyler zaten yumuşaktır, değiştirilmez.',
+  'f.smoothSpeed.name': 'Kaydırma mesafesi (%)', 'f.smoothSpeed.desc': 'Tekerleğin her tıkında ne kadar kayar.', 'f.smoothSpeed.tip': '100 normal mesafedir. 50 ile 300 arası.',
+  'f.smoothTime.name': 'Yumuşaklık (ms)', 'f.smoothTime.desc': 'Kaymanın ne kadar sürdüğü.', 'f.smoothTime.tip': 'Yüksek daha akıcı, düşük daha seri. 80 ile 900 arası.',
 });
