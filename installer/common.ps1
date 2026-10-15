@@ -44,7 +44,7 @@ function Split-Args([string]$s) {
     return [regex]::Matches($s, '(?:[^\s"]+|"[^"]*")+') | ForEach-Object { $_.Value }
 }
 function Remove-OwnTokens($tokens) {
-    return @($tokens | Where-Object { $_ -notmatch '--load-extension=' -and $_ -notmatch '^--disable-features=DisableLoadExtensionCommandLineSwitch' })
+    return @($tokens | Where-Object { $_ -and $_ -notmatch '--load-extension=' -and $_ -notmatch '^--disable-features=DisableLoadExtensionCommandLineSwitch' })
 }
 
 function Get-PolicyValue([string]$Sid) {
