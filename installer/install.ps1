@@ -1,7 +1,8 @@
 #requires -Version 5.1
 <#
  WaDesktop-Tweaks installer.
- - Copies the extension to %LOCALAPPDATA%\WaDesktop-Tweaks\extension
+ - Copies the extension to %USERPROFILE%\WaDesktop-Tweaks\extension (not %LOCALAPPDATA%: WhatsApp's MSIX
+   package cannot see it there, see common.ps1)
  - Adds two WebView2 startup arguments for WhatsApp Desktop (needs administrator once: it writes under
    HKCU\Software\Policies, which Windows protects)
  - Creates Start Menu shortcuts for Update and Uninstall
@@ -18,6 +19,7 @@ if (-not (Test-IsAdmin)) {
     return
 }
 if (-not $UserSid) { $UserSid = Get-UserSid }
+Set-InstallDirForUser $UserSid
 
 try {
     Write-Host ''
@@ -33,6 +35,9 @@ try {
 
     Write-Step 'Closing WhatsApp (if open)'
     Stop-WhatsApp
+
+    $legacy = Get-LegacyInstallDir $UserSid
+    if (Test-Path $legacy) { Remove-Item -Recurse -Force $legacy -ErrorAction SilentlyContinue }
 
     Write-Step "Copying files to $($script:InstallDir)"
     $dstExt = Join-Path $script:InstallDir 'extension'

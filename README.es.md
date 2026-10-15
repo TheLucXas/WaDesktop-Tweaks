@@ -62,7 +62,7 @@ Eso es todo: sin programa en segundo plano, sin puertos abiertos, nada que inici
 
 ### Qué hace el instalador
 
-1. Copia la carpeta `extension/` a `%LOCALAPPDATA%\WaDesktop-Tweaks\`.
+1. Copia la carpeta `extension/` a `%USERPROFILE%\WaDesktop-Tweaks\`.
 2. Añade dos argumentos de inicio para el navegador embebido de WhatsApp (WebView2) en la clave de políticas de Windows
    `HKCU\Software\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments` →  
    `--disable-features=DisableLoadExtensionCommandLineSwitch --load-extension="…\WaDesktop-Tweaks\extension"`.
@@ -103,7 +103,7 @@ WhatsApp Desktop es una envoltura fina de WhatsApp Web (WebView2). Chromium perm
 ## 🩺 Solución de problemas
 
 - **Una función dejó de funcionar tras actualizar WhatsApp** → *Ajustes y actualizaciones → Autodiagnóstico*. Un ✖ indica qué cambió; abre una incidencia con el informe copiado.
-- **No aparece el botón ⚙** → reinicia WhatsApp por completo (también desde la bandeja). Comprueba la instalación con `reg query HKCU\Software\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments`.
+- **No aparece el botón ⚙** → reinicia WhatsApp por completo (también desde la bandeja). Comprueba la instalación con `reg query HKCU\Software\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments`: debe mostrar `--load-extension="…\WaDesktop-Tweaks\extension"` apuntando a una carpeta que exista. La extensión vive en tu carpeta de usuario (no en `%LOCALAPPDATA%`, que el paquete MSIX de WhatsApp no puede ver).
 - **Aviso del antivirus** → el instalador es un script de PowerShell que escribe un valor del registro; léelo en `installer/`.
 
 ## 🤝 Contribuir

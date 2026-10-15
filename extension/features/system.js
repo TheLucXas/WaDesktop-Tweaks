@@ -104,8 +104,8 @@
 
   /* ---------- uninstall ---------- */
   // A web page cannot start programs, so the last step is done by the user from the Start menu / Win+R.
-  const CMD_UNINSTALL = 'powershell -NoProfile -ExecutionPolicy Bypass -File "%LOCALAPPDATA%\\WaDesktop-Tweaks\\installer\\uninstall.ps1"';
-  const CMD_UPDATE = 'powershell -NoProfile -ExecutionPolicy Bypass -File "%LOCALAPPDATA%\\WaDesktop-Tweaks\\installer\\update.ps1"';
+  const CMD_UNINSTALL = 'powershell -NoProfile -ExecutionPolicy Bypass -File "%USERPROFILE%\\WaDesktop-Tweaks\\installer\\uninstall.ps1"';
+  const CMD_UPDATE = 'powershell -NoProfile -ExecutionPolicy Bypass -File "%USERPROFILE%\\WaDesktop-Tweaks\\installer\\update.ps1"';
   async function showSteps(title, body, cmd) {
     try { await navigator.clipboard.writeText(cmd); } catch {}
     const ov = el('div', { class: 'wat-ov' });

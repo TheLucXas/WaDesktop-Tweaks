@@ -4,7 +4,7 @@
 
 ```
 Windows policy (HKCU\...\WebView2\AdditionalBrowserArguments, value "WhatsApp.Root.exe")
-        │  --load-extension="%LOCALAPPDATA%\WaDesktop-Tweaks\extension"
+        │  --load-extension="%USERPROFILE%\WaDesktop-Tweaks\extension"
         ▼
 WhatsApp Desktop (WinUI shell) ── hosts ──► WebView2 ──► https://web.whatsapp.com
                                               │
@@ -29,7 +29,7 @@ executable through a policy value, and WhatsApp's host starts its WebView2 with 
 ## Why administrator, and only to install?
 
 The policy value lives under `HKCU\Software\Policies`, which Windows restricts to administrators even within your own
-user hive. Updating only replaces files in `%LOCALAPPDATA%\WaDesktop-Tweaks\extension` (a path the policy already
+user hive. Updating only replaces files in `%USERPROFILE%\WaDesktop-Tweaks\extension` (a path the policy already
 points to), so it needs no elevation.
 
 ## Pieces

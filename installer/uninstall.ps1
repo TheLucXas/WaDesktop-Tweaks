@@ -9,6 +9,7 @@ if (-not (Test-IsAdmin)) {
     return
 }
 if (-not $UserSid) { $UserSid = Get-UserSid }
+Set-InstallDirForUser $UserSid
 
 try {
     Write-Host ''
@@ -37,9 +38,10 @@ try {
 
     Write-Step 'Deleting installed files'
     # this script may be running from inside the install dir: copy-free approach, delete via a detached cmd
-    $dir = $script:InstallDir
-    if (Test-Path $dir) {
-        Start-Process -WindowStyle Hidden -FilePath 'cmd.exe' -ArgumentList "/c timeout /t 3 /nobreak >nul & rmdir /s /q `"$dir`""
+    foreach ($dir in @($script:InstallDir, (Get-LegacyInstallDir $UserSid))) {
+        if (Test-Path $dir) {
+            Start-Process -WindowStyle Hidden -FilePath 'cmd.exe' -ArgumentList "/c timeout /t 3 /nobreak >nul & rmdir /s /q `"$dir`""
+        }
     }
     Write-Host ''
     Write-Ok 'WaDesktop-Tweaks was removed. Reopen WhatsApp Desktop.'
