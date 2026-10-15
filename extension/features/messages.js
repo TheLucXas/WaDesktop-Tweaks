@@ -115,7 +115,7 @@
 
   /* ---------- paint recovered text / edit marks on the chat ---------- */
   const metaSel = '[data-testid="msg-meta"]';
-  const TIME_ONLY = /^\s*\d{1,2}[:.]\d{2}([:.]\d{2})?\s*([ap]\.?\s?m\.?)?\s*$/i;
+  const ENDS_WITH_TIME = /\d{1,2}[:.]\d{2}(?:[:.]\d{2})?\s*(?:[ap]\.?\s?m\.?)?\s*$/i;
 
   // Click on ✏️: the previous versions of one message, oldest first, then the current text.
   function showEdits(rec) {
@@ -161,9 +161,13 @@
           mark.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); const r = cache.get(key); if (r) showEdits(r); });
           // Placed right after the text, in front of WhatsApp's invisible copy of the time: it takes part in the text
           // line like any word, so nothing is covered. Inside the time block it would sit on top of the message.
-          const copy = [...row.querySelectorAll('span[aria-hidden="true"]')].find(s => TIME_ONLY.test(s.textContent));
+          // The copy of an edited message also carries the word "Edited", so it only has to END with a time.
+          const copy = [...row.querySelectorAll('span[aria-hidden="true"]')].find(s => !meta.contains(s) && s.textContent.length < 60 && ENDS_WITH_TIME.test(s.textContent));
           const holder = copy && copy.parentElement;
-          if (holder && holder.parentElement) holder.parentElement.insertBefore(mark, holder); else meta.prepend(mark);
+          const text = row.querySelector('[data-testid="selectable-text"], .selectable-text');
+          if (holder && holder.parentElement) holder.parentElement.insertBefore(mark, holder);
+          else if (text && text.parentElement) text.parentElement.insertBefore(mark, text.nextSibling);
+          else meta.prepend(mark);
         }
         mark.title = tip;
       }

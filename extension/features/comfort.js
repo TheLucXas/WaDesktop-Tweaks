@@ -49,7 +49,7 @@
   }, true);
 
   /* ---------- per-row DOM adjustments (language independent: uses models + data-testid) ---------- */
-  const TIME_ONLY = /^\s*\d{1,2}[:.]\d{2}([:.]\d{2})?\s*([ap]\.?\s?m\.?)?\s*$/i;
+  const TIME_END = /\d{1,2}[:.]\d{2}(?:[:.]\d{2})?\s*(?:[ap]\.?\s?m\.?)?\s*$/i;
   const rowScan = () => {
     const doTime = WAT.on('timeSeconds'), doFwd = WAT.on('hideForwarded');
     const words = String(WAT.get('highlightWords') || '').split('\n').map(s => s.trim().toLowerCase()).filter(Boolean);
@@ -68,7 +68,9 @@
         // WhatsApp keeps an invisible copy of the time inside the text so the text wraps before it. Keep that copy
         // as wide as the visible time, or the longer time (with seconds) sits on top of the end of the text.
         for (const sp of row.querySelectorAll('[aria-hidden="true"] span, span[aria-hidden="true"]')) {
-          if (sp.children.length === 0 && !(meta && meta.contains(sp)) && TIME_ONLY.test(sp.textContent) && sp.textContent !== txt) sp.textContent = txt;
+          if (sp.children.length !== 0 || (meta && meta.contains(sp))) continue;
+          const cur = sp.textContent, m = TIME_END.exec(cur);       // an edited message's copy reads "Edited 8:41 p. m."
+          if (m && cur.length < 60 && m[0].trim() !== txt) sp.textContent = cur.slice(0, m.index) + txt;
         }
       }
       if (doFwd && msg.isForwarded) {
