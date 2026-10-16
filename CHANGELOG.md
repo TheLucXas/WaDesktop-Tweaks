@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1
+
+- GIFs: the KLIPY search field now reads exactly "Search KLIPY" and results show a "Powered by KLIPY" mark, as
+  KLIPY's attribution guidelines require.
+- README: credits (KLIPY, WaEnhancer, Claude, Chromium/WebView2, translators), a trademarks notice, and notes on
+  tested versions and on the Windows warning for unsigned scripts.
+- Social preview image for the repository.
+
 ## 0.1.0 — first release
 
 - Browser-extension architecture: no Node.js, no helper process, no open debugging port.

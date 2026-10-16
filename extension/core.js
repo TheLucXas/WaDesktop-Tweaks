@@ -2,7 +2,7 @@
  * Runs in the page ("MAIN" world) so it can reach WhatsApp's internal module loader (window.require). */
 (() => {
   if (window.WAT) return;
-  const WAT = (window.WAT = { version: '0.1.0', repo: 'TheLucXas/WaDesktop-Tweaks', sections: [], locales: {}, _ev: {} });
+  const WAT = (window.WAT = { version: '0.1.1', repo: 'TheLucXas/WaDesktop-Tweaks', sections: [], locales: {}, _ev: {} });
 
   /* ---------- tiny event bus ---------- */
   WAT.onEvent = (n, fn) => ((WAT._ev[n] ||= []).push(fn), fn);

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "WaDesktop-Tweaks",
   "short_name": "WA Tweaks",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Unofficial tweaks for WhatsApp Desktop: privacy options, deleted-message recovery, GIF provider, profiles and more.",
   "minimum_chrome_version": "120",
   "background": { "service_worker": "background.js" },
