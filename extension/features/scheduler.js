@@ -35,9 +35,10 @@
     try {
       const now = Date.now();
       for (const j of await WAT.db.all('sched')) {
+        if (j.status === 'sent') { await WAT.db.del('sched', j.id); continue; }   // already delivered: nothing to keep
         if (j.status !== 'pending' || j.at > now) continue;
         if (now - j.at > MAX_LATE_MS) { j.status = 'missed'; await WAT.db.put('sched', j); WAT.toast(t('sched.missed'), j.chatName + ': ' + j.text.slice(0, 60), 'warn'); continue; }
-        try { await sendNow(j); j.status = 'sent'; j.sentAt = Date.now(); WAT.toast(t('sched.sent'), j.chatName, ''); }
+        try { await sendNow(j); await WAT.db.del('sched', j.id); WAT.toast(t('sched.sent'), j.chatName, ''); WAT.emit('sched'); continue; }
         catch (e) { j.status = 'failed'; j.error = String(e && e.message || e); WAT.toast(t('sched.failed'), j.chatName + ': ' + j.error, 'err'); }
         await WAT.db.put('sched', j);
       }
@@ -76,6 +77,7 @@
       el('div', { class: 'wat-hint', style: 'color:#f5a623' }, '⚠ ' + t('risk.high')), el('div', { class: 'wat-hint' }, t('sched.how')),
       sel, txt, when, el('div', {}, add), el('div', { class: 'wat-hint' }, t('sched.list')), list);
     ov.append(panel); document.body.appendChild(ov); ov.addEventListener('mousedown', e => { if (e.target === ov) close(); });
+    WAT.onEvent('sched', () => { if (ov.isConnected) draw(); });     // a message just went out: refresh the open list
     draw();
   }
 })();

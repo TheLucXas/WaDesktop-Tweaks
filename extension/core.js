@@ -153,4 +153,33 @@
     document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 10000);
   };
   WAT.nowReady = () => !!(document.body && document.documentElement);
+
+  /* Emoji newer than the installed system font are drawn as empty boxes in our own panels (WhatsApp draws its
+   * emoji as pictures, we only have text). Display only: swaps every emoji the font cannot draw for "❔". */
+  WAT.safeText = (() => {
+    const seg = typeof Intl !== 'undefined' && Intl.Segmenter ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+    const cache = new Map();
+    let cx = null, tofu = '';
+    const ink = s => { cx.clearRect(0, 0, 48, 48); cx.fillText(s, 2, 36); return cx.getImageData(0, 0, 48, 48).data.join(','); };
+    const missing = g => {
+      if (cache.has(g)) return cache.get(g);
+      let r = false;
+      try {
+        if (!cx) {
+          const cv = document.createElement('canvas'); cv.width = cv.height = 48;
+          cx = cv.getContext('2d', { willReadFrequently: true }); cx.font = '30px "Segoe UI Emoji","Segoe UI Symbol",sans-serif';
+          tofu = ink('\u{10FFFF}');                 // what this system draws for a character it does not have
+        }
+        r = ink(g) === tofu;
+      } catch {}
+      cache.set(g, r); return r;
+    };
+    return str => {
+      str = str == null ? '' : String(str);
+      if (!seg || !/\p{Extended_Pictographic}/u.test(str)) return str;
+      let out = '';
+      for (const { segment: g } of seg.segment(str)) out += /\p{Extended_Pictographic}/u.test(g) && missing(g) ? '❔' : g;
+      return out;
+    };
+  })();
 })();

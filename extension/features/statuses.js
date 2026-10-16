@@ -70,7 +70,7 @@
       const rec = await WAT.db.get('statuses', orig); if (!rec || rec.deleted) return;
       rec.deleted = true; rec.deletedAt = Number(m.revokeTimestamp) ? Number(m.revokeTimestamp) * 1000 : Date.now();
       await WAT.db.put('statuses', rec);
-      if (Date.now() - rec.deletedAt < 120000) WAT.toast(t('status.deletedBy', { who: rec.name }), rec.text || '[' + rec.type + ']', 'warn');
+      if (Date.now() - rec.deletedAt < 120000) WAT.toast(t('status.deletedBy', { who: rec.name }), WAT.safeText(rec.text) || '[' + rec.type + ']', 'warn');
     } catch {}
   }
 
@@ -108,7 +108,7 @@
     if (!all.length) list.append(el('div', { class: 'wat-hint' }, t('status.none')));
     for (const r of all) {
       const it = el('div', { class: 'it' }, el('div', { class: 'h' }, r.name + ' — ' + fmt(r.ts) + (r.deleted ? ' — ' + t('msg.deletedAt') + ' ' + fmt(r.deletedAt) : '')));
-      if (r.text) it.append(el('div', { class: 'b' }, r.text));
+      if (r.text) it.append(el('div', { class: 'b' }, WAT.safeText(r.text)));
       if (r.blob) {
         const u = URL.createObjectURL(r.blob); urls.push(u);
         const media = r.blob.type.startsWith('video') ? el('video', { src: u, controls: true, style: 'max-width:260px;border-radius:8px;display:block;margin-top:6px' }) : el('img', { src: u });

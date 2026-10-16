@@ -79,7 +79,7 @@
       if (!rec || rec.deleted || rec.own) return;
       rec.deleted = true; rec.deletedAt = Number(m.revokeTimestamp) ? Number(m.revokeTimestamp) * 1000 : Date.now();
       cache.set(rec.id, rec); delIndex.set(rec.id, rec); await WAT.db.put('msgs', rec);
-      if (WAT.on('trackToast') && Date.now() - rec.deletedAt < 120000) WAT.toast(t('msg.deletedBy', { who: rec.sender || rec.chat }), rec.text || '[' + rec.type + ']', 'warn');
+      if (WAT.on('trackToast') && Date.now() - rec.deletedAt < 120000) WAT.toast(t('msg.deletedBy', { who: rec.sender || rec.chat }), WAT.safeText(rec.text) || '[' + rec.type + ']', 'warn');
     } catch (e) { WAT.log('onRevoked: ' + e); }
   }
 
@@ -124,8 +124,8 @@
     const when = ms => { try { return new Date(ms).toLocaleString(); } catch { return ''; } };
     const list = el('div', { class: 'wat-list' });
     (rec.edits || []).forEach((e, i) => list.append(el('div', { class: 'it' },
-      el('div', { class: 'h' }, (i + 1) + (e.at ? ' · ' + when(e.at) : '')), el('div', { class: 'b' }, e.text))));
-    list.append(el('div', { class: 'it' }, el('div', { class: 'h' }, t('msg.current')), el('div', { class: 'b' }, rec.text || '')));
+      el('div', { class: 'h' }, (i + 1) + (e.at ? ' · ' + when(e.at) : '')), el('div', { class: 'b' }, WAT.safeText(e.text)))));
+    list.append(el('div', { class: 'it' }, el('div', { class: 'h' }, t('msg.current')), el('div', { class: 'b' }, WAT.safeText(rec.text || ''))));
     ov.append(el('div', { class: 'wat-panel', style: 'display:block;width:min(520px,94vw);height:auto;max-height:80vh;overflow:auto;padding:16px 18px' },
       el('div', { style: 'display:flex;justify-content:space-between;align-items:center' },
         el('h2', { style: 'margin:0;font-size:17px' }, '✏️ ' + t('msg.editedTip')), el('button', { class: 'wat-x', onclick: close }, '✕')),
@@ -143,7 +143,7 @@
       while ((n = w.nextNode())) {
         const p = n.parentElement; if (!p || p.closest(metaSel) || p.closest('svg') || p.tagName === 'TITLE' || !n.nodeValue.trim()) continue;
         if (p.dataset.watDel) break;
-        n.nodeValue = rec.text || '[' + (rec.type || '') + ']';
+        n.nodeValue = WAT.safeText(rec.text) || '[' + (rec.type || '') + ']';
         p.dataset.watDel = '1'; p.title = t('msg.deletedTip'); p.style.whiteSpace = 'pre-wrap'; p.style.overflowWrap = 'anywhere'; p.style.color = '#ff9b9b';
         break;
       }
@@ -154,7 +154,7 @@
       if (rec && rec.edits && rec.edits.length) {
         const meta = row.querySelector(metaSel); if (!meta) return;
         let mark = row.querySelector('.wat-edit');
-        const tip = t('msg.editedTip') + '\n\n' + rec.edits.map((e, i) => (i + 1) + '. ' + e.text).join('\n');
+        const tip = t('msg.editedTip') + '\n\n' + rec.edits.map((e, i) => (i + 1) + '. ' + WAT.safeText(e.text)).join('\n');
         if (!mark) {
           mark = el('span', { class: 'wat-edit', style: 'margin:0 3px;cursor:pointer;font-size:12px' }, '✏️');
           const key = keyOf(msg);
@@ -212,9 +212,9 @@
       for (const r of rows) {
         const it = el('div', { class: 'it' }, el('div', { class: 'h' }, (r.sender || r.chat) + (r.sender && r.chat !== r.sender ? ' · ' + r.chat : '') + ' — ' + t('msg.sent') + ' ' + fmt(r.ts) + (r.deleted ? ' — ' + t('msg.deletedAt') + ' ' + fmt(r.deletedAt) : '')));
         if (tab === 'edited') {
-          (r.edits || []).forEach((e, i) => it.append(el('div', { class: 'b' }, '#' + (i + 1) + ' (' + fmt(e.at) + '): ' + e.text)));
-          it.append(el('div', { class: 'b', style: 'color:var(--teal,#00a884)' }, t('msg.current') + ': ' + r.text));
-        } else it.append(el('div', { class: 'b' }, r.text || '[' + r.type + (r.mime ? ' ' + r.mime : '') + ']'));
+          (r.edits || []).forEach((e, i) => it.append(el('div', { class: 'b' }, '#' + (i + 1) + ' (' + fmt(e.at) + '): ' + WAT.safeText(e.text))));
+          it.append(el('div', { class: 'b', style: 'color:var(--teal,#00a884)' }, t('msg.current') + ': ' + WAT.safeText(r.text)));
+        } else it.append(el('div', { class: 'b' }, WAT.safeText(r.text) || '[' + r.type + (r.mime ? ' ' + r.mime : '') + ']'));
         if (r.thumb) it.append(el('img', { src: 'data:image/jpeg;base64,' + r.thumb }));
         list.append(it);
       }
