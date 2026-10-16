@@ -60,8 +60,8 @@ Every option has a plain-language name, a short description and a detailed toolt
 
 ## 📋 Requirements
 
-- **Windows 10 / 11**
-- **WhatsApp Desktop from the Microsoft Store** (the modern app, package `5319275A.WhatsAppDesktop`)
+- **Windows 10 / 11** (developed and tested on Windows 10)
+- **WhatsApp Desktop from the Microsoft Store** (the modern app, package `5319275A.WhatsAppDesktop`). Built against version 2.2639.x: a WhatsApp update can change its internals and break an option until it is adjusted — *Self-diagnosis* tells you which one
 - The Microsoft Edge **WebView2 Runtime** (already installed on up-to-date Windows)
 - **Administrator permission once**, to install (see [why](#-why-does-the-installer-need-administrator))
 
@@ -107,7 +107,7 @@ WhatsApp keeps its own GIF picker. If you want to search **KLIPY** as well, you 
 ## 🔐 Privacy & security
 
 - **No telemetry.** Nothing is collected or sent to the author.
-- Everything the tweaks save (recovered messages, edit history, archived statuses, scheduled messages, settings) stays **on your PC**, in WhatsApp's browser profile. You can erase it from the panel.
+- Everything the tweaks save (recovered messages, edit history, archived statuses, scheduled messages, settings) stays **on your PC**, in WhatsApp's browser profile. You can erase it from the panel. Your own messages are only held in memory and are saved to disk solely if you edit one.
 - The only network requests the extension makes are to **`api.klipy.com` / `static*.klipy.com`** (only if you set a KLIPY key) and **`api.github.com`** (update check). Everything else goes through WhatsApp as usual.
 - "View once" content is **never** stored, and WhatsApp Desktop can't open it anyway (the media key isn't sent to linked devices).
 - The **PIN lock is a screen cover**, not encryption. It stops casual glances, not someone with technical access to your PC.

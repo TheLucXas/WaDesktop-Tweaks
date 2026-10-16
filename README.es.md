@@ -48,8 +48,8 @@ Cada opción tiene un nombre claro, una descripción corta y un tooltip detallad
 
 ## 📋 Requisitos
 
-- **Windows 10 / 11**
-- **WhatsApp Desktop de la Microsoft Store** (la app moderna, paquete `5319275A.WhatsAppDesktop`)
+- **Windows 10 / 11** (desarrollado y probado en Windows 10)
+- **WhatsApp Desktop de la Microsoft Store** (la app moderna, paquete `5319275A.WhatsAppDesktop`). Hecho para la versión 2.2639.x: una actualización de WhatsApp puede cambiar sus internos y romper una opción hasta que se ajuste — el *Autodiagnóstico* te dice cuál
 - El **WebView2 Runtime** de Microsoft Edge (ya viene con Windows actualizado)
 - **Permiso de administrador una vez**, para instalar (ver [por qué](#-por-qué-el-instalador-pide-administrador))
 
@@ -95,7 +95,7 @@ WhatsApp mantiene su propio selector de GIFs. Si quieres buscar también en **KL
 ## 🔐 Privacidad y seguridad
 
 - **Sin telemetría.** No se recopila ni se envía nada al autor.
-- Todo lo que guardan las mejoras (mensajes recuperados, historial de ediciones, estados archivados, mensajes programados, ajustes) queda **en tu PC**, en el perfil del navegador de WhatsApp. Puedes borrarlo desde el panel.
+- Todo lo que guardan las mejoras (mensajes recuperados, historial de ediciones, estados archivados, mensajes programados, ajustes) queda **en tu PC**, en el perfil del navegador de WhatsApp. Puedes borrarlo desde el panel. Tus propios mensajes solo se mantienen en memoria y se guardan en disco únicamente si editas uno.
 - Las únicas peticiones de red de la extensión son a **`api.klipy.com` / `static*.klipy.com`** (solo si configuras una clave de KLIPY) y **`api.github.com`** (comprobar actualizaciones). Todo lo demás pasa por WhatsApp como siempre.
 - El contenido de «ver una vez» **nunca** se guarda, y WhatsApp Desktop no puede abrirlo (la clave del archivo no se envía a dispositivos vinculados).
 - El **bloqueo con PIN es una cubierta de pantalla**, no cifrado. Frena miradas ocasionales, no a alguien con acceso técnico a tu PC.
