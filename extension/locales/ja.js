@@ -39,7 +39,7 @@ window.WAT && window.WAT.addLocale('ja', {
   'f.klipyFilter.name': 'KLIPY コンテンツフィルター', 'f.klipyFilter.desc': 'KLIPY の厳しさ。', 'f.klipyFilter.tip': 'content_filter として送信されます。「オフ」では成人向けコンテンツが表示される場合があります。',
   'gif.fOff': 'オフ(フィルターなし)', 'gif.fLow': '低', 'gif.fMed': '中', 'gif.fHigh': '高',
   'f.gifGuide.name': 'KLIPY キーの取得方法', 'f.gifGuide.desc': '手順ガイドを開きます。', 'f.gifGuide.tip': 'GitHub の docs/KEYS.md を開きます。', 'a.gifGuide': 'ガイドを開く',
-  'gif.openChat': '先にチャットを開いてください', 'gif.sendFail': 'GIF を送信できませんでした', 'gif.searchIn': '{provider} で GIF を検索', 'gif.none': '結果なし', 'gif.searching': '検索中…', 'gif.native': 'WhatsApp',
+  'gif.openChat': '先にチャットを開いてください', 'gif.sendFail': 'GIF を送信できませんでした','gif.none': '結果なし', 'gif.searching': '検索中…', 'gif.native': 'WhatsApp',
   'f.confirmSticker.name': 'スタンプ送信前に確認', 'f.confirmSticker.desc': '誤送信を防ぎます。', 'f.confirmSticker.tip': '送信前に確認ダイアログを表示します。', 'f.confirmSticker.dialog': 'このスタンプを送信しますか?', 'f.confirmSticker.dialogBody': '開いているチャットに送信されます。',
   'f.dblReact.name': 'ダブルクリックでリアクション', 'f.dblReact.desc': 'メッセージをダブルクリックしてリアクションします。', 'f.dblReact.tip': 'メニューを開かずに下の絵文字でリアクションします。',
   'f.dblEmoji.name': 'クイックリアクションの絵文字', 'f.dblEmoji.desc': 'ダブルクリックで使う絵文字。', 'f.dblEmoji.tip': '絵文字を入力または貼り付けます。',

@@ -39,7 +39,7 @@ window.WAT && window.WAT.addLocale('pt', {
   'f.klipyFilter.name': 'Filtro de conteúdo do KLIPY', 'f.klipyFilter.desc': 'Quão rigoroso o KLIPY deve ser.', 'f.klipyFilter.tip': 'Enviado como content_filter. "Desligado" pode mostrar conteúdo adulto.',
   'gif.fOff': 'Desligado (sem filtro)', 'gif.fLow': 'Baixo', 'gif.fMed': 'Médio', 'gif.fHigh': 'Alto',
   'f.gifGuide.name': 'Como obter uma chave do KLIPY', 'f.gifGuide.desc': 'Abre o guia passo a passo.', 'f.gifGuide.tip': 'Abre docs/KEYS.md no GitHub.', 'a.gifGuide': 'Abrir guia',
-  'gif.openChat': 'Abra uma conversa primeiro', 'gif.sendFail': 'Não foi possível enviar o GIF', 'gif.searchIn': 'Buscar GIFs no {provider}', 'gif.none': 'Sem resultados', 'gif.searching': 'Buscando…', 'gif.native': 'WhatsApp',
+  'gif.openChat': 'Abra uma conversa primeiro', 'gif.sendFail': 'Não foi possível enviar o GIF','gif.none': 'Sem resultados', 'gif.searching': 'Buscando…', 'gif.native': 'WhatsApp',
   'f.confirmSticker.name': 'Confirmar antes de enviar figurinha', 'f.confirmSticker.desc': 'Evita envios acidentais.', 'f.confirmSticker.tip': 'Mostra um diálogo de confirmação antes de enviar a figurinha.', 'f.confirmSticker.dialog': 'Enviar esta figurinha?', 'f.confirmSticker.dialogBody': 'Será enviada à conversa aberta.',
   'f.dblReact.name': 'Duplo clique para reagir', 'f.dblReact.desc': 'Duplo clique em uma mensagem para reagir.', 'f.dblReact.tip': 'Reage com o emoji abaixo sem abrir o menu de reações.',
   'f.dblEmoji.name': 'Emoji de reação rápida', 'f.dblEmoji.desc': 'Emoji usado no duplo clique.', 'f.dblEmoji.tip': 'Digite ou cole o emoji.',

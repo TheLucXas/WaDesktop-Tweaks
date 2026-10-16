@@ -62,7 +62,7 @@ window.WAT && window.WAT.addLocale('en', {
   'f.klipyFilter.name': 'KLIPY content filter', 'f.klipyFilter.desc': 'How strict KLIPY should be.', 'f.klipyFilter.tip': 'Sent to KLIPY as content_filter. "Off" can show adult content.',
   'gif.fOff': 'Off (no filter)', 'gif.fLow': 'Low', 'gif.fMed': 'Medium', 'gif.fHigh': 'High',
   'f.gifGuide.name': 'How to get a KLIPY key', 'f.gifGuide.desc': 'Opens the step-by-step guide.', 'f.gifGuide.tip': 'Opens docs/KEYS.md on GitHub.', 'a.gifGuide': 'Open guide',
-  'gif.openChat': 'Open a chat first', 'gif.sendFail': 'Could not send the GIF', 'gif.searchIn': 'Search GIFs on {provider}', 'gif.none': 'No results', 'gif.searching': 'Searching…', 'gif.native': 'WhatsApp',
+  'gif.openChat': 'Open a chat first', 'gif.sendFail': 'Could not send the GIF','gif.none': 'No results', 'gif.searching': 'Searching…', 'gif.native': 'WhatsApp',
 
   'f.confirmSticker.name': 'Confirm before sending a sticker', 'f.confirmSticker.desc': 'Avoid accidental sticker sends.', 'f.confirmSticker.tip': 'Tapping a sticker sends it at once. With this on a dialog asks for confirmation first.',
   'f.confirmSticker.dialog': 'Send this sticker?', 'f.confirmSticker.dialogBody': 'It will be sent to the open chat.',

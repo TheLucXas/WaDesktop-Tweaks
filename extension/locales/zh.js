@@ -39,7 +39,7 @@ window.WAT && window.WAT.addLocale('zh', {
   'f.klipyFilter.name': 'KLIPY 内容过滤', 'f.klipyFilter.desc': 'KLIPY 的严格程度。', 'f.klipyFilter.tip': '作为 content_filter 发送。"关闭"可能显示成人内容。',
   'gif.fOff': '关闭(不过滤)', 'gif.fLow': '低', 'gif.fMed': '中', 'gif.fHigh': '高',
   'f.gifGuide.name': '如何获取 KLIPY 密钥', 'f.gifGuide.desc': '打开分步指南。', 'f.gifGuide.tip': '打开 GitHub 上的 docs/KEYS.md。', 'a.gifGuide': '打开指南',
-  'gif.openChat': '请先打开一个聊天', 'gif.sendFail': '无法发送 GIF', 'gif.searchIn': '在 {provider} 搜索 GIF', 'gif.none': '没有结果', 'gif.searching': '搜索中…', 'gif.native': 'WhatsApp',
+  'gif.openChat': '请先打开一个聊天', 'gif.sendFail': '无法发送 GIF','gif.none': '没有结果', 'gif.searching': '搜索中…', 'gif.native': 'WhatsApp',
   'f.confirmSticker.name': '发送贴纸前确认', 'f.confirmSticker.desc': '避免误发。', 'f.confirmSticker.tip': '发送前弹出确认对话框。', 'f.confirmSticker.dialog': '发送此贴纸?', 'f.confirmSticker.dialogBody': '将发送到当前聊天。',
   'f.dblReact.name': '双击回应', 'f.dblReact.desc': '双击消息即可回应。', 'f.dblReact.tip': '无需打开菜单,直接用下方的表情回应。',
   'f.dblEmoji.name': '快速回应表情', 'f.dblEmoji.desc': '双击时使用的表情。', 'f.dblEmoji.tip': '输入或粘贴表情。',

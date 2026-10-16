@@ -39,7 +39,7 @@ window.WAT && window.WAT.addLocale('pl', {
   'f.klipyFilter.name': 'Filtr treści KLIPY', 'f.klipyFilter.desc': 'Jak ścisły ma być KLIPY.', 'f.klipyFilter.tip': 'Wysyłany jako content_filter. „Wyłączony” może pokazywać treści dla dorosłych.',
   'gif.fOff': 'Wyłączony (bez filtra)', 'gif.fLow': 'Niski', 'gif.fMed': 'Średni', 'gif.fHigh': 'Wysoki',
   'f.gifGuide.name': 'Jak zdobyć klucz KLIPY', 'f.gifGuide.desc': 'Otwiera poradnik krok po kroku.', 'f.gifGuide.tip': 'Otwiera docs/KEYS.md na GitHubie.', 'a.gifGuide': 'Otwórz poradnik',
-  'gif.openChat': 'Najpierw otwórz czat', 'gif.sendFail': 'Nie udało się wysłać GIF-a', 'gif.searchIn': 'Szukaj GIF-ów w {provider}', 'gif.none': 'Brak wyników', 'gif.searching': 'Szukanie…', 'gif.native': 'WhatsApp',
+  'gif.openChat': 'Najpierw otwórz czat', 'gif.sendFail': 'Nie udało się wysłać GIF-a','gif.none': 'Brak wyników', 'gif.searching': 'Szukanie…', 'gif.native': 'WhatsApp',
   'f.confirmSticker.name': 'Potwierdzaj przed wysłaniem naklejki', 'f.confirmSticker.desc': 'Zapobiega przypadkowemu wysłaniu.', 'f.confirmSticker.tip': 'Przed wysłaniem pokazuje okno potwierdzenia.', 'f.confirmSticker.dialog': 'Wysłać tę naklejkę?', 'f.confirmSticker.dialogBody': 'Zostanie wysłana do otwartego czatu.',
   'f.dblReact.name': 'Dwukrotne kliknięcie, aby zareagować', 'f.dblReact.desc': 'Dwukrotne kliknięcie wiadomości dodaje reakcję.', 'f.dblReact.tip': 'Reaguje emoji poniżej bez otwierania menu.',
   'f.dblEmoji.name': 'Emoji szybkiej reakcji', 'f.dblEmoji.desc': 'Emoji używane przy dwukrotnym kliknięciu.', 'f.dblEmoji.tip': 'Wpisz lub wklej emoji.',

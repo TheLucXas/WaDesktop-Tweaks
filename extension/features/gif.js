@@ -67,7 +67,8 @@
     if (!row || !row.parentElement) return;
     const bar = el('div', { style: 'display:flex;gap:6px;padding:6px 14px 2px' });
     const cols = el('div', { style: 'columns:3;column-gap:6px;padding:4px 10px' });
-    const grid = el('div', { style: 'overflow-y:auto;overflow-x:hidden;display:none' }, cols);
+    const credit = el('div', { style: 'text-align:center;font-size:11px;padding:4px 0 8px;color:var(--secondary,#8696a0)' }, 'Powered by KLIPY');
+    const grid = el('div', { style: 'overflow-y:auto;overflow-x:hidden;display:none' }, cols, credit);
     row.parentElement.insertBefore(bar, row); input.__watBar = bar;
     let token = 0, timer = 0, native = null; const st = { page: 1, done: false, loading: false, seen: new Set() };
     const orig = { ph: input.getAttribute('placeholder'), al: input.getAttribute('aria-label') };
@@ -81,7 +82,8 @@
       return null;
     };
     const label = () => {
-      const p = getProv(); const txt = p === 'native' ? null : t('gif.searchIn', { provider: 'Klipy' });
+      // KLIPY's attribution guidelines require exactly "Search KLIPY" as the placeholder of the search field.
+      const p = getProv(); const txt = p === 'native' ? null : 'Search KLIPY';
       const ph = txt || orig.ph, al = txt || orig.al;
       if (ph !== null && input.getAttribute('placeholder') !== ph) input.setAttribute('placeholder', ph);
       if (al !== null && input.getAttribute('aria-label') !== al) input.setAttribute('aria-label', al);

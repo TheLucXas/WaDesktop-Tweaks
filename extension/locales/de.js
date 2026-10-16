@@ -39,7 +39,7 @@ window.WAT && window.WAT.addLocale('de', {
   'f.klipyFilter.name': 'KLIPY-Inhaltsfilter', 'f.klipyFilter.desc': 'Wie streng KLIPY filtert.', 'f.klipyFilter.tip': 'Wird als content_filter gesendet. „Aus“ kann nicht jugendfreie Inhalte zeigen.',
   'gif.fOff': 'Aus (kein Filter)', 'gif.fLow': 'Niedrig', 'gif.fMed': 'Mittel', 'gif.fHigh': 'Hoch',
   'f.gifGuide.name': 'So bekommst du einen KLIPY-Schlüssel', 'f.gifGuide.desc': 'Öffnet die Schritt-für-Schritt-Anleitung.', 'f.gifGuide.tip': 'Öffnet docs/KEYS.md auf GitHub.', 'a.gifGuide': 'Anleitung öffnen',
-  'gif.openChat': 'Öffne zuerst einen Chat', 'gif.sendFail': 'GIF konnte nicht gesendet werden', 'gif.searchIn': 'GIFs auf {provider} suchen', 'gif.none': 'Keine Ergebnisse', 'gif.searching': 'Suche…', 'gif.native': 'WhatsApp',
+  'gif.openChat': 'Öffne zuerst einen Chat', 'gif.sendFail': 'GIF konnte nicht gesendet werden','gif.none': 'Keine Ergebnisse', 'gif.searching': 'Suche…', 'gif.native': 'WhatsApp',
   'f.confirmSticker.name': 'Vor dem Senden eines Stickers bestätigen', 'f.confirmSticker.desc': 'Verhindert versehentliches Senden.', 'f.confirmSticker.tip': 'Zeigt vor dem Senden einen Bestätigungsdialog.', 'f.confirmSticker.dialog': 'Diesen Sticker senden?', 'f.confirmSticker.dialogBody': 'Er wird an den offenen Chat gesendet.',
   'f.dblReact.name': 'Doppelklick zum Reagieren', 'f.dblReact.desc': 'Doppelklick auf eine Nachricht reagiert mit deinem Emoji.', 'f.dblReact.tip': 'Reagiert mit dem Emoji unten, ohne das Reaktionsmenü zu öffnen.',
   'f.dblEmoji.name': 'Emoji für Schnellreaktion', 'f.dblEmoji.desc': 'Emoji für den Doppelklick.', 'f.dblEmoji.tip': 'Emoji eingeben oder einfügen.',

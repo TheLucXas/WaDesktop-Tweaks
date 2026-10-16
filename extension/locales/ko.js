@@ -39,7 +39,7 @@ window.WAT && window.WAT.addLocale('ko', {
   'f.klipyFilter.name': 'KLIPY 콘텐츠 필터', 'f.klipyFilter.desc': 'KLIPY의 엄격도.', 'f.klipyFilter.tip': 'content_filter로 전송됩니다. "끔"은 성인 콘텐츠가 표시될 수 있습니다.',
   'gif.fOff': '끔(필터 없음)', 'gif.fLow': '낮음', 'gif.fMed': '보통', 'gif.fHigh': '높음',
   'f.gifGuide.name': 'KLIPY 키 받는 방법', 'f.gifGuide.desc': '단계별 가이드를 엽니다.', 'f.gifGuide.tip': 'GitHub의 docs/KEYS.md를 엽니다.', 'a.gifGuide': '가이드 열기',
-  'gif.openChat': '먼저 채팅을 여세요', 'gif.sendFail': 'GIF를 보낼 수 없습니다', 'gif.searchIn': '{provider}에서 GIF 검색', 'gif.none': '결과 없음', 'gif.searching': '검색 중…', 'gif.native': 'WhatsApp',
+  'gif.openChat': '먼저 채팅을 여세요', 'gif.sendFail': 'GIF를 보낼 수 없습니다','gif.none': '결과 없음', 'gif.searching': '검색 중…', 'gif.native': 'WhatsApp',
   'f.confirmSticker.name': '스티커 전송 전 확인', 'f.confirmSticker.desc': '실수로 보내는 것을 방지합니다.', 'f.confirmSticker.tip': '전송 전에 확인 대화상자를 표시합니다.', 'f.confirmSticker.dialog': '이 스티커를 보낼까요?', 'f.confirmSticker.dialogBody': '열려 있는 채팅으로 전송됩니다.',
   'f.dblReact.name': '더블클릭으로 반응', 'f.dblReact.desc': '메시지를 더블클릭하여 반응합니다.', 'f.dblReact.tip': '메뉴를 열지 않고 아래 이모지로 반응합니다.',
   'f.dblEmoji.name': '빠른 반응 이모지', 'f.dblEmoji.desc': '더블클릭에 사용할 이모지.', 'f.dblEmoji.tip': '이모지를 입력하거나 붙여 넣으세요.',

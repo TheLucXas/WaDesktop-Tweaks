@@ -39,7 +39,7 @@ window.WAT && window.WAT.addLocale('id', {
   'f.klipyFilter.name': 'Filter konten KLIPY', 'f.klipyFilter.desc': 'Seberapa ketat KLIPY.', 'f.klipyFilter.tip': 'Dikirim sebagai content_filter. "Mati" dapat menampilkan konten dewasa.',
   'gif.fOff': 'Mati (tanpa filter)', 'gif.fLow': 'Rendah', 'gif.fMed': 'Sedang', 'gif.fHigh': 'Tinggi',
   'f.gifGuide.name': 'Cara mendapatkan kunci KLIPY', 'f.gifGuide.desc': 'Membuka panduan langkah demi langkah.', 'f.gifGuide.tip': 'Membuka docs/KEYS.md di GitHub.', 'a.gifGuide': 'Buka panduan',
-  'gif.openChat': 'Buka obrolan terlebih dahulu', 'gif.sendFail': 'GIF tidak dapat dikirim', 'gif.searchIn': 'Cari GIF di {provider}', 'gif.none': 'Tidak ada hasil', 'gif.searching': 'Mencari…', 'gif.native': 'WhatsApp',
+  'gif.openChat': 'Buka obrolan terlebih dahulu', 'gif.sendFail': 'GIF tidak dapat dikirim','gif.none': 'Tidak ada hasil', 'gif.searching': 'Mencari…', 'gif.native': 'WhatsApp',
   'f.confirmSticker.name': 'Konfirmasi sebelum mengirim stiker', 'f.confirmSticker.desc': 'Mencegah pengiriman tidak sengaja.', 'f.confirmSticker.tip': 'Menampilkan dialog konfirmasi sebelum mengirim.', 'f.confirmSticker.dialog': 'Kirim stiker ini?', 'f.confirmSticker.dialogBody': 'Akan dikirim ke obrolan yang terbuka.',
   'f.dblReact.name': 'Klik dua kali untuk bereaksi', 'f.dblReact.desc': 'Klik dua kali pada pesan untuk bereaksi.', 'f.dblReact.tip': 'Bereaksi dengan emoji di bawah tanpa membuka menu.',
   'f.dblEmoji.name': 'Emoji reaksi cepat', 'f.dblEmoji.desc': 'Emoji untuk klik dua kali.', 'f.dblEmoji.tip': 'Ketik atau tempel emoji.',

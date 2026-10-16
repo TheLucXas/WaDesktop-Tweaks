@@ -39,7 +39,7 @@ window.WAT && window.WAT.addLocale('tr', {
   'f.klipyFilter.name': 'KLIPY içerik filtresi', 'f.klipyFilter.desc': 'KLIPY\'nin ne kadar sıkı olacağı.', 'f.klipyFilter.tip': 'content_filter olarak gönderilir. "Kapalı" yetişkin içerik gösterebilir.',
   'gif.fOff': 'Kapalı (filtre yok)', 'gif.fLow': 'Düşük', 'gif.fMed': 'Orta', 'gif.fHigh': 'Yüksek',
   'f.gifGuide.name': 'KLIPY anahtarı nasıl alınır', 'f.gifGuide.desc': 'Adım adım kılavuzu açar.', 'f.gifGuide.tip': 'GitHub\'daki docs/KEYS.md dosyasını açar.', 'a.gifGuide': 'Kılavuzu aç',
-  'gif.openChat': 'Önce bir sohbet açın', 'gif.sendFail': 'GIF gönderilemedi', 'gif.searchIn': '{provider} üzerinde GIF ara', 'gif.none': 'Sonuç yok', 'gif.searching': 'Aranıyor…', 'gif.native': 'WhatsApp',
+  'gif.openChat': 'Önce bir sohbet açın', 'gif.sendFail': 'GIF gönderilemedi','gif.none': 'Sonuç yok', 'gif.searching': 'Aranıyor…', 'gif.native': 'WhatsApp',
   'f.confirmSticker.name': 'Çıkartma göndermeden önce onayla', 'f.confirmSticker.desc': 'Yanlışlıkla gönderimi önler.', 'f.confirmSticker.tip': 'Göndermeden önce onay penceresi gösterir.', 'f.confirmSticker.dialog': 'Bu çıkartma gönderilsin mi?', 'f.confirmSticker.dialogBody': 'Açık sohbete gönderilecek.',
   'f.dblReact.name': 'Tepki için çift tıklama', 'f.dblReact.desc': 'Mesaja çift tıklayarak tepki verin.', 'f.dblReact.tip': 'Menüyü açmadan aşağıdaki emojiyle tepki verir.',
   'f.dblEmoji.name': 'Hızlı tepki emojisi', 'f.dblEmoji.desc': 'Çift tıklamada kullanılan emoji.', 'f.dblEmoji.tip': 'Emojiyi yazın veya yapıştırın.',

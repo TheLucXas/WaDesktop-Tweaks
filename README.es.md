@@ -117,7 +117,13 @@ Traducciones, reportes de errores y arreglos son bienvenidos: mira [CONTRIBUTING
 
 ## 🙏 Créditos
 
-Inspirado en [WaEnhancer](https://github.com/Dev4Mod/waenhancer) (módulo Xposed para Android). Este proyecto es independiente y no comparte código con él.
+- **[KLIPY](https://klipy.com)** — la búsqueda de GIFs opcional usa la API de KLIPY. Se siguen sus [guías de atribución](https://docs.klipy.com/attribution): el campo de búsqueda dice "Search KLIPY" y los resultados llevan la marca "Powered by KLIPY".
+- **[WaEnhancer](https://github.com/Dev4Mod/waenhancer)** — inspiración para el conjunto de funciones (un módulo Xposed para Android, GPL-3.0). Este proyecto es independiente y no comparte código con él.
+- **[Claude](https://www.anthropic.com/claude) (Anthropic)** — buena parte del código, la documentación y las traducciones se escribieron con ayuda de IA y luego las probó el mantenedor.
+- **Chromium y Microsoft Edge WebView2** — el mecanismo de extensiones sobre el que se apoya el proyecto.
+- **Traductores** — las traducciones son automáticas; las correcciones son bienvenidas ([CONTRIBUTING.md](CONTRIBUTING.md)) y los colaboradores se listarán aquí.
+
+**Marcas:** WhatsApp es una marca de Meta Platforms, Inc.; Windows, Microsoft Edge y WebView2 son marcas de Microsoft Corporation; KLIPY es una marca de sus propietarios. Este proyecto no está afiliado, respaldado ni patrocinado por ninguna de ellas. Los nombres se usan solo para describir la compatibilidad.
 
 ## 📄 Licencia
 

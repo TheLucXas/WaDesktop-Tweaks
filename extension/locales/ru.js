@@ -39,7 +39,7 @@ window.WAT && window.WAT.addLocale('ru', {
   'f.klipyFilter.name': 'Фильтр контента KLIPY', 'f.klipyFilter.desc': 'Строгость фильтра KLIPY.', 'f.klipyFilter.tip': 'Отправляется как content_filter. «Выкл.» может показывать контент для взрослых.',
   'gif.fOff': 'Выкл. (без фильтра)', 'gif.fLow': 'Низкий', 'gif.fMed': 'Средний', 'gif.fHigh': 'Высокий',
   'f.gifGuide.name': 'Как получить ключ KLIPY', 'f.gifGuide.desc': 'Открывает пошаговое руководство.', 'f.gifGuide.tip': 'Открывает docs/KEYS.md на GitHub.', 'a.gifGuide': 'Открыть руководство',
-  'gif.openChat': 'Сначала откройте чат', 'gif.sendFail': 'Не удалось отправить GIF', 'gif.searchIn': 'Искать GIF в {provider}', 'gif.none': 'Нет результатов', 'gif.searching': 'Поиск…', 'gif.native': 'WhatsApp',
+  'gif.openChat': 'Сначала откройте чат', 'gif.sendFail': 'Не удалось отправить GIF','gif.none': 'Нет результатов', 'gif.searching': 'Поиск…', 'gif.native': 'WhatsApp',
   'f.confirmSticker.name': 'Подтверждать отправку стикера', 'f.confirmSticker.desc': 'Защита от случайной отправки.', 'f.confirmSticker.tip': 'Перед отправкой показывается подтверждение.', 'f.confirmSticker.dialog': 'Отправить этот стикер?', 'f.confirmSticker.dialogBody': 'Он будет отправлен в открытый чат.',
   'f.dblReact.name': 'Двойной щелчок для реакции', 'f.dblReact.desc': 'Двойной щелчок по сообщению ставит реакцию.', 'f.dblReact.tip': 'Реакция выбранным ниже эмодзи без открытия меню.',
   'f.dblEmoji.name': 'Эмодзи быстрой реакции', 'f.dblEmoji.desc': 'Эмодзи для двойного щелчка.', 'f.dblEmoji.tip': 'Введите или вставьте эмодзи.',
