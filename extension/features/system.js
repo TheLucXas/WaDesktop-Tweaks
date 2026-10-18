@@ -53,6 +53,7 @@
       ['Message events', (() => { try { return typeof R('WAWebCollections').Msg.on === 'function'; } catch { return false; } })()],
       ['GIF send flow', has('WAWebComposeBoxUtils', 'fetchGif') && has('WAWebCmd')],
       ['Load earlier messages (export)', has('WAWebChatLoadMessages', 'loadEarlierMsgs')],
+      ['Notification hook', has('WAWebWindowsNotificationHelpers', 'showMessageNotification')],
       ['Text send (scheduler)', has('WAWebSendTextMsgChatAction', 'sendTextMsgToChat')],
       ['Media decrypt helper (statuses)', has('WAWebMediaDataUtils', 'opaqueDataToArrayBuffer')],
       ['Chat list DOM', !!document.querySelector('#pane-side [role="row"]')],

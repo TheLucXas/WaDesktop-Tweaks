@@ -100,4 +100,5 @@ window.WAT && window.WAT.addLocale('tr', {
   'f.smoothTime.name': 'Yumuşaklık (ms)', 'f.smoothTime.desc': 'Kaymanın ne kadar sürdüğü.', 'f.smoothTime.tip': 'Yüksek daha akıcı, düşük daha seri. 80 ile 900 arası.',
   'ui.searchOptions': 'Seçeneklerde ara…', 'ui.noResults': 'Aramanızla eşleşen seçenek yok.',
   'sys.copyLayout': 'Düzen raporunu kopyala', 'sys.layoutHint': 'Düzen raporu yalnızca sayfa yapısını içerir (mesaj metni, ad veya numara yok). Bir şey kaymış veya yanlış yerde görünüyorsa ekleyin.',
+  'f.dedupeNotif.name': 'Bildirimleri tekrarlama', 'f.dedupeNotif.desc': 'Her mesajın bildirimini yalnızca bir kez gösterir.', 'f.dedupeNotif.tip': 'Pencere gizliyken WhatsApp birkaç dakikada bir yeniden bağlanır ve son okunmamış mesajı yeni gelmiş gibi tekrar gösterir. Açıkken aynı metne sahip aynı mesaj yalnızca bir kez bildirilir; yeni mesajlar ve düzenlemeler yine bildirim verir.',
 });

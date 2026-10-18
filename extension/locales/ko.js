@@ -100,4 +100,5 @@ window.WAT && window.WAT.addLocale('ko', {
   'f.smoothTime.name': '부드러움 (ms)', 'f.smoothTime.desc': '미끄러지는 시간.', 'f.smoothTime.tip': '높을수록 부드럽고, 낮을수록 빠릿합니다. 80~900 사이.',
   'ui.searchOptions': '옵션 검색…', 'ui.noResults': '검색과 일치하는 옵션이 없습니다.',
   'sys.copyLayout': '레이아웃 보고서 복사', 'sys.layoutHint': '레이아웃 보고서에는 페이지 구조만 포함됩니다(메시지 내용, 이름, 번호 없음). 정렬이 어긋나거나 위치가 이상할 때 첨부하세요.',
+  'f.dedupeNotif.name': '알림 반복 안 함', 'f.dedupeNotif.desc': '각 메시지의 알림을 한 번만 표시합니다.', 'f.dedupeNotif.tip': '창이 숨겨져 있는 동안 WhatsApp은 몇 분마다 다시 연결하며 마지막 읽지 않은 메시지를 방금 온 것처럼 다시 표시합니다. 켜면 같은 메시지(같은 내용)는 한 번만 알립니다. 새 메시지와 수정은 계속 알립니다.',
 });

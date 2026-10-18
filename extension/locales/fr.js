@@ -100,4 +100,5 @@ window.WAT && window.WAT.addLocale('fr', {
   'f.smoothTime.name': 'Fluidité (ms)', 'f.smoothTime.desc': 'Durée du glissement.', 'f.smoothTime.tip': 'Plus haut = plus flottant, plus bas = plus réactif. Entre 80 et 900.',
   'ui.searchOptions': 'Rechercher une option…', 'ui.noResults': 'Aucune option ne correspond à votre recherche.',
   'sys.copyLayout': 'Copier le rapport de mise en page', 'sys.layoutHint': 'Le rapport de mise en page ne contient que la structure de la page (aucun texte de message, nom ni numéro). Joignez-le lorsque quelque chose semble mal aligné ou mal placé.',
+  'f.dedupeNotif.name': 'Ne pas répéter les notifications', 'f.dedupeNotif.desc': 'Affiche la notification de chaque message une seule fois.', 'f.dedupeNotif.tip': 'Quand la fenêtre est masquée, WhatsApp se reconnecte toutes les quelques minutes et réaffiche le dernier message non lu comme s\'il venait d\'arriver. Activé, le même message avec le même texte n\'est notifié qu\'une fois ; les nouveaux messages et les modifications notifient toujours.',
 });

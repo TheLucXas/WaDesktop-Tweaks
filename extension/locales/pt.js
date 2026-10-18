@@ -100,4 +100,5 @@ window.WAT && window.WAT.addLocale('pt', {
   'f.smoothTime.name': 'Suavidade (ms)', 'f.smoothTime.desc': 'Quanto tempo dura o deslize.', 'f.smoothTime.tip': 'Mais alto é mais flutuante, mais baixo é mais ágil. Entre 80 e 900.',
   'ui.searchOptions': 'Pesquisar opções…', 'ui.noResults': 'Nenhuma opção corresponde à sua busca.',
   'sys.copyLayout': 'Copiar relatório de layout', 'sys.layoutHint': 'O relatório de layout contém apenas a estrutura da página (sem texto de mensagens, nomes ou números). Anexe-o quando algo parecer desalinhado ou fora do lugar.',
+  'f.dedupeNotif.name': 'Não repetir notificações', 'f.dedupeNotif.desc': 'Mostra a notificação de cada mensagem uma só vez.', 'f.dedupeNotif.tip': 'Com a janela oculta, o WhatsApp reconecta a cada poucos minutos e mostra de novo a última mensagem não lida como se tivesse acabado de chegar. Com isto ativado, a mesma mensagem com o mesmo texto é notificada uma só vez; mensagens novas e edições continuam avisando.',
 });

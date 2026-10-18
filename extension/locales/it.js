@@ -100,4 +100,5 @@ window.WAT && window.WAT.addLocale('it', {
   'f.smoothTime.name': 'Fluidità (ms)', 'f.smoothTime.desc': 'Quanto dura lo scorrimento.', 'f.smoothTime.tip': 'Più alto è più morbido, più basso più reattivo. Tra 80 e 900.',
   'ui.searchOptions': 'Cerca opzioni…', 'ui.noResults': 'Nessuna opzione corrisponde alla ricerca.',
   'sys.copyLayout': 'Copia rapporto del layout', 'sys.layoutHint': 'Il rapporto del layout contiene solo la struttura della pagina (nessun testo dei messaggi, nome o numero). Allegalo quando qualcosa appare disallineato o fuori posto.',
+  'f.dedupeNotif.name': 'Non ripetere le notifiche', 'f.dedupeNotif.desc': 'Mostra la notifica di ogni messaggio una sola volta.', 'f.dedupeNotif.tip': 'Con la finestra nascosta, WhatsApp si riconnette ogni pochi minuti e mostra di nuovo l\'ultimo messaggio non letto come se fosse appena arrivato. Se attivo, lo stesso messaggio con lo stesso testo viene notificato una volta sola; i messaggi nuovi e le modifiche notificano comunque.',
 });

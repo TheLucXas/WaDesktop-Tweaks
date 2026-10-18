@@ -100,4 +100,5 @@ window.WAT && window.WAT.addLocale('pl', {
   'f.smoothTime.name': 'Płynność (ms)', 'f.smoothTime.desc': 'Jak długo trwa przesuwanie.', 'f.smoothTime.tip': 'Wyżej — płynniej, niżej — żwawiej. Od 80 do 900.',
   'ui.searchOptions': 'Szukaj opcji…', 'ui.noResults': 'Brak opcji pasujących do wyszukiwania.',
   'sys.copyLayout': 'Kopiuj raport układu', 'sys.layoutHint': 'Raport układu zawiera tylko strukturę strony (bez treści wiadomości, nazw ani numerów). Dołącz go, gdy coś wygląda na przesunięte lub w złym miejscu.',
+  'f.dedupeNotif.name': 'Nie powtarzaj powiadomień', 'f.dedupeNotif.desc': 'Pokazuje powiadomienie o każdej wiadomości tylko raz.', 'f.dedupeNotif.tip': 'Gdy okno jest ukryte, WhatsApp łączy się ponownie co kilka minut i pokazuje ostatnią nieprzeczytaną wiadomość jeszcze raz, jakby dopiero nadeszła. Po włączeniu ta sama wiadomość o tym samym tekście jest zgłaszana tylko raz; nowe wiadomości i edycje nadal powiadamiają.',
 });

@@ -100,4 +100,5 @@ window.WAT && window.WAT.addLocale('de', {
   'f.smoothTime.name': 'Weichheit (ms)', 'f.smoothTime.desc': 'Wie lange das Gleiten dauert.', 'f.smoothTime.tip': 'Höher ist schwebender, niedriger direkter. Zwischen 80 und 900.',
   'ui.searchOptions': 'Optionen durchsuchen…', 'ui.noResults': 'Keine Option passt zu deiner Suche.',
   'sys.copyLayout': 'Layout-Bericht kopieren', 'sys.layoutHint': 'Der Layout-Bericht enthält nur die Seitenstruktur (keine Nachrichtentexte, Namen oder Nummern). Füge ihn bei, wenn etwas verschoben oder falsch platziert aussieht.',
+  'f.dedupeNotif.name': 'Benachrichtigungen nicht wiederholen', 'f.dedupeNotif.desc': 'Zeigt die Benachrichtigung zu jeder Nachricht nur einmal.', 'f.dedupeNotif.tip': 'Bei verstecktem Fenster verbindet sich WhatsApp alle paar Minuten neu und zeigt die letzte ungelesene Nachricht erneut an, als wäre sie gerade eingetroffen. Aktiviert wird dieselbe Nachricht mit demselben Text nur einmal gemeldet; neue Nachrichten und Bearbeitungen melden sich weiterhin.',
 });

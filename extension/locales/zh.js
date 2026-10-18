@@ -100,4 +100,5 @@ window.WAT && window.WAT.addLocale('zh', {
   'f.smoothTime.name': '平滑度 (毫秒)', 'f.smoothTime.desc': '滑动持续的时间。', 'f.smoothTime.tip': '越大越飘逸，越小越灵敏。范围 80 到 900。',
   'ui.searchOptions': '搜索选项…', 'ui.noResults': '没有与搜索匹配的选项。',
   'sys.copyLayout': '复制布局报告', 'sys.layoutHint': '布局报告只包含页面结构（不含消息文本、姓名或号码）。当某些内容错位或位置不对时，请附上它。',
+  'f.dedupeNotif.name': '不重复通知', 'f.dedupeNotif.desc': '每条消息的通知只显示一次。', 'f.dedupeNotif.tip': '窗口隐藏时，WhatsApp 每隔几分钟重新连接一次，并把最后一条未读消息当作刚收到一样再次显示。开启后，内容相同的同一条消息只通知一次；新消息和编辑仍会通知。',
 });

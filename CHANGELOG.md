@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Comfort: new option *Do not repeat notifications* (on by default). While the window is hidden WhatsApp reconnects every few
+  minutes and re-shows the latest unread message as a new toast; the same message with the same text is now notified once.
+- Self-diagnosis checks the notification hook.
+
 ## 0.1.1
 
 - GIFs: the KLIPY search field now reads exactly "Search KLIPY" and results show a "Powered by KLIPY" mark, as

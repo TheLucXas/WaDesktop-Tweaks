@@ -10,6 +10,7 @@
     { id: 'dblEmoji', type: 'text', def: '👍', width: 70, showIf: () => WAT.on('dblReact') },
     { id: 'timeSeconds', type: 'toggle', def: false },
     { id: 'saveMedia', type: 'toggle', def: false },
+    { id: 'dedupeNotif', type: 'toggle', def: true },
     { id: 'hideForwarded', type: 'toggle', def: false },
     { id: 'quickReplies', type: 'textarea', def: '', placeholder: 'thanks = Thank you!\nbrb = Be right back' },
     { id: 'quickReplyShortcut', type: 'shortcut', def: 'Ctrl+Alt+Q' },
@@ -18,6 +19,39 @@
     { id: 'exportTxt', type: 'action', run: ({ btn }) => exportChat(btn, 'txt') },
     { id: 'exportJson', type: 'action', run: ({ btn }) => exportChat(btn, 'json') },
   ], 50);
+
+  /* ---------- no repeated notifications ----------
+   * While the window is hidden WhatsApp's connection drops and resumes every few minutes, and each time it
+   * re-shows a toast for the latest unread message (log: "show lastest unread msg due to offline delivery end").
+   * Same message + same text shown again = a repeat: skipped. A new message or an edit has a different signature.
+   * Fail-open: anything unexpected lets the original notification through. */
+  const seenNotif = new Map(); let notifPatched = false;
+  setInterval(() => {
+    if (notifPatched) return;
+    try {
+      const H = WAT.req('WAWebWindowsNotificationHelpers');
+      if (!H || typeof H.showMessageNotification !== 'function' || H.showMessageNotification.__watDedupe) return;
+      const orig = H.showMessageNotification;
+      const wrapped = function () {
+        try {
+          if (WAT.on('dedupeNotif')) {
+            const a = arguments[0];
+            const key = a && typeof a === 'object' ? a.key : typeof a === 'string' ? a : null;
+            if (typeof key === 'string' && key) {
+              const text = a && typeof a === 'object' ? [a.body, a.text, a.message, a.title, a.header].filter(x => typeof x === 'string').join('|') : '';
+              const sig = key + '|' + text, now = Date.now();
+              for (const [k, t0] of seenNotif) if (now - t0 > 6 * 3600e3) seenNotif.delete(k);
+              if (seenNotif.has(sig)) { WAT.log('notification: skipped a repeat'); return Promise.resolve(); }
+              seenNotif.set(sig, now);
+            }
+          }
+        } catch {}
+        return orig.apply(this, arguments);
+      };
+      wrapped.__watDedupe = true;
+      H.showMessageNotification = wrapped; notifPatched = true;
+    } catch {}
+  }, 1500);
 
   /* ---------- sticker confirmation + double-click reaction (need WhatsApp internals) ---------- */
   let patched = false;

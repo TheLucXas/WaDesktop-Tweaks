@@ -100,4 +100,5 @@ window.WAT && window.WAT.addLocale('ja', {
   'f.smoothTime.name': 'なめらかさ (ms)', 'f.smoothTime.desc': '滑る時間の長さ。', 'f.smoothTime.tip': '大きいほどふんわり、小さいほどキビキビします。80〜900の範囲。',
   'ui.searchOptions': '設定を検索…', 'ui.noResults': '一致する設定がありません。',
   'sys.copyLayout': 'レイアウトレポートをコピー', 'sys.layoutHint': 'レイアウトレポートにはページの構造のみが含まれます（メッセージ本文、名前、番号は含まれません）。表示のずれや位置のおかしさを報告するときに添付してください。',
+  'f.dedupeNotif.name': '通知を繰り返さない', 'f.dedupeNotif.desc': '各メッセージの通知を1回だけ表示します。', 'f.dedupeNotif.tip': 'ウィンドウが非表示のあいだ、WhatsAppは数分ごとに再接続し、最新の未読メッセージを届いたばかりのように再表示します。オンにすると、同じメッセージ（同じ本文）は1回だけ通知されます。新しいメッセージや編集は引き続き通知されます。',
 });

@@ -100,4 +100,5 @@ window.WAT && window.WAT.addLocale('id', {
   'f.smoothTime.name': 'Kehalusan (ms)', 'f.smoothTime.desc': 'Berapa lama peluncuran berlangsung.', 'f.smoothTime.tip': 'Lebih tinggi lebih mengambang, lebih rendah lebih gesit. Antara 80 dan 900.',
   'ui.searchOptions': 'Cari opsi…', 'ui.noResults': 'Tidak ada opsi yang cocok dengan pencarian.',
   'sys.copyLayout': 'Salin laporan tata letak', 'sys.layoutHint': 'Laporan tata letak hanya berisi struktur halaman (tanpa teks pesan, nama, atau nomor). Lampirkan saat ada yang terlihat tidak sejajar atau salah tempat.',
+  'f.dedupeNotif.name': 'Jangan ulangi notifikasi', 'f.dedupeNotif.desc': 'Menampilkan notifikasi setiap pesan hanya sekali.', 'f.dedupeNotif.tip': 'Saat jendela tersembunyi, WhatsApp tersambung ulang setiap beberapa menit dan menampilkan lagi pesan belum dibaca terakhir seolah baru masuk. Jika aktif, pesan yang sama dengan teks yang sama hanya diberi notifikasi sekali; pesan baru dan suntingan tetap diberi notifikasi.',
 });
