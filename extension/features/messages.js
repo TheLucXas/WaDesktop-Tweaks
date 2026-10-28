@@ -27,6 +27,9 @@
       return k._serialized || (k.remote && k.id ? (k.fromMe ? 'true' : 'false') + '_' + (k.remote._serialized || k.remote) + '_' + k.id : String(k));
     } catch { return null; }
   };
+  // Groups append the participant to the key (and the revoke's key may omit it or write it in another form): match on fromMe_chat_id only.
+  const norm = k => String(k || '').split('_').slice(0, 3).join('_');
+  const findIn = (map, k) => { if (!k) return null; if (map.has(k)) return map.get(k); const n = norm(k); for (const [x, v] of map) if (norm(x) === n) return v; return null; };
   const IGNORED_TYPES = ['revoked', 'protocol', 'e2e_notification', 'notification_template', 'gp2', 'call_log', 'ciphertext', 'broadcast_notification'];
 
   function names(m) {
@@ -74,7 +77,8 @@
       // WhatsApp replaces the message id with the revoke notice's id; the original lives in protocolMessageKey.
       const own = keyOf(m), orig = origKeyOf(m), tag = orig || own;
       if (!tag || checked.has(tag)) return;
-      const rec = (orig && (cache.get(orig) || await WAT.db.get('msgs', orig))) || cache.get(own) || await WAT.db.get('msgs', own);
+      let rec = (orig && (findIn(cache, orig) || await WAT.db.get('msgs', orig))) || findIn(cache, own) || await WAT.db.get('msgs', own);
+      if (!rec) { const n = norm(orig || own); rec = (await WAT.db.all('msgs')).find(r => norm(r.id) === n) || null; }
       checked.add(tag);
       if (!rec || rec.deleted || rec.own) return;
       rec.deleted = true; rec.deletedAt = Number(m.revokeTimestamp) ? Number(m.revokeTimestamp) * 1000 : Date.now();
@@ -136,7 +140,7 @@
   function paintRow(row, idx) {
     const msg = idx.get(row.getAttribute('data-id')); if (!msg) return;
     if (msg.type === 'revoked' && WAT.on('showDeletedInline')) {
-      const orig = origKeyOf(msg); const rec = (orig && delIndex.get(orig)) || delIndex.get(keyOf(msg));
+      const orig = origKeyOf(msg); const rec = findIn(delIndex, orig) || findIn(delIndex, keyOf(msg));
       if (!rec) return;
       const w = document.createTreeWalker(row, NodeFilter.SHOW_TEXT);
       let n;

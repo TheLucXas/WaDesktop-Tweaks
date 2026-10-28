@@ -5,6 +5,7 @@
 - Comfort: new option *Do not repeat notifications* (on by default). While the window is hidden WhatsApp reconnects every few
   minutes and re-shows the latest unread message as a new toast; the same message with the same text is now notified once.
 - Self-diagnosis checks the notification hook.
+- Fix: deleted messages were not recovered in groups (the revoke notice and the saved copy keyed the sender differently); they are now matched by chat and message id.
 
 ## 0.1.1
 
