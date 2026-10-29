@@ -285,6 +285,17 @@
     }
     for (const b of act.children) { b.title = t(b.__a.titleKey); b.style.display = b.__a.showIf && !b.__a.showIf() ? 'none' : ''; }
     act.style.display = ready && !covered && inChat && (WAT.actions || []).length ? 'flex' : 'none';
+    if (act.style.display === 'flex') {
+      // Sit immediately left of the leftmost icon of the chat header (call buttons, search, menu), whatever the chat type.
+      const hb = [...document.querySelectorAll('header button, header [role="button"]')].map(e => ({ e, r: e.getBoundingClientRect() }))
+        .filter(c => c.r.width > 0 && c.r.width < 90 && c.r.top < 110 && c.r.left > 420);
+      if (hb.length) {
+        const lm = hb.reduce((m, c) => (c.r.left < m.r.left ? c : m), hb[0]);
+        const ar = act.getBoundingClientRect();
+        act.style.right = Math.max(8, window.innerWidth - lm.r.left + 10) + 'px';
+        act.style.top = Math.max(0, lm.r.top + (lm.r.height - (ar.height || 28)) / 2) + 'px';
+      }
+    }
   }, 250);
 
   /* ---------- global keyboard shortcuts ---------- */
