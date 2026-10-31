@@ -290,7 +290,10 @@
       const hb = [...document.querySelectorAll('header button, header [role="button"]')].map(e => ({ e, r: e.getBoundingClientRect() }))
         .filter(c => c.r.width > 0 && c.r.width < 90 && c.r.top < 110 && c.r.left > 420);
       if (hb.length) {
-        const lm = hb.reduce((m, c) => (c.r.left < m.r.left ? c : m), hb[0]);
+        // Walk left from the rightmost icon while the gap stays small, so the contact avatar / title button is not taken for an icon.
+        hb.sort((a, b) => b.r.left - a.r.left);
+        let lm = hb[0];
+        for (const c of hb) if (c.r.right >= lm.r.left - 28 && c.r.left < lm.r.left) lm = c;
         const ar = act.getBoundingClientRect();
         act.style.right = Math.max(8, window.innerWidth - lm.r.left + 10) + 'px';
         act.style.top = Math.max(0, lm.r.top + (lm.r.height - (ar.height || 28)) / 2) + 'px';
