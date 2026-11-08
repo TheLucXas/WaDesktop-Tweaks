@@ -6,7 +6,9 @@
   minutes and re-shows the latest unread message as a new toast; the same message with the same text is now notified once.
 - Self-diagnosis checks the notification hook.
 - Fix: deleted messages were not recovered in groups (the revoke notice and the saved copy keyed the sender differently); they are now matched by chat and message id.
-- Fix: the quick-action buttons (✓✓, shield) no longer cover the call buttons in the chat header; they follow the leftmost header icon.
+- Fix: the quick-action buttons (✓✓, shield) no longer cover the call buttons in the chat header; they follow the icon cluster.
+- The group title / member list is cut with an ellipsis before the quick-action buttons instead of running under them.
+- Self-diagnosis log records whether each deleted message had a saved copy (no message text), to track down groups where recovery fails.
 
 ## 0.1.1
 

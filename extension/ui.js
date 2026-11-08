@@ -285,6 +285,8 @@
     }
     for (const b of act.children) { b.title = t(b.__a.titleKey); b.style.display = b.__a.showIf && !b.__a.showIf() ? 'none' : ''; }
     act.style.display = ready && !covered && inChat && (WAT.actions || []).length ? 'flex' : 'none';
+    const cut = document.querySelectorAll('[data-wat-cut]');
+    if (act.style.display !== 'flex') cut.forEach(e => { e.style.maxWidth = ''; e.removeAttribute('data-wat-cut'); });
     if (act.style.display === 'flex') {
       // Sit immediately left of the leftmost icon of the chat header (call buttons, search, menu), whatever the chat type.
       const hb = [...document.querySelectorAll('header button, header [role="button"]')].map(e => ({ e, r: e.getBoundingClientRect() }))
@@ -297,6 +299,14 @@
         const ar = act.getBoundingClientRect();
         act.style.right = Math.max(8, window.innerWidth - lm.r.left + 10) + 'px';
         act.style.top = Math.max(0, lm.r.top + (lm.r.height - (ar.height || 28)) / 2) + 'px';
+      }
+      // Cut the group title / member list a little before our buttons instead of letting them run underneath.
+      const lim = act.getBoundingClientRect().left - 12;
+      for (const e of document.querySelectorAll('#main header span, #main header div')) {
+        if (e.closest('button,[role="button"]') && !e.querySelector('span[dir],span[title]')) continue;
+        if (![...e.childNodes].some(n => n.nodeType === 3 && n.nodeValue.trim())) continue;
+        const r = e.getBoundingClientRect(); if (!r.width || r.left >= lim || r.right <= lim) continue;
+        e.style.maxWidth = Math.max(40, lim - r.left) + 'px'; e.style.overflow = 'hidden'; e.style.textOverflow = 'ellipsis'; e.style.whiteSpace = 'nowrap'; e.setAttribute('data-wat-cut', '1');
       }
     }
   }, 250);

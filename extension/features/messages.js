@@ -80,6 +80,8 @@
       let rec = (orig && (findIn(cache, orig) || await WAT.db.get('msgs', orig))) || findIn(cache, own) || await WAT.db.get('msgs', own);
       if (!rec) { const n = norm(orig || own); rec = (await WAT.db.all('msgs')).find(r => norm(r.id) === n) || null; }
       checked.add(tag);
+      const shape = k => String(k || '-').replace(/^(true|false)_([^_@]*)(@[^_]*)_([^_]{4})[^_]*/, '$1_*$3_$4..').slice(0, 60);
+      WAT.log('revoked: ' + (rec ? (rec.deleted ? 'already marked' : rec.own ? 'own message' : 'recovered') : 'NO COPY') + ' orig=' + shape(orig) + ' own=' + shape(own) + ' cache=' + cache.size);
       if (!rec || rec.deleted || rec.own) return;
       rec.deleted = true; rec.deletedAt = Number(m.revokeTimestamp) ? Number(m.revokeTimestamp) * 1000 : Date.now();
       cache.set(rec.id, rec); delIndex.set(rec.id, rec); await WAT.db.put('msgs', rec);
