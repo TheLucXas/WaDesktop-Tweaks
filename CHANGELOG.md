@@ -9,6 +9,10 @@
 - Fix: the quick-action buttons (✓✓, shield) no longer cover the call buttons in the chat header; they follow the icon cluster.
 - The group title / member list is cut with an ellipsis before the quick-action buttons instead of running under them.
 - Self-diagnosis log records whether each deleted message had a saved copy (no message text), to track down groups where recovery fails.
+- New option (Messages, off by default, marked high risk): *Capture deleted messages earlier*. It copies a message from WhatsApp's own
+  database just before a "delete for everyone" is applied, for messages that arrive already deleted.
+- A small event log (start-up, login state changes, log-out hints; never message text) is now kept in the extension's own storage, so it
+  survives a WhatsApp log-out or data reset, and is included in the Self-diagnosis report. Adds the `storage` permission.
 
 ## 0.1.1
 

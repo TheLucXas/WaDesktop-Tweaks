@@ -11,6 +11,7 @@
     { id: 'trackToast', type: 'toggle', def: true, showIf: () => WAT.on('trackDeleted') },
     { id: 'showDeletedInline', type: 'toggle', def: true, showIf: () => WAT.on('trackDeleted') },
     { id: 'trackEdits', type: 'toggle', def: true, showIf: () => WAT.on('trackDeleted') },
+    { id: 'deepRevoke', type: 'toggle', def: false, risk: 'high', showIf: () => WAT.on('trackDeleted') },
     { id: 'openDeleted', type: 'action', run: () => openViewer() },
     { id: 'clearTracker', type: 'action', danger: true, run: async ({ btn }) => {
       if (await WAT.confirm(t('f.clearTracker.name'), t('f.clearTracker.confirm'), t('a.clearTracker'), true)) { await WAT.db.clear('msgs'); cache.clear(); delIndex.clear(); WAT.toast(t('ui.done')); }
@@ -89,6 +90,41 @@
     } catch (e) { WAT.log('onRevoked: ' + e); }
   }
 
+  /* Deep capture: WhatsApp applies a "delete for everyone" in WAWebDBProcessRevokeMsgs.processRevokeMsgs. Just before it runs, the
+   * original row is still in WhatsApp's own message table; copy its text into our store (needed when the text and the delete
+   * arrive together, e.g. after a reconnect, so the message never went through the normal "add" path). Fails open. */
+  async function saveBeforeRevoke(infos) {
+    const list = (Array.isArray(infos) ? infos : []).filter(i => i && i.revokeMsgKey);
+    if (!list.length) return;
+    const tbl = WAT.req('WAWebSchemaMessage').getMessageTable();
+    const keys = list.map(i => String(i.revokeMsgKey));
+    const rows = await Promise.race([tbl.bulkGet(keys, false), new Promise(r => setTimeout(() => r(null), 1500))]);
+    if (!rows) { WAT.log('deep: table read timed out'); return; }
+    rows.forEach((row, i) => {
+      if (!row) { WAT.log('deep: original not in table yet'); return; }
+      const id = String(row.id && (row.id._serialized || row.id));
+      if (findIn(cache, id)) return;
+      const remote = id.split('_')[1] || '';
+      const rec = toRecord({ id: { _serialized: id, remote, fromMe: id.startsWith('true_') }, body: row.body, type: row.type, caption: row.caption, t: row.t,
+        mimetype: row.mimetype, isViewOnce: row.isViewOnce, author: row.author || row.from });
+      if (!rec) { WAT.log('deep: skipped type=' + row.type); return; }
+      if (rec.own) return;
+      cache.set(rec.id, rec); WAT.db.put('msgs', rec).catch(() => {}); WAT.log('deep: saved a copy before the delete (type=' + row.type + ')');
+    });
+  }
+  let revokeHooked = false;
+  function hookRevoke() {
+    if (revokeHooked) return;
+    let H; try { H = WAT.req('WAWebDBProcessRevokeMsgs'); } catch {}
+    if (!H || typeof H.processRevokeMsgs !== 'function') return;
+    const orig = H.processRevokeMsgs; if (orig.__wat) { revokeHooked = true; return; }
+    const patched = async function (infos) {
+      try { if (WAT.on('trackDeleted') && WAT.on('deepRevoke')) await saveBeforeRevoke(infos); } catch (e) { WAT.log('deep: ' + e); }
+      return orig.apply(this, arguments);
+    };
+    patched.__wat = true; H.processRevokeMsgs = patched; revokeHooked = true; WAT.log('deep: revoke hook installed');
+  }
+
   let wired = false;
   function wire() {
     if (wired) return true;
@@ -109,6 +145,7 @@
 
   /* periodic work: wiring, backup sweep for revoked models, purge */
   setInterval(() => {
+    if (WAT.on('deepRevoke')) hookRevoke();
     if (!wired && !wire()) return;
     if (Date.now() - lastDel > 8000) { lastDel = Date.now(); loadDeleted(); }
     if (WAT.on('trackDeleted')) for (const m of WAT.msgs()) if (m && m.type === 'revoked') { const k = origKeyOf(m) || keyOf(m); if (k && !checked.has(k)) onRevoked(m); }

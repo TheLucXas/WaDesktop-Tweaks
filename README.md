@@ -108,6 +108,7 @@ WhatsApp keeps its own GIF picker. If you want to search **KLIPY** as well, you 
 
 - **No telemetry.** Nothing is collected or sent to the author.
 - Everything the tweaks save (recovered messages, edit history, archived statuses, scheduled messages, settings) stays **on your PC**, in WhatsApp's browser profile. You can erase it from the panel. Your own messages are only held in memory and are saved to disk solely if you edit one.
+- The extension also keeps a short event log (start-up and login-state changes, no message text) in its own storage so a log-out can be investigated; it is part of the Self-diagnosis report.
 - The only network requests the extension makes are to **`api.klipy.com` / `static*.klipy.com`** (only if you set a KLIPY key) and **`api.github.com`** (update check). Everything else goes through WhatsApp as usual.
 - "View once" content is **never** stored, and WhatsApp Desktop can't open it anyway (the media key isn't sent to linked devices).
 - The **PIN lock is a screen cover**, not encryption. It stops casual glances, not someone with technical access to your PC.

@@ -101,4 +101,5 @@ window.WAT && window.WAT.addLocale('zh', {
   'ui.searchOptions': '搜索选项…', 'ui.noResults': '没有与搜索匹配的选项。',
   'sys.copyLayout': '复制布局报告', 'sys.layoutHint': '布局报告只包含页面结构（不含消息文本、姓名或号码）。当某些内容错位或位置不对时，请附上它。',
   'f.dedupeNotif.name': '不重复通知', 'f.dedupeNotif.desc': '每条消息的通知只显示一次。', 'f.dedupeNotif.tip': '窗口隐藏时，WhatsApp 每隔几分钟重新连接一次，并把最后一条未读消息当作刚收到一样再次显示。开启后，内容相同的同一条消息只通知一次；新消息和编辑仍会通知。',
+  'f.deepRevoke.name': '更早捕获已删除消息', 'f.deepRevoke.desc': '同时保存到达时就已被删除的消息。', 'f.deepRevoke.tip': '高级功能，有风险。它会挂接 WhatsApp 内部执行“为所有人删除”的函数，并在消息被清除前从 WhatsApp 自己的数据库复制一份。当文本与删除一起到达时（例如重新连接后）很有用。它依赖 WhatsApp 的内部实现：更新可能使其失效，出错时还可能影响删除的处理。默认关闭。',
 });

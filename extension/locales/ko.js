@@ -101,4 +101,5 @@ window.WAT && window.WAT.addLocale('ko', {
   'ui.searchOptions': '옵션 검색…', 'ui.noResults': '검색과 일치하는 옵션이 없습니다.',
   'sys.copyLayout': '레이아웃 보고서 복사', 'sys.layoutHint': '레이아웃 보고서에는 페이지 구조만 포함됩니다(메시지 내용, 이름, 번호 없음). 정렬이 어긋나거나 위치가 이상할 때 첨부하세요.',
   'f.dedupeNotif.name': '알림 반복 안 함', 'f.dedupeNotif.desc': '각 메시지의 알림을 한 번만 표시합니다.', 'f.dedupeNotif.tip': '창이 숨겨져 있는 동안 WhatsApp은 몇 분마다 다시 연결하며 마지막 읽지 않은 메시지를 방금 온 것처럼 다시 표시합니다. 켜면 같은 메시지(같은 내용)는 한 번만 알립니다. 새 메시지와 수정은 계속 알립니다.',
+  'f.deepRevoke.name': '삭제된 메시지 더 일찍 저장', 'f.deepRevoke.desc': '이미 삭제된 상태로 도착한 메시지도 저장합니다.', 'f.deepRevoke.tip': '고급 기능이며 위험합니다. "모든 사람에게서 삭제"를 처리하는 WhatsApp 내부 함수에 연결해, 지워지기 직전에 WhatsApp 자체 데이터베이스에서 메시지를 복사합니다. 텍스트와 삭제가 함께 도착할 때(예: 재연결 후) 도움이 됩니다. WhatsApp 내부 구조에 의존하므로 업데이트로 동작하지 않을 수 있고, 문제가 생기면 삭제 처리에 영향을 줄 수 있습니다. 기본값은 꺼짐.',
 });

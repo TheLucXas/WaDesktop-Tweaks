@@ -101,6 +101,14 @@
     pending.set(id, { res, t });
     window.postMessage({ wat: 'req', id, url, headers }, '*');
   });
+  /* Persistent event log (kept by the extension, survives a WhatsApp log-out). Structure and states only, never message text. */
+  WAT.event = line => { try { window.postMessage({ wat: 'ev', line: String(line) }, '*'); } catch {} };
+  WAT.events = () => new Promise(res => {
+    const id = Math.random().toString(36).slice(2);
+    const h = e => { if (e.source === window && e.data && e.data.wat === 'evres' && e.data.id === id) { window.removeEventListener('message', h); clearTimeout(tm); res(e.data.list || []); } };
+    const tm = setTimeout(() => { window.removeEventListener('message', h); res(['(event log unavailable)']); }, 3000);
+    window.addEventListener('message', h); window.postMessage({ wat: 'evget', id }, '*');
+  });
   const b64ToBytes = b64 => { const bin = atob(b64); const a = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i); return a; };
   WAT.fetchJson = async (url, headers) => {
     const r = await WAT.fetchRaw(url, headers);

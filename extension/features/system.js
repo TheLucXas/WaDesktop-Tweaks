@@ -135,6 +135,31 @@
   }, true);
 
 
+  /* ---------- persistent lifecycle events: start-up, login state changes, log-out hints ---------- */
+  (() => {
+    const WATCH = /log.?out|logged.?out|unlink|unregister|deauth|stream:error|conflict|session.*(expired|invalid|revoked)|auth.*fail|account.*(banned|locked)|clear.*(storage|data)|wipe/i;
+    let last = '', t0 = Date.now(), seen = 0;
+    const stateNow = () => {
+      try { const S = WAT.req('WAWebStreamModel').Stream; return 'mode=' + S.mode + ' info=' + (S.displayInfo || S.info || '-') + ' state=' + (S.state || '-'); } catch { return WAT.nowReady() ? 'ready' : 'not-ready'; }
+    };
+    WAT.event('start v' + WAT.version + ' ua=' + (navigator.userAgent.match(/Edg\/[\d.]+/) || [''])[0]);
+    setInterval(() => {
+      const s = stateNow();
+      if (s !== last) { WAT.event('state: ' + s + ' (+' + Math.round((Date.now() - t0) / 1000) + 's)'); last = s; }
+    }, 3000);
+    ['log', 'warn', 'error'].forEach(k => {
+      const orig = console[k]; if (!orig || orig.__wat) return;
+      const w = function () {
+        try { const m = String(arguments[0] == null ? '' : arguments[0]); if (seen < 60 && WATCH.test(m) && !/\[WAT\]|WaDesktop/i.test(m)) { seen++; WAT.event('wa-' + k + ': ' + m.replace(/[\w.+-]+@[\w.-]+/g, '<id>').replace(/\d{6,}/g, '#').slice(0, 160)); } } catch {}
+        return orig.apply(this, arguments);
+      };
+      w.__wat = true; console[k] = w;
+    });
+    window.addEventListener('pagehide', () => WAT.event('pagehide (' + stateNow() + ')'));
+    window.addEventListener('offline', () => WAT.event('browser offline'));
+    window.addEventListener('online', () => WAT.event('browser online'));
+  })();
+
   async function runDiagnostics() {
     const rows = checks();
     let net = 'ok';
@@ -142,7 +167,8 @@
     rows.push(['Extension network bridge', !/error/.test(net), net]);
     const ov = el('div', { class: 'wat-ov' });
     const close = () => ov.remove();
-    const text = ['WaDesktop-Tweaks v' + WAT.version, 'lang=' + WAT.lang(), ...rows.map(r => (r[1] ? 'OK   ' : 'FAIL ') + r[0] + (r[2] ? ' (' + r[2] + ')' : '')), '--- log ---', ...WAT.logs.slice(-30)].join(String.fromCharCode(10));
+    const evs = await WAT.events();
+    const text = ['WaDesktop-Tweaks v' + WAT.version, 'lang=' + WAT.lang(), ...rows.map(r => (r[1] ? 'OK   ' : 'FAIL ') + r[0] + (r[2] ? ' (' + r[2] + ')' : '')), '--- log ---', ...WAT.logs.slice(-30), '--- events (kept across log-outs) ---', ...evs.slice(-60)].join(String.fromCharCode(10));
     ov.append(el('div', { class: 'wat-panel', style: 'display:block;width:min(560px,94vw);height:auto;max-height:86vh;overflow:auto;padding:16px 18px' },
       el('div', { style: 'display:flex;justify-content:space-between;align-items:center' }, el('h2', { style: 'margin:0;font-size:17px' }, t('f.diagnostics.name')), el('button', { class: 'wat-x', onclick: close }, '✕')),
       el('div', { class: 'wat-hint' }, t('sys.diagHint')),
